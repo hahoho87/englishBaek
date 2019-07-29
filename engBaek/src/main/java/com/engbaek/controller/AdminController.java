@@ -28,7 +28,7 @@ public class AdminController {
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/notice/read";
+		return "redirect:/admin/info";
 	}
 	
 	//학생 목록
@@ -42,5 +42,9 @@ public class AdminController {
 	public void teadList(Model model, Criteria cri) {
 		log.info("list");
 	}
-
+	
+	@PostMapping("/tea_auth")
+	public String modify(BoardVO board, RedirectAttributes rttr) {
+		return "redirect:/admin/tea_auth";
+	}
 }

@@ -15,11 +15,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/classroom/*")
 @Log4j
+@RequestMapping("/classroom/*")
 @AllArgsConstructor
 public class ClassroomController {
-	
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 

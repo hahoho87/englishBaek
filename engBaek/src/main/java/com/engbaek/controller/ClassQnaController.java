@@ -16,10 +16,15 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/refund_info/*")
+@RequestMapping("/classQna/*")
 @AllArgsConstructor
-public class RefundController {
+public class ClassQnaController {
 	
+	@GetMapping("/list")
+	public void list(Model model, Criteria cri) {
+		log.info("list");
+	}
+
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
@@ -28,6 +33,23 @@ public class RefundController {
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/refund_info/read";
+		return "redirect:/classQna/read";
+	}
+
+	@PostMapping("/remove")
+	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		return "redirect:/classQna/list";
+	}
+
+	@GetMapping("/register")
+	public void register() {
+
+	}
+
+	//TODO BoardVO 변경
+	@PostMapping("/register")
+	public String register(BoardVO board, RedirectAttributes rttr) {
+		return "redirect:/classQna/list";
+
 	}
 }

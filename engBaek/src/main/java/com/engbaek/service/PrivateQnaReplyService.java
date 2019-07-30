@@ -9,11 +9,16 @@ import com.engbaek.domain.ReplyVO;
 
 public interface PrivateQnaReplyService {
 	
-	public ReplyPageDTO getListPage(Criteria cri, Long privateQnaReply_bno);
+	//1:1문의 답글 수정 
 	public int modify(PrivateQnaReplyVO privateQnaReply);
+	
+	//1:1문의 답글 상세보기 
 	public ReplyVO get(Long privateQnaReply_bno);
+	
+	//1:1문의 답글 삭제 
 	public int remove(Long privateQnaReply_bno);
+	
+	//1:1문의 답글 등록 
 	public int register(PrivateQnaReplyVO privateQnaReply);
-	public List<PrivateQnaReplyVO> getList(Criteria cri, Long bno);
 	
 }

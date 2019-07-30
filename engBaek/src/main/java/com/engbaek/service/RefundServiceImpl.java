@@ -7,39 +7,40 @@ import com.engbaek.domain.RefundVO;
 
 public class RefundServiceImpl implements RefundService{
 
+	//환불 내역 총 게시물 수 
 	@Override
 	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	//환불 내역 목록 
 	@Override
 	public List<RefundVO> getList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//환불 내역 등록 
 	@Override
 	public void register(RefundVO refund) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	//환불 내역 상세 보기 
 	@Override
 	public RefundVO get(Long bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//환불 내역 수정
 	@Override
 	public boolean modify(RefundVO refund) {
-		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
+	//환불 내역  삭제 
 	@Override
 	public boolean remove(Long review_bno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

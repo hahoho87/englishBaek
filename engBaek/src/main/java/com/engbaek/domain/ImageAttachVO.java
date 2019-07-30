@@ -1,5 +1,5 @@
 package com.engbaek.domain;
 
-public class TeacherProfileVO {
+public class ImageAttachVO {
 
 }

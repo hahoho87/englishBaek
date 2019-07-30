@@ -2,9 +2,8 @@ package com.engbaek.service;
 
 import java.util.List;
 
-import com.engbaek.domain.BoardAttachVO;
-import com.engbaek.domain.BoardVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.NoticeVO;
 
 public interface NoticeService {
 	

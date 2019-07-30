@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.Criteria;
 
 import lombok.AllArgsConstructor;
@@ -26,18 +27,18 @@ public class ClassQnaController {
 	}
 
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("classQna_bno") Long classQna_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(ClassQnaVO classQna, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/classQna/read";
 	}
 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("classQna_bno") Long classQna_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/classQna/list";
 	}
 
@@ -48,7 +49,7 @@ public class ClassQnaController {
 
 	//TODO BoardVO 변경
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(ClassQnaVO classQna, RedirectAttributes rttr) {
 		return "redirect:/classQna/list";
 
 	}

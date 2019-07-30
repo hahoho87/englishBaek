@@ -3,6 +3,6 @@ package com.engbaek.domain;
 import lombok.Data;
 
 @Data
-public class TeacherProfileVO {
+public class ClassAttachVO {
 
 }

@@ -1,5 +1,5 @@
 package com.engbaek.service;
 
-public class ClassServiceImpl {
+public class ClassServiceImpl implements ClassService{
 
 }

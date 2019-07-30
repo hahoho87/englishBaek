@@ -1,5 +1,5 @@
 package com.engbaek.service;
 
-public interface PrivateQnaService {
+public interface PrivateQnaService{
 
 }

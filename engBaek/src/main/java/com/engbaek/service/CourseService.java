@@ -1,5 +1,5 @@
 package com.engbaek.service;
 
-public interface CourseService {
+public interface CourseService implements CourseService {
 
 }

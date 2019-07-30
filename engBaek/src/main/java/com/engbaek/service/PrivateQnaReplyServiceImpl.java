@@ -6,10 +6,9 @@ import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ReplyPageDTO;
 import com.engbaek.domain.ReplyVO;
 
-public interface ReplyService {
-
+public class PrivateQnaReplyServiceImpl {
 	public ReplyPageDTO getListPage(Criteria cri, Long bno);
-	public int modify(ReplyVO reply);
+	public int modify(PrivateQnaVO reply);
 	public ReplyVO get(Long rno);
 	public int remove(Long rno);
 	public int register(ReplyVO reply);

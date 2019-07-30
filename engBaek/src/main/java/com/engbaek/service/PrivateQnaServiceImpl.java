@@ -1,5 +1,5 @@
 package com.engbaek.service;
 
-public class PrivateQnaServiceImpl {
+public class PrivateQnaServiceImpl implements PrivateQnaService {
 
 }

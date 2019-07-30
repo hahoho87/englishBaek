@@ -1,9 +1,6 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public class ClassQnaServiceImpl implements ClassQnaService{
 
-=======
 import java.util.List;
 
 import com.engbaek.domain.ClassQnaVO;
@@ -43,5 +40,5 @@ public class ClassQnaServiceImpl implements ClassQnaService{
 		return false;
 	}
 
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+
 }

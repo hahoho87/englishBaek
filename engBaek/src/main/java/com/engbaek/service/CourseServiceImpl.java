@@ -1,8 +1,5 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public class CourseServiceImpl {
-=======
 import java.util.List;
 
 import com.engbaek.domain.CourseVO;
@@ -45,6 +42,4 @@ public class CourseServiceImpl implements CourseService {
 	public List<ImageAttachVO> getAttachList(Long bno) {
 		return null;
 	}
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
-
 }

@@ -1,10 +1,4 @@
 package com.engbaek.service;
-
-<<<<<<< HEAD
-public interface CourseService {
-
-}
-=======
 import java.util.List;
 
 import com.engbaek.domain.CourseVO;
@@ -22,4 +16,4 @@ public interface CourseService {
 	
 	public List<ImageAttachVO> getAttachList(Long bno);
 }
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+

@@ -1,9 +1,6 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public interface ClassService {
 
-=======
 import java.util.List;
 
 import com.engbaek.domain.ClassAttachVO;
@@ -20,5 +17,5 @@ public interface ClassService {
 	public boolean remove(Long class_bno);
 	
 	public List<ClassAttachVO> getAttachList(Long bno);
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+
 }

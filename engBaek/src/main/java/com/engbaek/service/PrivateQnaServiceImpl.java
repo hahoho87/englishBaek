@@ -1,8 +1,6 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public class PrivateQnaServiceImpl {
-=======
+
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
@@ -39,6 +37,6 @@ public class PrivateQnaServiceImpl implements PrivateQnaService {
 	public boolean remove(Long privateQna_bno) {
 		return false;
 	}
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+
 
 }

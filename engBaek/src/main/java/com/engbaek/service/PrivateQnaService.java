@@ -1,9 +1,6 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public interface PrivateQnaService {
 
-=======
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
@@ -16,5 +13,5 @@ public interface PrivateQnaService{
 	public PrivateQnaVO get(Long privateQna_bno);
 	public boolean modify(PrivateQnaVO privateQna);
 	public boolean remove(Long privateQna_bno);
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+
 }

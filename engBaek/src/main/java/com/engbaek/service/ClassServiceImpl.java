@@ -1,8 +1,6 @@
 package com.engbaek.service;
 
-<<<<<<< HEAD
-public class ClassServiceImpl {
-=======
+
 import java.util.List;
 
 import com.engbaek.domain.ClassAttachVO;
@@ -45,6 +43,6 @@ public class ClassServiceImpl implements ClassService{
 	public List<ClassAttachVO> getAttachList(Long bno) {
 		return null;
 	}
->>>>>>> 8f2273a6ce174c03eb18e67946a70aca9a04ed11
+
 
 }

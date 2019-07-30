@@ -1,6 +1,5 @@
 package com.engbaek.service;
 
-
 import java.util.List;
 
 import com.engbaek.domain.ClassQnaVO;
@@ -13,5 +12,4 @@ public interface ClassQnaService {
 	public ClassQnaVO get(Long classQna_bno);
 	public boolean modify(ClassQnaVO classQna);
 	public boolean remove(Long classQna_bno);
-
 }

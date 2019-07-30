@@ -21,34 +21,38 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class NoticeController {
 
+	// 공지사항 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 		
 	}
-
+	
+	// 공지사항 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
-	//TODO BoardVO 변경
+	// 공지사항 수정
 	@PostMapping("/modify")
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/notice/read";
 	}
-
+	
+	// 공지사항 삭제
 	@PostMapping("/remove")
 	public String remove(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/notice/list";
 	}
 
+	// 공지사항 등록 화면
 	@GetMapping("/register")
 	public void register() {
 
 	}
 
-	//TODO BoardVO 변경
+	// 공지사항 등록
 	@PostMapping("/register")
 	public String register(NoticeVO notice, RedirectAttributes rttr) {
 		return "redirect:/notice/list";

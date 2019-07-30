@@ -30,40 +30,45 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/class/*")
 @AllArgsConstructor
 public class ClassController {
-
+	
+	// 강의 공지사항 & 수업자료 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 	}
-
+	
+	// 강의 공지사항 & 수업자료 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("class_bno") Long class_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
-
-	// TODO BoardVO 변경
+	
+	// 강의 공지사항 & 수업자료 수정
 	@PostMapping("/modify")
 	public String modify(ClassVO class_, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/class/read";
 	}
-
+	
+	// 강의 공지사항 & 수업자료 삭제
 	@PostMapping("/remove")
 	public String remove(@RequestParam("class_bno") Long class_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/class/list";
 	}
-
+	
+	// 강의 공지사항 & 수업자료 등록 화면
 	@GetMapping("/register")
 	public void register() {
 
 	}
-
-	// TODO BoardVO 변경
+	
+	// 강의 공지사항 & 수업자료 등록
 	@PostMapping("/register")
 	public String register(ClassVO class_, RedirectAttributes rttr) {
 		return "redirect:/class/list";
 
 	}
 	
+	// 강의 공지사항 & 수업자료 첨부파일 출력
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<ClassAttachVO>> getAttachList(Long class_bno) {
@@ -72,7 +77,7 @@ public class ClassController {
 		return new ResponseEntity<>(service.getAttachList(class_bno), HttpStatus.OK);
 	}
 
-	// 파일 삭제 처리
+	// 강의 공지사항 & 수업자료 첨부파일 삭제 처리
 	private void deleteFiles(List<ClassAttachVO> attachList) {
 		if (attachList == null || attachList.size() == 0) {
 			return;

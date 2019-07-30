@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class TeacherVO {
 
-	private String teacher_id;
+	private String teacherId;
 	private String name;
 	private String pw; 
 	private Date birthday;
@@ -19,6 +19,6 @@ public class TeacherVO {
 	private Date regdate;
 	private String career;
 	private String education;
-	private char auth_no; 
+	private String authNo; 
 	
 }

@@ -20,15 +20,11 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/classroom/*")
 @AllArgsConstructor
 public class ClassroomController {
-	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("classroom_bno") Long classroom_bno, @ModelAttribute("cri") Criteria cri, Model model) {
-
+	
+	//강의실 목록
+	@GetMapping( "/list" )
+	public void get(@RequestParam("classroom_num") Long classroom_num, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("classroom number : " + classroom_num);
 	}
 
-	//TODO BoardVO 변경
-	@PostMapping("/modify")
-	public String modify(ClassroomVO classroom, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("modify : " + classroom);
-		return "redirect:/notice/read";
-	}
 }

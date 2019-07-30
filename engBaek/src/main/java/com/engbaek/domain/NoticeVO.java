@@ -5,12 +5,12 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class NoticeVO {
+public class NoticeVO { //공지사항 
 
-	private long notice_bno; 
-	private String admin_id;
-	private String notice_title;
-	private String notice_content;
-	private Date notice_regdate;
+	private long noticeBno; //공지사항번호
+	private String adminId; //관리자ID
+	private String noticeTitle; //공지사항 제목
+	private String noticeContent; //공지사항 내용
+	private Date noticeRegdate; //공지사항 작성일
 	
 }

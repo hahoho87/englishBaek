@@ -8,39 +8,39 @@ import com.engbaek.domain.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService{
 
+	// 댓글 개수
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	// 댓글 수정
 	@Override
 	public int modify(ReplyVO reply) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	// 댓글 조회
 	@Override
 	public ReplyVO get(Long rno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	// 댓글 삭제
 	@Override
 	public int remove(Long rno) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	// 댓글 등록
 	@Override
 	public int register(ReplyVO reply) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	// 댓글 목록
 	@Override
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -8,6 +8,7 @@ import com.engbaek.domain.ImageAttachVO;
 
 public class CourseServiceImpl implements CourseService {
 
+	//게시물 개수 
 	@Override
 	public int getTotal(Criteria cri) {
 		// TODO Auto-generated method stub

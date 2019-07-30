@@ -21,17 +21,19 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ReviewController {
 
+	// 후기 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 	}
 
+	// 후기 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("review_bno") Long review_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
-
-	// TODO BoardVO 변경
+	
+	// 후기 수정
 	@PostMapping("/modify")
 	public String modify(ReviewVO review, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/review/read";
@@ -42,12 +44,13 @@ public class ReviewController {
 		return "redirect:/review/list";
 	}
 
+	// 후기 등록 화면
 	@GetMapping("/register")
 	public void register() {
 
 	}
 
-	// TODO BoardVO 변경
+	// 후기 등록
 	@PostMapping("/register")
 	public String register(ReviewVO review, RedirectAttributes rttr) {
 		return "redirect:/review/list";

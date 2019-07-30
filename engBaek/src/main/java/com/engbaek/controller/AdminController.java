@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.engbaek.domain.AdminVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.TeacherVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,14 +22,15 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class AdminController {
 	
+	//정보, 수정 화면
 	@GetMapping({ "/info", "/modify" })
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 	
-	//TODO BoardVO 변경
+	//관리자 정보 수정
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(AdminVO admin, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/admin/info";
 	}
 	
@@ -43,8 +46,9 @@ public class AdminController {
 		log.info("list");
 	}
 	
+	//강사 권한 변경
 	@PostMapping("/tea_auth")
-	public String modify(BoardVO board, RedirectAttributes rttr) {
+	public String modify(TeacherVO teacher, RedirectAttributes rttr) {
 		return "redirect:/admin/tea_auth";
 	}
 }

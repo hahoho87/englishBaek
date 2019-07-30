@@ -32,43 +32,44 @@ import lombok.extern.log4j.Log4j;
 public class ProfileController {
 
 	
-	//목록 가져오기 
+	// 강사 소개 목록 
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 	}
 	
-	//등록 화면만 가져오기 
+	// 강사 소개 등록 화면
 	@GetMapping("/register")
 	public void register() {
 
 	}
 
-	//등록을 찐으로 등록 
+	// 강사 소개 등록
 	@PostMapping("/register")
 	public String register(ProfileVO profile, RedirectAttributes rttr) {
 		return "redirect:/profile/list";
 
 	}
 	
-	//삭제 
+	// 강사 소개 삭제 
 	@PostMapping("/remove")
 	public String remove(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/profile/list";
 	}
 	
-	//상세 조회 
+	// 강사 소개 상세 조회 or 수정 화면
 	@GetMapping({ "/info", "/modify" })
 	public void get(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 
-	// TODO BoardVO 수정
+	// 강사 소개 수정
 	@PostMapping("/modify")
 	public String modify(ProfileVO profile, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/profile/info";
 	}
 	
+	// 강사 소개 첨부 이미지 목록
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<ImageAttachVO>> getAttachList(Long profile_bno) {
@@ -77,7 +78,7 @@ public class ProfileController {
 		return new ResponseEntity<>(service.getAttachList(profile_bno), HttpStatus.OK);
 	}
 
-	// 파일 삭제 처리
+	// 강사 소개 첨부 이미지 삭제
 	private void deleteFiles(List<ImageAttachVO> attachList) {
 		if (attachList == null || attachList.size() == 0) {
 			return;

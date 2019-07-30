@@ -31,27 +31,26 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class CourseController {
 
-
-	//강좌소개 목록 가져오기 
+	// 강좌소개 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 	}
 	
-	//등록 화면만 가져오기 
+	// 강좌소개 등록 화면
 	@GetMapping("/register")
 	public void register() {
 		
 	}
 
-	//등록을 찐으로 등록 
+	// 강좌소개 등록
 	@PostMapping("/register")
 	public String register(CourseVO course, RedirectAttributes rttr) {
 		return "redirect:/course/list";
 
 	}
 	
-	//삭제 
+	// 강좌소개 삭제 
 	@PostMapping("/remove")
 	public String remove(@RequestParam("course_bno") Long course_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/course/list";
@@ -59,18 +58,19 @@ public class CourseController {
 	
 	 
 	
-	//상세 조회 
+	// 강좌소개 상세 조회 or 수정 화면
 	@GetMapping({ "/info", "/modify" })
 	public void get(@RequestParam("bno") Long course_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 
-	// TODO BoardVO 수정
+	// 강좌소개 수정
 	@PostMapping("/modify")
 	public String modify(CourseVO course, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/course/info";
 	}
 	
+	// 강좌소개 이미지 첨부
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<ImageAttachVO>> getAttachList(Long course_bno) {
@@ -79,7 +79,7 @@ public class CourseController {
 		return new ResponseEntity<>(service.getAttachList(course_bno), HttpStatus.OK);
 	}
 
-	// 파일 삭제 처리
+	// 강좌소개 이미지 삭제
 	private void deleteFiles(List<ImageAttachVO> attachList) {
 		if (attachList == null || attachList.size() == 0) {
 			return;

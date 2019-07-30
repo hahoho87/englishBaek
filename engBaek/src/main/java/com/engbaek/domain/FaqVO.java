@@ -5,12 +5,12 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class FaqVO {
+public class FaqVO {	//FAQ 
 
-	private long faq_bno;
-	private String admin_id;
-	private String faq_title;
-	private String faq_content;
-	private Date notice_regdate;
+	private long faqBno; //faq번호
+	private String adminId;//관리자ID
+	private String faqTitle; //FAQ 제목
+	private String faqContent; //FAQ 답변내용
+	private Date faqRegdate; //작성일
 	
 }

@@ -8,45 +8,39 @@ import com.engbaek.domain.Criteria;
 
 public class ClassServiceImpl implements ClassService{
 
+	 //수업자료&공지  총 게시물 수 
 	@Override
 	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	//수업자료&공지 게시판 목록
 	@Override
 	public List<ClassVO> getList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
+	 //수업자료&공지 게시물 등록 
+	@Override	
 	public void register(ClassVO class_) {
-		// TODO Auto-generated method stub
 		
 	}
-
+	//수업자료&공지 게시물 상세 정보 
 	@Override
 	public ClassVO get(Long class_bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	 //수업자료&공지 게시물 수정
 	@Override
 	public boolean modify(ClassVO class_) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//수업자료&공지 게시물 삭제
 	@Override
 	public boolean remove(Long class_bno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//수업자료&공지 첨부파일 목록 
 	@Override
 	public List<ClassAttachVO> getAttachList(Long class_bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

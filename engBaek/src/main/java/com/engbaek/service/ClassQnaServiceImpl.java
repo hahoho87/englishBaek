@@ -7,39 +7,37 @@ import com.engbaek.domain.Criteria;
 
 public class ClassQnaServiceImpl implements ClassQnaService{
 
+	
+	//강의별 Q&A 총 게시물 수 
 	@Override
 	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	//강의별 Q&A 목록 
+	@Override	
 	public List<ClassQnaVO> getList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//강의별 Q&A 등록 
 	@Override
 	public void register(ClassQnaVO classQna) {
-		// TODO Auto-generated method stub
 		
 	}
-
+	//강의별 Q&A 상세조회 
 	@Override
 	public ClassQnaVO get(Long classQna_bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//강의별 Q&A 수정 
 	@Override
 	public boolean modify(ClassQnaVO classQna) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//강의별 Q&A 삭제 
 	@Override
 	public boolean remove(Long classQna_bno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

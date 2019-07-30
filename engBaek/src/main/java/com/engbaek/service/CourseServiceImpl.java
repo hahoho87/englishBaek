@@ -7,46 +7,46 @@ import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ImageAttachVO;
 
 public class CourseServiceImpl implements CourseService {
-
+	
+	//강좌 소개 총 게시물 수
 	@Override
 	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	//강좌 소개 목록
 	@Override
 	public List<CourseVO> getList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//강좌 소개 등록
 	@Override
 	public void register(CourseVO course) {
-		// TODO Auto-generated method stub
 		
 	}
-
+	
+	//강좌 소개 게시물 상세 보기 
 	@Override
 	public CourseVO get(Long course_bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//강좌 소개 게시물 수정
 	@Override
 	public boolean modify(CourseVO course) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	//강좌 소개 게시물 삭제 
 	@Override
 	public boolean remove(Long course_bno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	//강좌 소개 이미지 파일 목록 
 	@Override
 	public List<ImageAttachVO> getAttachList(Long bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

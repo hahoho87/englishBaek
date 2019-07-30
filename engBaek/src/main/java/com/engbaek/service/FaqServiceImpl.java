@@ -3,6 +3,7 @@ package com.engbaek.service;
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.FaqVO;
 
 public class FaqServiceImpl implements FaqService {
 

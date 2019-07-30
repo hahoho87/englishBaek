@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.BoardAttachVO;
 
+import com.engbaek.domain.ClassAttachVO;
+import com.engbaek.domain.ClassVO;
 import com.engbaek.domain.Criteria;
 
 import lombok.AllArgsConstructor;
@@ -36,18 +37,18 @@ public class ClassController {
 	}
 
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("class_bno") Long class_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
 	// TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(ClassVO class_, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/class/read";
 	}
 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("class_bno") Long class_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/class/list";
 	}
 
@@ -58,21 +59,21 @@ public class ClassController {
 
 	// TODO BoardVO 변경
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(ClassVO class_, RedirectAttributes rttr) {
 		return "redirect:/class/list";
 
 	}
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno) {
-		log.info("getAttachList : " + bno);
+	public ResponseEntity<List<ClassAttachVO>> getAttachList(Long class_bno) {
+		log.info("getAttachList : " + class_bno);
 
-		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getAttachList(class_bno), HttpStatus.OK);
 	}
 
 	// 파일 삭제 처리
-	private void deleteFiles(List<BoardAttachVO> attachList) {
+	private void deleteFiles(List<ClassAttachVO> attachList) {
 		if (attachList == null || attachList.size() == 0) {
 			return;
 		}

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.RefundVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -34,28 +35,26 @@ public class RefundController {
 
 		//등록을 찐으로 등록 
 		@PostMapping("/register")
-		public String register(BoardVO board, RedirectAttributes rttr) {
+		public String register(RefundVO refund, RedirectAttributes rttr) {
 			return "redirect:/refund/list";
 
 		}
 		
 		//삭제 
 		@PostMapping("/remove")
-		public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		public String remove(@RequestParam("refund_bno") Long refund_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			return "redirect:/refund/list";
 		}
 		
-		 
-		
 		//상세 조회 
 		@GetMapping({ "/info", "/modify" })
-		public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		public void get(@RequestParam("refund_bno") Long refund_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 			
 		}
 
 		// TODO BoardVO 수정
 		@PostMapping("/modify")
-		public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		public String modify(RefundVO refund, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 			return "redirect:/refund/info";
 		}
 		

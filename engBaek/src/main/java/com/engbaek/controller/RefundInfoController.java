@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.RefundInfoVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -27,7 +28,7 @@ public class RefundInfoController {
 
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(RefundInfoVO refundInfo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/refund_info/read";
 	}
 }

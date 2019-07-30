@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.BoardVO;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.NoticeVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -24,21 +24,22 @@ public class NoticeController {
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
+		
 	}
 
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/notice/read";
 	}
 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/notice/list";
 	}
 
@@ -49,7 +50,7 @@ public class NoticeController {
 
 	//TODO BoardVO 변경
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(NoticeVO notice, RedirectAttributes rttr) {
 		return "redirect:/notice/list";
 
 	}

@@ -1,5 +1,8 @@
 package com.engbaek.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ImageAttachVO;
+import com.engbaek.domain.ProfileVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -41,41 +46,39 @@ public class ProfileController {
 
 	//등록을 찐으로 등록 
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(ProfileVO profile, RedirectAttributes rttr) {
 		return "redirect:/profile/list";
 
 	}
 	
 	//삭제 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/profile/list";
 	}
 	
-	
-	
 	//상세 조회 
 	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 
 	// TODO BoardVO 수정
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(ProfileVO profile, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/profile/info";
 	}
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno) {
-		log.info("getAttachList : " + bno);
+	public ResponseEntity<List<ImageAttachVO>> getAttachList(Long profile_bno) {
+		log.info("getAttachList : " + profile_bno);
 
-		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getAttachList(profile_bno), HttpStatus.OK);
 	}
 
 	// 파일 삭제 처리
-	private void deleteFiles(List<BoardAttachVO> attachList) {
+	private void deleteFiles(List<ImageAttachVO> attachList) {
 		if (attachList == null || attachList.size() == 0) {
 			return;
 		}
@@ -101,6 +104,5 @@ public class ProfileController {
 		});//END forEach
 
 	}
-	
 	
 }

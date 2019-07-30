@@ -1,5 +1,8 @@
 package com.engbaek.domain;
 
-public class ClassAttachVO {
+import lombok.Data;
+
+@Data
+public class TeacherProfileVO {
 
 }

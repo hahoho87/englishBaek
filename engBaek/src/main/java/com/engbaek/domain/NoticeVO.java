@@ -2,6 +2,9 @@ package com.engbaek.domain;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class NoticeVO {
 
 	private long notice_bno; 

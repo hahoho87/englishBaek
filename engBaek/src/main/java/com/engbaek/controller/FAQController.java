@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.FaqVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -31,7 +32,7 @@ public class FAQController {
 
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(FaqVO faq, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/faq/read";
 	}
 
@@ -47,7 +48,7 @@ public class FAQController {
 
 	//TODO BoardVO 변경
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(FaqVO faq, RedirectAttributes rttr) {
 		return "redirect:/faq/list";
 
 	}

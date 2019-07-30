@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class ClassQnaVO {
+	
+	private long classQna_bno;
 
 	
 }

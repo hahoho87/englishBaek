@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.StudentVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -26,27 +27,27 @@ public class StudentController {
 	}
 	
 	@PostMapping("/signup")
-	public String postSignup(RedirectAttributes rttr) {
+	public String postSignup(StudentVO student, RedirectAttributes rttr) {
 		return "redirect:/";
 	}
 	
 	@GetMapping({"/info", "/modify"})
-	public void get(@RequestParam("bno") Long bno, Model model) {
+	public void get(@RequestParam("student_id") Long student_id, Model model) {
 
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes rttr) {
+	public String modify(StudentVO student, RedirectAttributes rttr) {
 		return "redirect:/student/info";
 	}
 	
 	@PostMapping("/delete")
-	public String remove(BoardVO board, RedirectAttributes rttr) {
+	public String remove(StudentVO student, RedirectAttributes rttr) {
 		return "redirect:/";
 	}
 	
 	@GetMapping("/class_list")
-	public void classList(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void classList(@RequestParam("student_id") Long student_id, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 }

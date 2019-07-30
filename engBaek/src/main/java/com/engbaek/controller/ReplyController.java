@@ -42,8 +42,6 @@ public class ReplyController {
 	
 	}
 	
-	
-	
 	//댓글 조회  (info)
 	
 	@GetMapping(value = "/{rno}",produces= {MediaType.APPLICATION_XML_VALUE,
@@ -56,8 +54,6 @@ public class ReplyController {
 			return new ResponseEntity<>(service.get(rno),HttpStatus.OK);
 
 	}
-	
-	
 	
 	//댓글 수정 
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH}, 
@@ -105,7 +101,6 @@ public class ReplyController {
 				
 			 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-		
 		
 	}
 }

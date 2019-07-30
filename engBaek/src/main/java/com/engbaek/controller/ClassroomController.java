@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.engbaek.domain.ClassroomVO;
 import com.engbaek.domain.Criteria;
 
 import lombok.AllArgsConstructor;
@@ -20,13 +21,14 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ClassroomController {
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("classroom_bno") Long classroom_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
 	//TODO BoardVO 변경
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(ClassroomVO classroom, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify : " + classroom);
 		return "redirect:/notice/read";
 	}
 }

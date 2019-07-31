@@ -15,6 +15,8 @@ public interface FaqMapper {
 	//FAQ 게시판 페이징 
 	public List<FaqVO> getListWithPaging(Criteria cri);
 	
+	public List<FaqVO> getList();
+	
 	//FAQ 수정 
 	public int update(FaqVO fqa);
 		

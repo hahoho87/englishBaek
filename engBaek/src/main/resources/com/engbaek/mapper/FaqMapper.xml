@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.engbaek.mapper.FaqMapper">
+
+	<select id="getList" resultType="com.engbaek.domain.FaqVO">
+		<!-- 부등호를 쓰기 위해 CDATA를 사용 -->
+	<![CDATA[
+	SELECT * FROM faq WHERE faq_bno > 0
+	]]>
+	</select>
+
+
+	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="faq_bno" order="BEFORE"
+			resultType="long">
+			SELECT faq_seq.nextval FROM dual
+		</selectKey>
+
+		INSERT INTO faq (faq_bno, admin_id, faq_title, faq_content, faq_regdate)
+		VALUES (#{faq_bno}, #{admin_id},
+		#{faq_title}, #{faq_content}, SYSDATE)
+	</insert>
+
+</mapper>   

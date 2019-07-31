@@ -68,40 +68,36 @@ public class ClassController {
 
 	}
 	
-	// 강의 공지사항 & 수업자료 첨부파일 출력
-	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<ClassAttachVO>> getAttachList(Long class_bno) {
-		log.info("getAttachList : " + class_bno);
-
-		return new ResponseEntity<>(service.getAttachList(class_bno), HttpStatus.OK);
-	}
-
-	// 강의 공지사항 & 수업자료 첨부파일 삭제 처리
-	private void deleteFiles(List<ClassAttachVO> attachList) {
-		if (attachList == null || attachList.size() == 0) {
-			return;
-		}
-
-		log.info("delete attach files.............");
-		log.info(attachList);
-		
-		attachList.forEach(attach -> {
-			try {
-				Path file = Paths.get(
-						"C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
-				Files.deleteIfExists(file);
-				
-				if(Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
-					
-					Files.delete(thumbNail);
-				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}//END catch
-
-		});//END forEach
-
-	}
+	/*
+	 * // 강의 공지사항 & 수업자료 첨부파일 출력
+	 * 
+	 * @GetMapping(value = "/getAttachList", produces =
+	 * MediaType.APPLICATION_JSON_UTF8_VALUE)
+	 * 
+	 * @ResponseBody public ResponseEntity<List<ClassAttachVO>> getAttachList(Long
+	 * class_bno) { log.info("getAttachList : " + class_bno);
+	 * 
+	 * return new ResponseEntity<>(service.getAttachList(class_bno), HttpStatus.OK);
+	 * }
+	 * 
+	 * // 강의 공지사항 & 수업자료 첨부파일 삭제 처리 private void deleteFiles(List<ClassAttachVO>
+	 * attachList) { if (attachList == null || attachList.size() == 0) { return; }
+	 * 
+	 * log.info("delete attach files............."); log.info(attachList);
+	 * 
+	 * attachList.forEach(attach -> { try { Path file = Paths.get(
+	 * "C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" +
+	 * attach.getFileName()); Files.deleteIfExists(file);
+	 * 
+	 * if(Files.probeContentType(file).startsWith("image")) { Path thumbNail =
+	 * Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\
+	 * s_" + attach.getUuid() + "_" + attach.getFileName());
+	 * 
+	 * Files.delete(thumbNail); } } catch (Exception e) { e.printStackTrace();
+	 * }//END catch
+	 * 
+	 * });//END forEach
+	 * 
+	 * }
+	 */
 }

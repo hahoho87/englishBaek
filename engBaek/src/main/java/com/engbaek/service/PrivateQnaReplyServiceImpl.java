@@ -10,12 +10,6 @@ import com.engbaek.domain.ReplyVO;
 public class PrivateQnaReplyServiceImpl implements PrivateQnaReplyService {
 
 	@Override
-	public ReplyPageDTO getListPage(Criteria cri, Long privateQnaReply_bno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int modify(PrivateQnaReplyVO privateQnaReply) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -39,10 +33,5 @@ public class PrivateQnaReplyServiceImpl implements PrivateQnaReplyService {
 		return 0;
 	}
 
-	@Override
-	public List<PrivateQnaReplyVO> getList(Criteria cri, Long bno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

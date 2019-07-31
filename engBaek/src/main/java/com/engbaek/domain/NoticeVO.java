@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class NoticeVO { //공지사항 
 
-	private long noticeBno; //공지사항번호
+	private long noticeNo; //공지사항번호
 	private String adminId; //관리자ID
 	private String noticeTitle; //공지사항 제목
 	private String noticeContent; //공지사항 내용

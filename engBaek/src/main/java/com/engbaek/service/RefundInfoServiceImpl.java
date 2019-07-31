@@ -4,15 +4,23 @@ import com.engbaek.domain.RefundInfoVO;
 
 public class RefundInfoServiceImpl  implements RefundInfoService{
 
-	//환불 규정 등록 
+	@Override
+	public RefundInfoVO get(Long bno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public int register(RefundInfoVO refundInfo) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
-	//환불 규정 수정 
+
 	@Override
 	public int modify(RefundInfoVO refundInfo) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.engbaek.mapper.NoticeMapper">
+
+<!-- 	<select id="getList" resultType="com.engbaek.domain.NoticeVO">
+	<![CDATA[
+	SELECT * FROM notice WHERE notice_bno > 0 
+	]]>
+	</select> -->
+
+	<!-- 쿼리 보관 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getListWithPaging"
+		resultType="com.engbaek.domain.NoticeVO">
+		<![CDATA[
+			SELECT	notice_bno, admin_id, notice_title, notice_content, notice_regdate
+ 			FROM	( SELECT /*+INDEX_DESC(notice notice_pk)*/
+ 					  rownum rn, notice_bno, admin_id, notice_title, notice_content, notice_regdate 
+ 					  FROM notice
+ 					  WHERE	
+ 		]]>
+
+		<include refid="criteria"></include>
+ 			
+ 		<![CDATA[
+ 			rownum <= #{pageNum} * #{amount}
+ 			)
+ 		WHERE rn > (#{pageNum} -1) * #{amount}	
+ 		]]>
+	</select>
+
+	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
+	<insert id="insert">
+		INSERT INTO notice (notice_bno, admin_id, notice_title, notice_content,
+		notice_regdate)
+		VALUES (noticeseq.nextval, #{adminId}, #{noticeTitle}, #{noticeContent}, SYSDATE)
+	</insert>
+
+
+	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="noticeBno" order="BEFORE"
+			resultType="long">
+			SELECT notice_seq.nextval FROM dual
+		</selectKey>
+
+		INSERT INTO notice (notice_bno, admin_id, notice_title, notice_content,
+		notice_regdate)
+		VALUES (#{noticeBno}, #{adminId}, #{noticeTitle}, #{noticeContent},
+		SYSDATE)
+	</insert>
+
+	<!-- read -->
+<!-- 	<select id="read" resultType="com.engbaek.domain.NoticeVO">
+		SELECT * FROM notice WHERE notice_bno = #{noticeBno}
+	</select> -->
+
+	<!-- delete -->
+	<delete id="delete">
+		DELETE notice where notice_bno = #{noticeBno}
+	</delete>
+
+	<!-- update -->
+	<update id="update">
+		UPDATE faq
+		SET faq_title = #{faqTitle}, faq_content =
+		#{faqContent}, faq_regdate = sysdate
+		WHERE faq_bno = #{faqBno}
+	</update>
+
+	<!-- getTotalCount -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM faq WHERE
+
+		<include refid="criteria"></include>
+
+		faq_bno > 0
+	</select>
+
+</mapper>   

@@ -2,10 +2,24 @@ package com.engbaek.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.FaqVO;
+import com.engbaek.mapper.FaqMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+@Service
+@AllArgsConstructor
 public class FaqServiceImpl implements FaqService {
+	
+	@Setter(onMethod_ = @Autowired)
+	private FaqMapper mapper;
 	
 	//FAQ 게시판 총 게시물 수 
 	@Override
@@ -16,7 +30,9 @@ public class FaqServiceImpl implements FaqService {
 	//FAQ 게시판 목록
 	@Override
 	public List<FaqVO> getList(Criteria cri) {
-		return null;
+		log.info("getList with criteria : " + cri);
+		//return mapper.getListWithPaging(cri);
+		return mapper.getList();
 	}
 
 	//FAQ 게시물 등록 

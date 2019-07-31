@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class RefundVO {//환불내역
 	
-	private long refundN; //환불번호
+	private long refundNo; //환불번호
 	private long paymentNo; //결제번호
 	private long refundPrice; //환불금액
 	private long courseCode; //강좌코드

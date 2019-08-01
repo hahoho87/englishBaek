@@ -14,11 +14,11 @@ import lombok.extern.log4j.Log4j;
 public class MainController {
 
 	@GetMapping("/about")
-	public void get() {
+	public void about() {
 	}
 	
 	@GetMapping("/contact")
-	public void get1() {
-		
+	public void contact() {
 	}
-}
+	
+}  

@@ -2,11 +2,8 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.FaqVO;
-import com.engbaek.domain.NoticeVO;
 
 public interface FaqMapper {
 

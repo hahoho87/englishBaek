@@ -64,4 +64,10 @@ public class FaqServiceImpl implements FaqService {
 		return removeResult;
 	}
 
+	@Override
+	public List<FaqVO> getList2() {
+		log.info("getList with criteria : ");
+		return mapper.getList();
+	}
+
 }

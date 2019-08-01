@@ -28,10 +28,12 @@ public class FaqController {
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
-		model.addAttribute("list", service.getList(cri));
-		int total = service.getTotal(cri);
-		log.info("total count : " + total);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		//model.addAttribute("faqList", service.getList(cri));
+		model.addAttribute("faqList", service.getList2());
+		//int total = service.getTotal(cri);
+		//log.info("total count : " + total);
+		//model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 	}
 
 	// FAQ 상세 조회 or 수정 화면

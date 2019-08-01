@@ -17,13 +17,13 @@ public interface CourseService {
 	public void register(CourseVO course);
 	
 	//강좌 소개 게시물 상세 보기 
-	public CourseVO get(Long course_bno);
+	public CourseVO get(Long courseCode);
 
 	//강좌 소개 게시물 수정
 	public boolean modify(CourseVO course);
 
 	//강좌 소개 게시물 삭제 
-	public boolean remove(Long course_bno);
+	public boolean remove(Long courseCode);
 
 	//강좌 소개 이미지 파일 목록 
 	public List<ImageAttachVO> getAttachList(Long bno);

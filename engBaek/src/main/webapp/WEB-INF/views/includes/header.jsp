@@ -65,7 +65,7 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-	<a class="nav-link dropdown-toggle" href="../#.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+   <a class="nav-link dropdown-toggle" href="../#.html" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">수강신청</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="../property-single.html">강사소개</a>

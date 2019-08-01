@@ -13,6 +13,9 @@ public interface FaqService {
 	//FAQ 게시판 목록
 	public List<FaqVO> getList(Criteria cri);
 	
+	//FAQ 게시판 목록
+	public List<FaqVO> getList2();
+	
 	//FAQ 게시물 등록 
 	public void register(FaqVO faq);
 	

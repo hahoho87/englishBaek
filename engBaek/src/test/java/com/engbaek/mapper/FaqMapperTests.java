@@ -22,10 +22,10 @@ public class FaqMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private FaqMapper mapper;
 	
-//	@Test
-//	public void testGetList() {
-//		mapper.getList().forEach(faq -> log.info(faq));;
-//	}
+	@Test
+	public void testGetList() {
+		mapper.getList().forEach(faq -> log.info(faq));;
+	}
 	
 //	@Test
 //	public void testInsertSelectKey() {
@@ -39,13 +39,13 @@ public class FaqMapperTests {
 //		log.info(faq);
 //	}
 //	
-//	@Test
-//	public void testRead() {
-//		//존재하는 게시물 번호로 테스트
-//		FaqVO faq = mapper.read(1L);
-//		
-//		log.info(faq);
-//	}
+	@Test
+	public void testRead() {
+		//존재하는 게시물 번호로 테스트
+		FaqVO faq = mapper.read(1L);
+		
+		log.info(faq);
+	}
 //	
 //	@Test
 //	public void testDelete() {

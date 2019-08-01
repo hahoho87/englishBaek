@@ -10,7 +10,7 @@ public interface CourseMapper {
 	//강좌 소개 게시글 수
 	public int getTotalCount(Criteria cri);
 	
-	//강좌 소개 페이징
+	//강좌 소개 목록 with 페이징
 	public List<CourseVO> getListWithPaging(Criteria cri);
 	
 	//강좌 소개 수정

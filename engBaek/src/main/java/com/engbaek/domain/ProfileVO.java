@@ -11,6 +11,5 @@ public class ProfileVO { //강좌소개
 	private String teacherProfile; //강사 소개내용
 	private String teacherProfilePicture; //강사소개 사진
 	private String teacherProfileUuid; //강사소개 사진 uuid
-
 	
 }

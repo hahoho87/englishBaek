@@ -42,14 +42,14 @@ public class PaymentController {
 
 	// 결제 내역 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("payment_bno") Long payment_bno, @ModelAttribute("cri") Criteria cri,
+	public String remove(@RequestParam("paymentNo") Long paymentNo, @ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
 		return "redirect:/refund/list";
 	}
 
 	// 결제 내역 상세 조회 or 수정 화면
 	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("payment_bno") Long payment_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("paymentNo") Long paymentNo, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 

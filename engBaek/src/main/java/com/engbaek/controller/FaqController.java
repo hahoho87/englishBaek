@@ -23,32 +23,42 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class FaqController {
 	private FaqService service;
-	
+
 	// FAQ 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
 		model.addAttribute("list", service.getList(cri));
 		int total = service.getTotal(cri);
-		log.info("total count : " + total); 
+		log.info("total count : " + total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 
 	// FAQ 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
-
+	public void get(@RequestParam("faqNo") Long faqNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("get or modify " + faqNo);
+		model.addAttribute("faq", service.get(faqNo));
 	}
 
 	// FAQ 수정
 	@PostMapping("/modify")
 	public String modify(FaqVO faq, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify : " + faq);
+		if (service.modify(faq)) {
+			rttr.addFlashAttribute("result", "success");
+		}
 		return "redirect:/faq/read";
 	}
 
 	// FAQ 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("faqNo") Long faqNo, @ModelAttribute("cri") Criteria cri,
+			RedirectAttributes rttr) {
+		log.info("remove : " + faqNo);
+		if(service.remove(faqNo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
 		return "redirect:/faq/list";
 	}
 

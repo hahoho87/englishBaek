@@ -23,8 +23,8 @@ public class ClassroomController {
 	
 	//강의실 목록
 	@GetMapping( "/list" )
-	public void get(@RequestParam("classroom_num") Long classroom_num, @ModelAttribute("cri") Criteria cri, Model model) {
-		log.info("classroom number : " + classroom_num);
+	public void get(@RequestParam("classroomNo") Long classroomNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("classroom number : " + classroomNo);
 	}
 
 }

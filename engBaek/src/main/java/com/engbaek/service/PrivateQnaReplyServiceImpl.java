@@ -16,13 +16,13 @@ public class PrivateQnaReplyServiceImpl implements PrivateQnaReplyService {
 	}
 
 	@Override
-	public ReplyVO get(Long privateQnaReply_bno) {
+	public PrivateQnaReplyVO get(Long privateQnaReplyNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int remove(Long privateQnaReply_bno) {
+	public int remove(Long privateQnaReplyNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

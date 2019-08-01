@@ -23,6 +23,17 @@ h6 {
   color: #000000;
 }
 
+.sidenav {
+			height:100%;
+			width: 15%;	
+			position: fixed;
+			z-index:1;
+			top: 0;
+			left: 0;
+			overflow-x: hidden;
+			padding: 10% 5% 5% 2%;
+}
+
 a {
   color: #000000;
   transition: all .5s ease;

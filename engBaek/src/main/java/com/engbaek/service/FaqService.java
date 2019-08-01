@@ -17,12 +17,12 @@ public interface FaqService {
 	public void register(FaqVO faq);
 	
 	//FAQ 게시물 상세 보기 
-	public FaqVO get(Long faq_bno);
+	public FaqVO get(Long faqNo);
 	
 	//FAQ 게시물 수정 
 	public boolean modify(FaqVO faq);
 	
 	//FAQ 게시물 삭제 
-	public boolean remove(Long faq_bno);
+	public boolean remove(Long faqNo);
 
 }

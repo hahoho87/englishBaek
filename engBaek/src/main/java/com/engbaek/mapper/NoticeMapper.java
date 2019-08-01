@@ -2,8 +2,6 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.NoticeVO;
 
@@ -22,7 +20,6 @@ public interface NoticeMapper {
 	public int delete(Long noticeBno);
 	
 	//공지사항 조회
-	@Select("SELECT * FROM notice WHERE notice_bno = 1")
 	public NoticeVO read(Long noticeBno);
 	
 	//공지사항 등록
@@ -32,7 +29,5 @@ public interface NoticeMapper {
 	//public void insert(NoticeVO course);
 	
 	//공지사항 목록
-	//public List<NoticeVO> getList();
-	@Select("select * from notice")
 	public List<NoticeVO> getList();
 }

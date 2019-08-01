@@ -24,7 +24,7 @@ public class AdminController {
 	
 	//정보, 수정 화면
 	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("adminId") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 	

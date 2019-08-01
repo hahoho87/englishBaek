@@ -29,7 +29,7 @@ public class ClassQnaController {
 	
 	// 강의별 Q&A 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("classQna_bno") Long classQna_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("classQnaBno") Long classQnaBno, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 	// 강의별 Q&A 수정
@@ -40,7 +40,7 @@ public class ClassQnaController {
 	
 	// 강의별 Q&A 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("classQna_bno") Long classQna_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("classQnaBno") Long classQnaBno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/classQna/list";
 	}
 	

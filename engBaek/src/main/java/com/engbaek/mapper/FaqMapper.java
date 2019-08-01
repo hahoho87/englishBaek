@@ -23,10 +23,10 @@ public interface FaqMapper {
 	public int update(FaqVO faq);
 		
 	//FAQ 삭제 
-	public int delete(Long faqBno);
+	public int delete(Long faqNo);
 	
 	//FAQ 읽기 
-	public FaqVO read(Long faqBno);
+	public FaqVO read(Long faqNo);
 	
 	//게시물 번호 사용자에게 보이게 하기 
 	public Integer insertSelectKey(FaqVO faq);

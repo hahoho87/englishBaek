@@ -23,7 +23,7 @@ public class RefundInfoController {
 	
 	// 환불 규정 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("refund_info_bno") Long refund_info_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("RefundInfoNo") Long RefundInfoNo, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 

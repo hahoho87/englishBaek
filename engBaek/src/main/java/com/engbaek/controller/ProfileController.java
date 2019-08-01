@@ -53,13 +53,13 @@ public class ProfileController {
 	
 	// 강사 소개 삭제 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("teacherPno") Long teacherPno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/profile/list";
 	}
 	
 	// 강사 소개 상세 조회 or 수정 화면
 	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("profile_bno") Long profile_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("teacherPno") Long teacherPno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 

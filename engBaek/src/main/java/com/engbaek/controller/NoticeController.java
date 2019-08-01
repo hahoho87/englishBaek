@@ -30,7 +30,7 @@ public class NoticeController {
 	
 	// 공지사항 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("noticeNo") Long noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
@@ -42,7 +42,7 @@ public class NoticeController {
 	
 	// 공지사항 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("notice_bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("noticeNo") Long noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/notice/list";
 	}
 

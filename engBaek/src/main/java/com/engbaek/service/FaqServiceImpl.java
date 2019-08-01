@@ -17,46 +17,51 @@ import lombok.extern.log4j.Log4j;
 @Service
 @AllArgsConstructor
 public class FaqServiceImpl implements FaqService {
-	
+
 	@Setter(onMethod_ = @Autowired)
 	private FaqMapper mapper;
-	
-	//FAQ 게시판 총 게시물 수 
+
+	// FAQ 게시판 총 게시물 수
 	@Override
 	public int getTotal(Criteria cri) {
-		return 0;
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
-	
-	//FAQ 게시판 목록
+
+	// FAQ 게시판 목록
 	@Override
 	public List<FaqVO> getList(Criteria cri) {
 		log.info("getList with criteria : " + cri);
-		//return mapper.getListWithPaging(cri);
-		return mapper.getList();
+		return mapper.getListWithPaging(cri);
 	}
 
-	//FAQ 게시물 등록 
+	// FAQ 게시물 상세 보기
+	@Override
+	public FaqVO get(Long faqNo) {
+		return mapper.read(faqNo);
+	}
+
+	// FAQ 게시물 등록
 	@Override
 	public void register(FaqVO faq) {
-		
+		log.info("register : " + faq);
+		mapper.insertSelectKey(faq);
 	}
 
-	//FAQ 게시물 상세 보기 
-	@Override
-	public FaqVO get(Long faq_bno) {
-		return null;
-	}
-
-	//FAQ 게시물 수정 
+	// FAQ 게시물 수정
 	@Override
 	public boolean modify(FaqVO faq) {
-		return false;
+		log.info("modify : " + faq);
+		boolean modifyResult = mapper.update(faq) == 1;
+		return modifyResult;
 	}
 
-	//FAQ 게시물 삭제 
+	// FAQ 게시물 삭제
 	@Override
-	public boolean remove(Long faq_bno) {
-		return false;
+	public boolean remove(Long faqNo) {
+		log.info("remove : " + faqNo);
+		boolean removeResult = mapper.delete(faqNo) == 1;
+		return removeResult;
 	}
 
 }

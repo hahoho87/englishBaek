@@ -52,7 +52,7 @@ public class CourseController {
 	
 	// 강좌소개 삭제 
 	@PostMapping("/remove")
-	public String remove(@RequestParam("course_bno") Long course_bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("courseCode") Long courseCode, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/course/list";
 	}
 	
@@ -60,7 +60,7 @@ public class CourseController {
 	
 	// 강좌소개 상세 조회 or 수정 화면
 	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("bno") Long course_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("courseCode") Long courseCode, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 	}
 

@@ -31,7 +31,7 @@ public class FaqMapperTests {
 //	public void testInsertSelectKey() {
 //		FaqVO faq = new FaqVO();
 //		faq.setFaqTitle("FAQ TEST");
-//		faq.setAdminId("admin");
+//		faq.setAdminId("admin1");
 //		faq.setFaqContent("test contents");
 //		
 //		mapper.insertSelectKey(faq);
@@ -42,21 +42,21 @@ public class FaqMapperTests {
 //	@Test
 //	public void testRead() {
 //		//존재하는 게시물 번호로 테스트
-//		FaqVO faq = mapper.read(30L);
+//		FaqVO faq = mapper.read(1L);
 //		
 //		log.info(faq);
 //	}
 //	
 //	@Test
 //	public void testDelete() {
-//		log.info("DELETE COUNT : " + mapper.delete(11L));
+//		log.info("DELETE COUNT : " + mapper.delete(3L));
 //	}
 	
 //	@Test 
 //	public void testUpdate() {
 //		FaqVO faq = new FaqVO();
 //		//실행 전 존재하는 번호인지 확인
-//		faq.setFaqBno(10L);
+//		faq.setFaqNo(7L);
 //		faq.setFaqTitle("modified title");
 //		faq.setFaqContent("modified contents");
 //		
@@ -72,6 +72,18 @@ public class FaqMapperTests {
 //		//5개씩 2페이지
 //		cri.setPageNum(1);
 //		cri.setAmount(5);
+//		
+//		List<FaqVO> list = mapper.getListWithPaging(cri);
+//		
+//		list.forEach(faq -> log.info(faq));
+//	}
+	
+//	@Test
+//	public void testSearch() {
+//		Criteria cri = new Criteria();
+//		
+//		cri.setKeyword("modified");
+//		cri.setType("TWC");
 //		
 //		List<FaqVO> list = mapper.getListWithPaging(cri);
 //		

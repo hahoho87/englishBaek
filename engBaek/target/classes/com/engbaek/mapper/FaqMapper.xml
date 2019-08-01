@@ -7,7 +7,7 @@
 	<select id="getList" resultType="com.engbaek.domain.FaqVO">
 		<!-- 부등호를 쓰기 위해 CDATA를 사용 -->
 	<![CDATA[
-	SELECT * FROM faq WHERE faq_bno > 0
+	SELECT * FROM faq WHERE faqNo > 0
 	]]>
 	</select>
 
@@ -18,13 +18,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'T'.toString()">
-							title LIKE '%'||#{keyword}||'%'
+							faqTitle LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							content LIKE '%'||#{keyword}||'%'
+							faqContent LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'W'.toString()">
-							writer LIKE '%'||#{keyword}||'%'
+							adminId LIKE '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
@@ -35,9 +35,9 @@
 	<select id="getListWithPaging"
 		resultType="com.engbaek.domain.FaqVO">
 		<![CDATA[
-			SELECT	faq_bno, admin_id, faq_title, faq_content, faq_regdate
- 			FROM	( SELECT /*+INDEX_DESC(faq pk_board)*/
- 					  rownum rn, faq_bno, admin_id, faq_title, faq_content, faq_regdate 
+			SELECT	faqNo, adminId, faqTitle, faqContent, faqRegdate
+ 			FROM	( SELECT /*+INDEX_DESC(faq faq_pk)*/
+ 					  rownum rn, faqNo, adminId, faqTitle, faqContent, faqRegdate 
  					  FROM faq
  					  WHERE	
  		]]>
@@ -53,8 +53,7 @@
 
 	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
 	<insert id="insert">
-		INSERT INTO faq (faq_bno, admin_id, faq_title, faq_content,
-		faq_regdate)
+		INSERT INTO faq (faqNo, adminId, faqTitle, faqContent, faqRegdate)
 		VALUES (faq_seq.nextval, #{adminId}, #{faqTitle}, #{faqContent}, SYSDATE)
 	</insert>
 
@@ -62,33 +61,30 @@
 	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
 	<insert id="insertSelectKey">
 
-		<selectKey keyProperty="faqBno" order="BEFORE"
+		<selectKey keyProperty="faqNo" order="BEFORE"
 			resultType="long">
 			SELECT faq_seq.nextval FROM dual
 		</selectKey>
 
-		INSERT INTO faq (faq_bno, admin_id, faq_title, faq_content,
-		faq_regdate)
-		VALUES (#{faqBno}, #{adminId}, #{faqTitle}, #{faqContent},
-		SYSDATE)
+		INSERT INTO faq (faqNo, adminId, faqTitle, faqContent, faqRegdate)
+		VALUES (#{faqNo}, #{adminId}, #{faqTitle}, #{faqContent}, SYSDATE)
 	</insert>
 
 	<!-- read -->
 	<select id="read" resultType="com.engbaek.domain.FaqVO">
-		SELECT * FROM faq WHERE faq_bno = #{faqBno}
+		SELECT * FROM faq WHERE faqNo = #{faqNo}
 	</select>
 
 	<!-- delete -->
 	<delete id="delete">
-		DELETE faq where faq_bno = #{faqBno}
+		DELETE faq where faqNo = #{faqNo}
 	</delete>
 
 	<!-- update -->
 	<update id="update">
 		UPDATE faq
-		SET faq_title = #{faqTitle}, faq_content =
-		#{faqContent}, faq_regdate = sysdate
-		WHERE faq_bno = #{faqBno}
+		SET faqTitle = #{faqTitle}, faqContent =#{faqContent}, faqRegdate = sysdate
+		WHERE faqNo = #{faqNo}
 	</update>
 
 	<!-- getTotalCount -->
@@ -97,7 +93,7 @@
 
 		<include refid="criteria"></include>
 
-		faq_bno > 0
+		faqNo > 0
 	</select>
 
 </mapper>   

@@ -29,7 +29,7 @@ public class PrivateQnaController {
 
 	// 일대일 문의 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("bno") Long privateQna_bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("privateQnaNo") Long privateQnaNo, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	}
 
@@ -41,7 +41,7 @@ public class PrivateQnaController {
 
 	// 일대일 문의 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("privateQna_bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("privateQnaNo") Long privateQnaNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		return "redirect:/privateQna/list";
 	}
 

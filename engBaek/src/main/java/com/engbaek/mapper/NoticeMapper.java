@@ -17,10 +17,10 @@ public interface NoticeMapper {
 	public int update(NoticeVO notice);
 	
 	//공지사항 삭제
-	public int delete(Long noticeBno);
+	public int delete(Long noticeNo);
 	
 	//공지사항 조회
-	public NoticeVO read(Long noticeBno);
+	public NoticeVO read(Long noticeNo);
 	
 	//공지사항 등록
 	public Integer insertSelectKey(NoticeVO notice);

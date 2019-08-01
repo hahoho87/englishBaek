@@ -55,7 +55,7 @@
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="../#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">학원안내</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="../views/about/about.jsp">학원소개</a>
+              <a class="dropdown-item" href="about/about.jsp">학원소개</a>
               <a class="dropdown-item" href="about/contact.jsp">오시는 길</a>
               <a class="dropdown-item" href="about/history.jsp">학원연혁</a>
               <a class="dropdown-item" href="about/facilities.jsp">편의시설</a>

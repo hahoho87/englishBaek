@@ -37,7 +37,7 @@
 		<![CDATA[
 			SELECT	noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate
  			FROM	( SELECT /*+INDEX_DESC(notice notice_pk)*/
- 					  rownum rn, noticeNno, adminId, noticeTitle, noticeContent, noticeRegdate 
+ 					  rownum rn, noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate 
  					  FROM notice
  					  WHERE	
  		]]>
@@ -83,8 +83,8 @@
 
 	<!-- update -->
 	<update id="update">
-		UPDATE faq
-		SET noticeTitle = #{noticeTitle}, faqContent = #{faqContent}, faqRegdate = sysdate
+		UPDATE notice
+		SET noticeTitle = #{noticeTitle}, noticeContent = #{noticeContent}, noticeRegdate = sysdate
 		WHERE noticeNo = #{noticeNo}
 	</update>
 

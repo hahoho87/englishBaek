@@ -17,12 +17,12 @@ public interface NoticeService {
 	public void register(NoticeVO notice);
 	
 	//공지사항 게시물 상세보기 
-	public NoticeVO get(Long bno);
+	public NoticeVO get(Long noticeNo);
 	
 	//공지사항 게시물 수정
 	public boolean modify(NoticeVO notice);
 	
 	//공지사항 게시물 삭제 
-	public boolean remove(Long notice_bno);
+	public boolean remove(Long noticeNo);
 	
 }

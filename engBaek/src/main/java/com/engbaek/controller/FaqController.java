@@ -53,8 +53,7 @@ public class FaqController {
 
 	// FAQ 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("faqNo") Long faqNo, @ModelAttribute("cri") Criteria cri,
-			RedirectAttributes rttr) {
+	public String remove(@RequestParam("faqNo") Long faqNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("remove : " + faqNo);
 		if(service.remove(faqNo)) {
 			rttr.addFlashAttribute("result", "success");
@@ -71,6 +70,10 @@ public class FaqController {
 	// FAQ 등록
 	@PostMapping("/register")
 	public String register(FaqVO faq, RedirectAttributes rttr) {
+		log.info("register : " + faq);
+		service.register(faq);
+		rttr.addFlashAttribute("result", faq.getFaqNo());
+		
 		return "redirect:/faq/list";
 
 	}

@@ -49,7 +49,7 @@ public class NoticeController {
 		if(service.modify(notice)) {
 			rttr.addFlashAttribute("result" , "success");
 		}
-		return "redirect:/notice/read";
+		return "redirect:/notice/read?noticeNo=" + notice.getNoticeNo();
 	}
 	
 	// 공지사항 삭제

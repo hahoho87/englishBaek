@@ -2,7 +2,7 @@
 <!DOCTYPE mapper 
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.engbaek.mapper.ProfileVO">
+<mapper namespace="com.engbaek.mapper.ProfileMapper">
 
 	<select id="getList" resultType="com.engbaek.domain.ProfileVO">
 	<![CDATA[
@@ -75,7 +75,7 @@
 	</insert>
 
 	<!-- read -->
-	<select id="read" resultType="com.engbaek.domain.NoticeVO"> SELECT
+	<select id="read" resultType="com.engbaek.domain.ProfileVO"> SELECT
 		* FROM notice WHERE noticeNo
 		= #{noticeNo}
 	</select>
@@ -101,6 +101,51 @@
 		<include refid="criteria"></include>
 
 		noticeNo > 0
+	</select>
+
+	<resultMap type="com.engbaek.domain.ProfileVO"
+		id="profileMap">
+		<id column="teacherPno" property="teacherPno" />
+		<result column="teacherSubject" property="teacherSubject" />
+		<result column="teacherProfile" property="teacherProfile" />
+		<result column="teacherProfilePicture"
+			property="teacherProfilePicture" />
+		<result column="teacherProfileUuid"
+			property="teacherProfileUuid" />
+
+		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. association => 1 : 1 관계 collection => 1 : 
+			다 관계 (한명의 유저가 작성한 글 목록) 일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용 -->
+		<association javaType="com.engbaek.domain.TeacherVO"
+			property="teacherVO">
+			<id column="teacherId" property="teacherId" />
+			<result column="name" property="name" />
+			<result column="email1" property="email" />
+			<result column="email2" property="email2" />
+			<result column="phone" property="phone" />
+			<result column="regdate" property="regdate" />
+			<result column="career" property="career" />
+		</association>
+	</resultMap>
+
+	<select id="selectOneProfile"
+		resultMap="profileMap">
+		SELECT
+		p.teacherPno
+		, p.teacherSubject
+		, p.teacherProfile
+		, p.teacherProfilePicture
+		, p.teacherProfileUuid
+		, t.teacherId
+		, t.name
+		, t.email1
+		, t.email2
+		, t.phone
+		, t.regdate
+		, t.career
+		FROM profile p
+		, teacher t
+		WHERE p.teacherId = t.teacherId
+		AND p.teacherPno = #{teacherPno}
 	</select>
 
 </mapper>   

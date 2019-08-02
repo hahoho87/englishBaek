@@ -16,10 +16,10 @@ public interface ProfileMapper {
 	public int update(ProfileVO profile);
 
 	// 강사소개 삭제
-	public int delete(Long profile_bno);
+	public int delete(Long teacherPno);
 
 	// 강사소개 조회
-	public ProfileVO read(Long profile_bno);
+	public ProfileVO read(Long teacherPno);
 
 	// 강사소개 등록
 	public Integer insertSelectKey(ProfileVO profile);
@@ -29,4 +29,7 @@ public interface ProfileMapper {
 
 	// 강사소개 목록
 	public List<ProfileVO> getList();
+	
+	// 강사소개 join
+	public ProfileVO selectOneProfile(Long teacherPno);
 }

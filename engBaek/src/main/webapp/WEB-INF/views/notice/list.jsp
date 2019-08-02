@@ -38,16 +38,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${faqList}" var="faq">
+		<c:forEach items="${noticeList}" var="notice">
 
 			<tr>
-				<td>${faq.faqNo}</td>
+				<td>${notice.noticeNo}</td>
 				<td>
-					<a class="move" href="${faq.faqNo}"> ${faq.faqTitle}</a>
+					<a class="move" href="${notice.noticeNo}"> ${notice.noticeTitle}</a>
 				</td>
-				<td>${faq.adminId}</td>
+				<td>${notice.adminId}</td>
 				<td>
-					<fmt:formatDate value="${faq.faqRegdate}" pattern="yyyy-MM-dd" />
+					<fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd" />
 				</td>
 			</tr>
 		</c:forEach>
@@ -56,7 +56,7 @@
 <!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
 <div class='row'>
 	<div class="col-lg-12">
-		<form id="searchForm" action="/faq/list">
+		<form id="searchForm" action="/notice/list">
 			<select name="type">
 				<c:set var="type" value="${pageMaker.cri.type }" />
 				<!-- 검색 조건이 없을 경우 selected 표시 -->
@@ -70,7 +70,6 @@
 			<button class="btn btn-default">Search</button>
 		</form>
 	</div>
-	<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
 </div>
 <!-- END 검색창 - 검색 조건 및 키워드 입력 영역 -->
 
@@ -84,7 +83,7 @@
 
 		<!-- 페이지 번호 표시 -->
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<li class="paginate_button page-item ${pageMaker.cri.pageNum == num ? 'active': '' }"><a class="page-link" href="${num }">${num }</a></li>
+			<li class="paginate_button page-item  ${pageMaker.cri.pageNum == num ? 'active': '' }"><a class="page-link" href="${num }">${num }</a></li>
 		</c:forEach>
 
 		<c:if test="${pageMaker.next }">
@@ -94,10 +93,10 @@
 	</ul>
 </div>
 <!-- END 페이지 번호 출력 -->
-
+<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
 
 <!-- a 태그 대신 pageNum과 amount 파라미터로 전송 -->
-<form id="actionForm" action="/faq/list">
+<form id="actionForm" action="/notice/list">
 	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }"> <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 	<!-- 검색 키워드와 조건 파라미터 추가 -->
 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }"> <input type="hidden" name="type" value="${pageMaker.cri.type }">
@@ -108,7 +107,7 @@
 
 		//등록 버튼 처리
 		$("#regBtn").on("click", function() {
-			self.location = "/faq/register";
+			self.location = "/notice/register";
 		});
 
 		//페이지 번호를 클릭하면 해당 페이지 목록 표시
@@ -123,18 +122,15 @@
 		});
 
 		//a 태그의 move 클래스 속성을 이용
-		$(".move").on(
-				"click",
-				function(e) {
-					//a 태그의 기본 동작 막고
-					e.preventDefault();
+		$(".move").on("click",function(e) {
+			//a 태그의 기본 동작 막고
+			e.preventDefault();
 
-					actionForm
-							.append("<input type='hidden' name='faqNo' value='"
-									+ $(this).attr('href') + "'>'");
-					actionForm.attr("action", "/faq/read");
-					actionForm.submit();
-				});
+			actionForm.append("<input type='hidden' name='noticeNo' value='"
+								+ $(this).attr('href') + "'>'");
+			actionForm.attr("action", "/notice/read");
+			actionForm.submit();
+		});
 
 		//검색 버튼 이벤트 처리
 		var searchForm = $("#searchForm");

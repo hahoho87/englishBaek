@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 	//결제 내역 게시물 수정
 	@Override
-	public boolean modify(PaymentVO faq) {
+	public boolean modify(PaymentVO notice) {
 		return false;
 	}
 	//결제 내역 게시물 삭제

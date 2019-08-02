@@ -32,9 +32,9 @@
 <body>
 	<div class="panel-body">
 		<!-- 게시물 수정 폼 -->
-		<form role="form" method="post" action="/faq/modify">
+		<form role="form" method="post" action="/notice/modify">
 			<!-- 게시물 번호 파라미터 추가 -->
-			<input type="hidden" name="faqNo" value="${faq.faqNo }">
+			<input type="hidden" name="noticeNo" value="${notice.noticeNo }">
 			<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
 			<input type="hidden" name="pageNum" value="${cri.pageNum }"> <input type="hidden" name="amount" value="${cri.amount }">
 			<!-- 검색 조건과 키워드 파라미터 추가 -->
@@ -42,14 +42,14 @@
 			
 			<div class="form-group">
 			
-				<label>Title</label> <input class="form-control" name="faqTitle" value="${faq.faqTitle }">
+				<label>Title</label> <input class="form-control" name="noticeTitle" value="${notice.noticeTitle }">
 			</div>
 			<div class="form-group">
 				<label>Text area</label>
-				<textarea rows="3" class="form-control" name="faqContent">${faq.faqContent }</textarea>
+				<textarea rows="3" class="form-control" name="noticeContent">${notice.noticeContent }</textarea>
 			</div>
 			<div class="form-group">
-				<label>Writer</label> <input class="form-control" name="adminId" value="${faq.adminId }" readonly="readonly" />
+				<label>Writer</label> <input class="form-control" name="adminId" value="${notice.adminId }" readonly="readonly" />
 			</div>
 			<!-- 수정 처리 -->
 			<button type="submit" data-oper="modify" class="btn btn-info">Modify</button>
@@ -84,11 +84,11 @@ $(function(){
 		console.log("operation : " + operation);
 		
 		if(operation === 'cancel'){ 		
-			formObj.attr("action", "/faq/read");
+			formObj.attr("action", "/notice/read");
 		} else if(operation === 'modify') {	
 			
 
-			var faqNoTag = $("input[name='faqNo']").clone();
+			var noticeNoTag = $("input[name='noticeNo']").clone();
 			//페이지 번호와 게시물 개수 복사
 			var pageNumTag = $("input[name='pageNum']").clone();
 			var amountTag = $("input[name='amount']").clone();
@@ -97,9 +97,9 @@ $(function(){
 			var typeTag = $("input[name='type']").clone();
 			var keywordTag = $("input[name='keyword']").clone();
 
-			formObj.attr("action", "/faq/modify")
+			formObj.attr("action", "/notice/modify")
 				   .attr("method", "post");
-			formObj.append(faqNoTag);
+			formObj.append(noticeNoTag);
 			//페이지 번호와 게시물 개수만 폼에 추가
 			formObj.append(pageNumTag);
 			formObj.append(amountTag);

@@ -8,21 +8,21 @@ import com.engbaek.domain.FaqVO;
 public interface FaqMapper {
 
 
-	//FAQ 총 게시물 수  
+	//notice 총 게시물 수  
 	public int getTotalCount(Criteria cri);
 	
-	//FAQ 게시판 페이징 
+	//notice 게시판 페이징 
 	public List<FaqVO> getListWithPaging(Criteria cri);
 	
 	public List<FaqVO> getList();
 	
-	//FAQ 수정 
+	//notice 수정 
 	public int update(FaqVO faq);
 		
-	//FAQ 삭제 
+	//notice 삭제 
 	public int delete(Long faqNo);
 	
-	//FAQ 읽기 
+	//notice 읽기 
 	public FaqVO read(Long faqNo);
 	
 	//게시물 번호 사용자에게 보이게 하기 

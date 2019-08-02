@@ -3,7 +3,6 @@ package com.engbaek.mapper;
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
-import com.engbaek.domain.FaqVO;
 import com.engbaek.domain.PrivateQnaVO;
 
 public interface PrivateQnaMapper {

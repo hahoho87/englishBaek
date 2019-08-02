@@ -19,7 +19,7 @@ public interface PaymentService {
 	public PaymentVO get(Long payment_bno);
 	
 	//결제 내역 게시물 수정
-	public boolean modify(PaymentVO faq);
+	public boolean modify(PaymentVO notice);
 	
 	//결제 내역 게시물 삭제 
 	public boolean remove(Long payment_bno);

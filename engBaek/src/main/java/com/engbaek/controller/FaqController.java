@@ -28,11 +28,11 @@ public class FaqController {
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
-		//model.addAttribute("faqList", service.getList(cri));
-		model.addAttribute("faqList", service.getList2());
-		//int total = service.getTotal(cri);
-		//log.info("total count : " + total);
-		//model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("faqList", service.getList(cri));
+		//model.addAttribute("faqList", service.getList2());
+		int total = service.getTotal(cri);
+		log.info("total count : " + total);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 	}
 
@@ -50,7 +50,7 @@ public class FaqController {
 		if (service.modify(faq)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/faq/read";
+		return "redirect:/faq/read?faqNo=" + faq.getFaqNo();
 	}
 
 	// FAQ 삭제

@@ -18,13 +18,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'T'.toString()">
-							faqTitle LIKE '%'||#{keyword}||'%'
+							upper(faqTitle) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							faqContent LIKE '%'||#{keyword}||'%'
+							upper(faqContent) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'W'.toString()">
-							adminId LIKE '%'||#{keyword}||'%'
+							upper(adminId) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 					</choose>
 				</trim>
@@ -83,7 +83,7 @@
 	<!-- update -->
 	<update id="update">
 		UPDATE faq
-		SET faqTitle = #{faqTitle}, faqContent =#{faqContent}, faqRegdate = sysdate
+		SET faqTitle = #{faqTitle}, faqContent = #{faqContent}, faqRegdate = sysdate
 		WHERE faqNo = #{faqNo}
 	</update>
 

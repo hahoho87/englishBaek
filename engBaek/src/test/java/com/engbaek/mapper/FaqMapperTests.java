@@ -1,14 +1,11 @@
 package com.engbaek.mapper;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.engbaek.domain.Criteria;
 import com.engbaek.domain.FaqVO;
 
 import lombok.Setter;
@@ -30,9 +27,9 @@ public class FaqMapperTests {
 //	@Test
 //	public void testInsertSelectKey() {
 //		FaqVO faq = new FaqVO();
-//		faq.setFaqTitle("FAQ TEST");
+//		faq.setfaqTitle("faq TEST");
 //		faq.setAdminId("admin1");
-//		faq.setFaqContent("test contents");
+//		faq.setfaqContent("test contents");
 //		
 //		mapper.insertSelectKey(faq);
 //		
@@ -56,9 +53,9 @@ public class FaqMapperTests {
 //	public void testUpdate() {
 //		FaqVO faq = new FaqVO();
 //		//실행 전 존재하는 번호인지 확인
-//		faq.setFaqNo(7L);
-//		faq.setFaqTitle("modified title");
-//		faq.setFaqContent("modified contents");
+//		faq.setfaqNo(7L);
+//		faq.setfaqTitle("modified title");
+//		faq.setfaqContent("modified contents");
 //		
 //		int count = mapper.update(faq);
 //		

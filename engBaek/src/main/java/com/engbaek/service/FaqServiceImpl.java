@@ -21,34 +21,34 @@ public class FaqServiceImpl implements FaqService {
 	@Setter(onMethod_ = @Autowired)
 	private FaqMapper mapper;
 
-	// FAQ 게시판 총 게시물 수
+	// notice 게시판 총 게시물 수
 	@Override
 	public int getTotal(Criteria cri) {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
 
-	// FAQ 게시판 목록
+	// notice 게시판 목록
 	@Override
 	public List<FaqVO> getList(Criteria cri) {
 		log.info("getList with criteria : " + cri);
 		return mapper.getListWithPaging(cri);
 	}
 
-	// FAQ 게시물 상세 보기
+	// notice 게시물 상세 보기
 	@Override
 	public FaqVO get(Long faqNo) {
 		return mapper.read(faqNo);
 	}
 
-	// FAQ 게시물 등록
+	// notice 게시물 등록
 	@Override
 	public void register(FaqVO faq) {
 		log.info("register : " + faq);
 		mapper.insertSelectKey(faq);
 	}
 
-	// FAQ 게시물 수정
+	// notice 게시물 수정
 	@Override
 	public boolean modify(FaqVO faq) {
 		log.info("modify : " + faq);
@@ -56,7 +56,7 @@ public class FaqServiceImpl implements FaqService {
 		return modifyResult;
 	}
 
-	// FAQ 게시물 삭제
+	// notice 게시물 삭제
 	@Override
 	public boolean remove(Long faqNo) {
 		log.info("remove : " + faqNo);

@@ -118,25 +118,25 @@ insert into profile values('toslv7','tc3','토스 lv6','현)잉글리시백에�
 insert into profile values('toi850','tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
 
 
-//7.FAQ
-CREATE TABLE faq(
-   faqNo NUMBER(20)  CONSTRAINT faq_pk PRIMARY KEY,
+//7.notice
+CREATE TABLE notice(
+   noticeNo NUMBER(20)  CONSTRAINT notice_pk PRIMARY KEY,
    adminId VARCHAR2(40) CONSTRAINT f_admin_fk REFERENCES admin(adminId) NOT NULL,
-   faqTitle VARCHAR2(100) NOT NULL,
-   faqContent VARCHAR2(2000) NOT NULL,
-   faqRegdate DATE DEFAULT SYSDATE 
+   noticeTitle VARCHAR2(100) NOT NULL,
+   noticeContent VARCHAR2(2000) NOT NULL,
+   noticeRegdate DATE DEFAULT SYSDATE 
 );
 
-//FAQ 시퀀스
-CREATE SEQUENCE faq_seq
+//notice 시퀀스
+CREATE SEQUENCE notice_seq
 START WITH      1
 INCREMENT BY    1
 NOCACHE         
 NOCYCLE;
 
-insert into faq values(faq_seq.nextval,'admin1','환불 이제 안 받습니다','그냥 그런 이유가 있습니다',sysdate);
-insert into faq values(faq_seq.nextval,'admin2','수강신청 절차를 알려드립니다. ','이 순서 그대로 해주세요',sysdate);
-insert into faq values(faq_seq.nextval,'admin1','개강 후에 환불은 어떤 식으로 이루어지나요?','그냥 그런 이유가 있습니다',sysdate);
+insert into notice values(notice_seq.nextval,'admin1','환불 이제 안 받습니다','그냥 그런 이유가 있습니다',sysdate);
+insert into notice values(notice_seq.nextval,'admin2','수강신청 절차를 알려드립니다. ','이 순서 그대로 해주세요',sysdate);
+insert into notice values(notice_seq.nextval,'admin1','개강 후에 환불은 어떤 식으로 이루어지나요?','그냥 그런 이유가 있습니다',sysdate);
 
 //8.공지사항
 CREATE TABLE notice(
@@ -393,7 +393,7 @@ DROP TABLE classQnaComment
 DROP TABLE classQna
 DROP TABLE refundInfo
 DROP TABLE notice
-DROP TABLE faq
+DROP TABLE notice
 DROP TABLE profile
 DROP TABLE course
 DROP TABLE student
@@ -414,7 +414,7 @@ DROP SEQUENCE classQnaComment_seq
 DROP SEQUENCE classQna_seq
 DROP SEQUENCE refundInfo_seq
 DROP SEQUENCE notice_seq
-DROP SEQUENCE faq_seq
+DROP SEQUENCE notice_seq
 DROP SEQUENCE course_seq
 
 

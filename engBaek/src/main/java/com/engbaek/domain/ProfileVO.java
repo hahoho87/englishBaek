@@ -3,7 +3,7 @@ package com.engbaek.domain;
 import lombok.Data;
 
 @Data
-public class ProfileVO { //강좌소개
+public class ProfileVO { //강사소개
 	
 	private long teacherPno; //강사소개 코드
 	private String teacherId; //강사ID
@@ -12,4 +12,5 @@ public class ProfileVO { //강좌소개
 	private String teacherProfilePicture; //강사소개 사진
 	private String teacherProfileUuid; //강사소개 사진 uuid
 	
+	private TeacherVO teacherVO;
 }

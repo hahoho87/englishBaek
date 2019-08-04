@@ -1,5 +1,8 @@
 package com.engbaek.mapper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.engbaek.domain.CourseJoinVO;
+import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
 
 import lombok.Setter;
@@ -22,21 +26,92 @@ public class CourseMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private CourseMapper mapper;
 	
+	SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+	
 //	@Test
 //	public void testGetList() {
 //		mapper.getList().forEach(course -> log.info(course));
 //	}
 	
+//	@Test
+//	public void testPaging() {
+//		Criteria cri = new Criteria();
+//		
+//		//5개씩 2페이지
+//		cri.setPageNum(1);
+//		cri.setAmount(5);
+//		
+//		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
+//		
+//		list.forEach(faq -> log.info(faq));
+//	}
+	
+//	@Test
+//	public void testInsertSelectKey() throws ParseException {
+//		
+//		CourseVO course = new CourseVO();
+//		
+//		
+//		course.setTeacherId("tc3");
+//		course.setClassroomNo(403L);
+//		course.setCourseName("미쳐버린 토익");
+//		course.setCourseType("toeic speacking");
+//		course.setCourseLevel("850");
+//		course.setCoursePictureName("사진 없음");
+//		course.setCoursePictureUuid("사진 없음");
+//		course.setCurriculumName("사진 없음");
+//		course.setCurriculumUuid("사진 없음");
+//		course.setCourseInfo("체고의 강의");
+//		course.setCourseDay("화,수");
+//		course.setCourseTime("11:00 - 13:00");
+//		course.setCourseStart(dt.parse("2019-10-21"));
+//		course.setCourseEnd(dt.parse("2019-10-25"));
+//		
+//		mapper.insertSelectKey(course);
+//		
+//		log.info(course);
+//	}
+	
+//	@Test
+//	public void testDelete() {
+//		log.info("DELETE COURSE : " + mapper.delete(4L));
+//	}
+	
+//	@Test
+//	public void testUpdate() throws ParseException {
+//		CourseVO course = new CourseVO();
+//		course.setCourseCode(2L);
+//		course.setTeacherId("tc1");
+//		course.setClassroomNo(401L);
+//		course.setCourseName("미쳐버린 토스");
+//		course.setCourseType("toeic speacking!!");
+//		course.setCourseLevel("6");
+//		course.setCoursePictureName("사진 없음~");
+//		course.setCoursePictureUuid("사진 없음~");
+//		course.setCurriculumName("사진 없음~");
+//		course.setCurriculumUuid("사진 없음~");
+//		course.setCourseInfo("체고의 강의!!");
+//		course.setCourseDay("화,수,목");
+//		course.setCourseTime("13:00 - 15:00");
+//		course.setCourseStart(dt.parse("2019-10-21"));
+//		course.setCourseEnd(dt.parse("2019-10-25"));
+//		
+//		int count = mapper.update(course);
+//		
+//		log.info(count);
+//
+//	}
+	
 	@Test
-	public void testPaging() {
+	public void testSearch() {
 		Criteria cri = new Criteria();
 		
-		//5개씩 2페이지
-		cri.setPageNum(1);
-		cri.setAmount(5);
+		cri.setKeyword("미");
+		cri.setType("A");
 		
 		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
 		
-		list.forEach(faq -> log.info(faq));
+		list.forEach(course -> log.info(course));
 	}
+
 }

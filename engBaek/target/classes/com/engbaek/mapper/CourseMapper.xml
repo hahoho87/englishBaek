@@ -37,13 +37,22 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()">
+						<when test="type == 'A'.toString()">
 							upper(courseName) LIKE '%'||upper(#{keyword})||'%'
 						</when>
-						<when test="type == 'C'.toString()">
-							upper(teacherSubject) LIKE
+						<when test="type == 'B'.toString()">
+							upper(name) LIKE
 							'%'||upper(#{keyword})||'%'
 						</when>
+						<when test="type == 'C'.toString()">
+							upper(courseType) LIKE
+							'%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'D'.toString()">
+							upper(courseLevel) LIKE
+							'%'||upper(#{keyword})||'%'
+						</when>
+						
 					</choose>
 				</trim>
 			</foreach>
@@ -198,14 +207,23 @@
 
 	<!-- update -->
 	<update id="update">
-		UPDATE profile
-		SET teacherId = #{teacherId},
-		teacherSubject = #{teacherSubject},
-		teacherProfile = #{teacherProfile},
-		teacherProfilePicture = #{teacherProfilePicture},
-		teacherProfileUuid =
-		#{teacherProfileUuid}
-		WHERE teacherPno = #{teacherPno}
+		UPDATE course
+		SET 
+			teacherId = #{teacherId}
+			, classroomNo = #{classroomNo}
+			, courseName = #{courseName}
+			, courseType = #{courseType}
+			, courseLevel = #{courseLevel}
+			, coursePictureName = #{coursePictureName}
+			, coursePictureUuid = #{coursePictureUuid}
+			, curriculumName = #{curriculumName}
+			, curriculumUuid = #{curriculumUuid}
+			, courseInfo = #{courseInfo}
+			, courseDay = #{courseDay}
+			, courseTime = #{courseTime}
+			, courseStart = #{courseStart}
+			, courseEnd = #{courseEnd}
+		WHERE courseCode = #{courseCode}
 	</update>
 
 	<!-- getTotalCount -->

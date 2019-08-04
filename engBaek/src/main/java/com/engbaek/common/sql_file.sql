@@ -8,7 +8,6 @@ insert into auth values('Y');//승인 받은 강사
 insert into auth values('R');//퇴사한 강사
 insert into auth values('A');//관리자 
 
-
 CREATE TABLE teacher(
     teacherId   VARCHAR2(40) CONSTRAINT teacher_pk PRIMARY KEY,
     name        VARCHAR2(40) NOT NULL,
@@ -112,31 +111,39 @@ CREATE TABLE profile(
     teacherProfileUuid VARCHAR2(40) NOT NULL
 );
 
+CREATE SEQUENCE profile_seq
+START WITH      1
+INCREMENT BY    1
+NOCACHE         
+NOCYCLE ;
 
-insert into profile values('toi550','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values('toslv7','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values('toi850','tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
+ALTER TABLE profile teacherPno number(40);
 
 
-//7.notice
-CREATE TABLE notice(
-   noticeNo NUMBER(20)  CONSTRAINT notice_pk PRIMARY KEY,
-   adminId VARCHAR2(40) CONSTRAINT f_admin_fk REFERENCES admin(adminId) NOT NULL,
-   noticeTitle VARCHAR2(100) NOT NULL,
-   noticeContent VARCHAR2(2000) NOT NULL,
-   noticeRegdate DATE DEFAULT SYSDATE 
+insert into profile values('1','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
+insert into profile values('2','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
+insert into profile values('3','tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
+
+
+//7.faq
+CREATE TABLE faq (
+   faqNo NUMBER(20) CONSTRAINT faq_pk PRIMARY KEY,
+   adminId VARCHAR2(40) CONSTRAINT faq_admin_fk REFERENCES admin(adminId) NOT NULL,
+   faqTitle VARCHAR2(100) NOT NULL,
+   faqContent VARCHAR2(2000) NOT NULL,
+   faqRegdate DATE DEFAULT SYSDATE 
 );
 
-//notice 시퀀스
-CREATE SEQUENCE notice_seq
+//faq 시퀀스
+CREATE SEQUENCE faq_seq
 START WITH      1
 INCREMENT BY    1
 NOCACHE         
 NOCYCLE;
 
-insert into notice values(notice_seq.nextval,'admin1','환불 이제 안 받습니다','그냥 그런 이유가 있습니다',sysdate);
-insert into notice values(notice_seq.nextval,'admin2','수강신청 절차를 알려드립니다. ','이 순서 그대로 해주세요',sysdate);
-insert into notice values(notice_seq.nextval,'admin1','개강 후에 환불은 어떤 식으로 이루어지나요?','그냥 그런 이유가 있습니다',sysdate);
+insert into faq values(faq_seq.nextval,'admin1','환불 이제 안 받습니다','그냥 그런 이유가 있습니다',sysdate);
+insert into faq values(faq_seq.nextval,'admin2','수강신청 절차를 알려드립니다. ','이 순서 그대로 해주세요',sysdate);
+insert into faq values(faq_seq.nextval,'admin1','개강 후에 환불은 어떤 식으로 이루어지나요?','그냥 그런 이유가 있습니다',sysdate);
 
 //8.공지사항
 CREATE TABLE notice(
@@ -324,6 +331,7 @@ CREATE TABLE payment(
     paymentDate DATE DEFAULT SYSDATE,
     paymentState VARCHAR2(40) NOT NULL
 );
+
 //결제내역 시퀀스
 CREATE SEQUENCE payment_seq
 START WITH      1
@@ -422,5 +430,6 @@ DROP SEQUENCE course_seq
 
 
 
-
+alter table COURSE rename column COURSEPICURENAME to COURSEPICTURENAME
+/
  

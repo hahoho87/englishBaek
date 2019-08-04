@@ -2,6 +2,7 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
+import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
 
@@ -11,20 +12,21 @@ public interface CourseMapper {
 	public int getTotalCount(Criteria cri);
 	
 	//강좌 소개 목록 with 페이징
-	public List<CourseVO> getListWithPaging(Criteria cri);
+	public List<CourseJoinVO> getListWithPaging(Criteria cri);
 	
 	//강좌 소개 수정
 	public int update(CourseVO course);
 	
 	//강좌 소개 삭제
-	public int delete(Long course_bno);
+	public int delete(Long courseCode);
 	
 	//강좌 소개 조회
-	public CourseVO read(Long course_bno);
+	public CourseJoinVO read(Long courseCode);
 	
 	//
 	public Integer insertSelectKey(CourseVO course);
 	//public void insert(CourseVO course);
-	public List<CourseVO> getList();
+	
+	public List<CourseJoinVO> getList();
 	
 }

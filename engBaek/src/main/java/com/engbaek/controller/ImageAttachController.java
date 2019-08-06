@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,13 +54,13 @@ public class ImageAttachController {
 	}
 
 	// 업로드 시점의 연/월/일 폴더 경로 문자열 생성
-	private String getFolder() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-
-		return str.replace("-", File.separator);
-	}
+//	private String getFolder() {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = new Date();
+//		String str = sdf.format(date);
+//
+//		return str.replace("-", File.separator);
+//	}
 
 	// 업로드 파일 검사 - 이미지 파일 여부
 	private boolean checkImageType(File file) {
@@ -100,11 +97,11 @@ public class ImageAttachController {
 	public ResponseEntity<List<ImageAttachDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		List<ImageAttachDTO> list = new ArrayList<>();
 		log.info("uploadFormAction");
-		log.info("getFolder : " + getFolder());
-		String uploadFolder = "c:\\upload"; // 업로드 경로
+		//log.info("getFolder : " + getFolder());
+		String uploadFolder = "c:\\upload\\profile\\"; // 업로드 경로
 
 		//업로드 경로 = c:\\upload 폴더 밑에 연\월\일 폴더로 생성
-		File uploadPath = new File(uploadFolder, getFolder());
+		File uploadPath = new File(uploadFolder);
 		log.info("uploadPath : " + uploadPath);
 
 		//uploadPath가 없으면 폴더 생성
@@ -158,34 +155,6 @@ public class ImageAttachController {
 	@GetMapping("/uploadAjax") // AJAX 방식 업로드 화면 이동
 	public void uploadAjax() {
 		log.info("upload ajax");
-	}
-
-	@PostMapping("/uploadFormAction") // 업로드 처리
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		log.info("uploadFormAction");
-
-		String uploadFolder = "c:\\upload"; // 업로드 경로
-
-		for (MultipartFile m : uploadFile) {
-			log.info("-------------------------");
-			log.info("upload file name : " + m.getOriginalFilename());
-			log.info("upload file size : " + m.getSize());
-
-			File saveFile = new File(uploadFolder, m.getOriginalFilename());
-
-			try {
-				m.transferTo(saveFile); // 파일 업로드
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@GetMapping("/uploadForm") // 업로드 화면 이동
-	public void uploadForm() {
-		log.info("upload form");
 	}
 
 }

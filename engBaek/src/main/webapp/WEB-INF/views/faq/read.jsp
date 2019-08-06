@@ -66,6 +66,21 @@
 			<!-- 목록 페이지 이동 -->
 		</form>
 		<!-- END 게시물 등록 폼 -->
+				<!-- 폼 태그 추가 -->
+		<form id="operForm" action="/faq/modify">
+			<input type="hidden" id="faqNo" 
+				name="faqNo" value="${faq.faqNo }">
+		<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
+			<input type="hidden"  
+				name="pageNum" value="${cri.pageNum }">
+			<input type="hidden"  
+				name="amount" value="${cri.amount }">	
+			<!-- 검색 조건과 키워드 파라미터 추가 -->   
+			<input type="hidden"  
+				name="type" value="${cri.type }">
+			<input type="hidden"  
+				name="keyword" value="${cri.keyword }">
+		</form>
 	</div>
 	<!-- /.panel-body -->
 
@@ -126,8 +141,24 @@
 				formObj.append(keywordTag);
 				
 			} else {
+				//페이지 번호와 게시물 개수 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				//검색 조건과 키워드 복사
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+				
 				formObj.attr("action", "/faq/modify")
 				   .attr("method", "get");
+				
+				//페이지 번호와 게시물 개수만 폼에 추가
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
+				//검색 조건과 키워드 폼에 추가 
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
 			}
 			
 			formObj.submit();

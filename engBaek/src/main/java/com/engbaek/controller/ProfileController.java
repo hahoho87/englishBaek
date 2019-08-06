@@ -1,5 +1,10 @@
 package com.engbaek.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
@@ -20,6 +26,7 @@ import com.engbaek.service.ProfileService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
@@ -55,8 +62,54 @@ public class ProfileController {
 
 	// 강사 소개 등록
 	@PostMapping("/register")
-	public String register(ProfileVO profile, RedirectAttributes rttr) {
+	public String register(ProfileVO profile, MultipartFile uploadFile, Model model, RedirectAttributes rttr) {
+		
 		log.info("register : " + profile);
+
+		String uploadFolder = "c:\\upload\\profile\\"; // 업로드 경로
+
+		File uploadPath = new File(uploadFolder);
+		log.info("uploadPath : " + uploadPath);
+
+		// uploadPath가 없으면 폴더 생성
+		if (!uploadPath.exists()) {
+			uploadPath.mkdirs(); //
+		}
+
+		log.info("-------------------------");
+		log.info("upload file name : " + uploadFile.getOriginalFilename());
+		log.info("upload file size : " + uploadFile.getSize());
+
+		String uploadFileName = uploadFile.getOriginalFilename();
+		profile.setTeacherProfilePicture(uploadFileName.toString()); // 1.업로드 파일명 저장
+
+		// IE의 경우 경로를 제거하고 파일명만 저장
+		uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+
+		// UUID 이용 파일명 중복 방지 처리
+		UUID uuid = UUID.randomUUID();
+		uploadFileName = uuid.toString() + "_" + uploadFileName;
+
+		File saveFile = new File(uploadPath, uploadFileName);
+
+		try {
+			uploadFile.transferTo(saveFile); // 파일 업로드
+			profile.setTeacherProfileUuid(uuid.toString()); // 2.UUID 값 저장
+			// attachDTO.setUploadPath(getFolder());// 3.업로드 경로 저장
+
+			// 섬네일 이미지 파일명 = s_ + 업로드파일명
+			FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+
+			// 가로 100 * 세로 100 섬네일 이미지 생성
+			Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
+			thumbnail.close();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		// END 업로드
+
 		service.register(profile);
 		rttr.addFlashAttribute("result", profile.getTeacherPno());
 		return "redirect:/profile/list";
@@ -98,11 +151,11 @@ public class ProfileController {
 		if (idCheck == 1) {
 			result = 1;
 		}
-		
+
 		log.info(result);
-			
+
 		return result;
-		
+
 	}
 
 	/*

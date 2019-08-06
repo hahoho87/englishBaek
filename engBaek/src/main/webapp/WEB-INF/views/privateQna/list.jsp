@@ -40,7 +40,7 @@
 			
 			<td></td>
 			<td>
-			    &nbsp RE:<a href="../privateQnaReply/read?privateQnaReplyNo=${privateQnaReply.privateQnaReplyNo}"> ${privateQnaReply.privateQnaReplyTitle}</a>
+			    &nbsp RE:<a href="../privateQna/replyRead?privateQnaReplyNo=${privateQnaReply.privateQnaReplyNo}"> ${privateQnaReply.privateQnaReplyTitle}</a>
 			</td>	
 			<td>${privateQnaReply.adminId}</td>
 			<td>

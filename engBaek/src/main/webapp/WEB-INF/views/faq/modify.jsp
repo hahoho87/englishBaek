@@ -33,6 +33,7 @@
 	<div class="panel-body">
 		<!-- 게시물 수정 폼 -->
 		<form role="form" method="post" action="/faq/modify">
+		
 			<!-- 게시물 번호 파라미터 추가 -->
 			<input type="hidden" name="faqNo" value="${faq.faqNo }">
 			<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
@@ -57,6 +58,7 @@
 			<button type="submit" data-oper="cancel" class="btn btn-default">cancel</button>
 			
 		</form>
+		
 		<!-- END 게시물 등록 폼 -->
 	</div>
 	<!-- /.panel-body -->
@@ -84,9 +86,11 @@ $(function(){
 		console.log("operation : " + operation);
 		
 		if(operation === 'cancel'){ 		
-			formObj.attr("action", "/faq/read");
+			formObj.attr("action", "/faq/read")
+				   .attr("method", "get");
+			var faqNoTag = $("input[name='faqNo']").clone();
+			formObj.append(faqNoTag);
 		} else if(operation === 'modify') {	
-			
 
 			var faqNoTag = $("input[name='faqNo']").clone();
 			//페이지 번호와 게시물 개수 복사
@@ -96,6 +100,8 @@ $(function(){
 			//검색 조건과 키워드 복사
 			var typeTag = $("input[name='type']").clone();
 			var keywordTag = $("input[name='keyword']").clone();
+			
+			console.log(pageNumTag);
 
 			formObj.attr("action", "/faq/modify")
 				   .attr("method", "post");

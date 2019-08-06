@@ -2,11 +2,12 @@ CREATE TABLE auth(
     authNo VARCHAR2(10) CONSTRAINT auth_pk PRIMARY KEY
 );
 
-insert into auth values('S'); //학생
-insert into auth values('N'); //승인 안 받은 강사
-insert into auth values('Y');//승인 받은 강사
-insert into auth values('R');//퇴사한 강사
-insert into auth values('A');//관리자 
+insert into auth values('S');
+insert into auth values('N');
+insert into auth values('Y');
+insert into auth values('R');
+insert into auth values('A');
+
 
 CREATE TABLE teacher(
     teacherId   VARCHAR2(40) CONSTRAINT teacher_pk PRIMARY KEY,
@@ -21,7 +22,8 @@ CREATE TABLE teacher(
     regdate     DATE DEFAULT SYSDATE,
     career      VARCHAR2(4000) NOT NULL,
     authNo      VARCHAR2(10) CONSTRAINT t_auth_fk REFERENCES auth(authNo) NOT NULL
- ) ;
+ );
+ 
  
  insert into teacher values('tc1','김하나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
  '경기도 개멀구 힘들동',sysdate,'서울대학교','Y');
@@ -31,7 +33,7 @@ CREATE TABLE teacher(
  '경기도 개멀구 힘들동',sysdate,'서울대학교','Y');
  
  
- //3.관리자
+ //3.관리자    
 CREATE TABLE admin(
     adminId    VARCHAR2(40) CONSTRAINT admin_pk PRIMARY KEY,
     pw         VARCHAR2(40) NOT NULL,
@@ -39,9 +41,9 @@ CREATE TABLE admin(
     authNo     VARCHAR2(10) CONSTRAINT a_auth_fk REFERENCES auth(authNo) NOT NULL
 );
 
-insert into admin values('admin1', '1111', '관리자1','A');
-insert into admin values('admin2', '1111', '관리자2','A');
-insert into admin values('admin3', '1111', '관리자3','A');
+insert into admin values('admin1','1111','관리자1','A');
+insert into admin values('admin2','1111','관리자2','A');
+insert into admin values('admin3','1111','관리자3','A');
 
 //4.학생
 CREATE TABLE student(
@@ -74,7 +76,7 @@ CREATE TABLE course(
     courseName     VARCHAR2(40) NOT NULL,
     courseType     VARCHAR2(40) NOT NULL,
     courseLevel    VARCHAR2(40) NOT NULL,
-    coursePicureName      VARCHAR2(40) NOT NULL,
+    coursePictureName      VARCHAR2(40) NOT NULL,
     coursePictureUuid VARCHAR2(2000) NOT NULL,
     curriculumName      VARCHAR2(40) NOT NULL,
     curriculumUuid VARCHAR2(2000) NOT NULL,
@@ -82,7 +84,7 @@ CREATE TABLE course(
     courseDay      VARCHAR2(40) NOT NULL,
     courseTime     VARCHAR2(40) NOT NULL,
     courseStart    DATE NOT NULL,
-    courseEnd      DATE NOT NULL
+    courseEnd      DATE NOT NULL	
 );
 
 CREATE SEQUENCE course_seq
@@ -103,7 +105,7 @@ insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','l
  
  //6.강사소개
 CREATE TABLE profile(
-    teacherPno VARCHAR2(40) CONSTRAINT teacher_profile_pk PRIMARY KEY,
+    teacherPno  NUMBER(20) CONSTRAINT teacher_profile_pk PRIMARY KEY,
     teacherId  VARCHAR2(40) CONSTRAINT tp_teacher_fk REFERENCES teacher(teacherId) NOT NULL,
     teachersubject VARCHAR2(2000) NOT NULL,
     teacherProfile VARCHAR2(2000) NOT NULL,
@@ -117,24 +119,22 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-ALTER TABLE profile teacherPno number(40);
+insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
+insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
+insert into profile values(profile_seq.nextval,'tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
 
 
-insert into profile values('1','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values('2','tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values('3','tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
-
-
-//7.faq
-CREATE TABLE faq (
-   faqNo NUMBER(20) CONSTRAINT faq_pk PRIMARY KEY,
-   adminId VARCHAR2(40) CONSTRAINT faq_admin_fk REFERENCES admin(adminId) NOT NULL,
+//7.FAQ
+CREATE TABLE faq(
+   faqNo NUMBER(20)  CONSTRAINT faq_pk PRIMARY KEY,
+   adminId VARCHAR2(40) CONSTRAINT f_admin_fk REFERENCES admin(adminId) NOT NULL,
    faqTitle VARCHAR2(100) NOT NULL,
    faqContent VARCHAR2(2000) NOT NULL,
    faqRegdate DATE DEFAULT SYSDATE 
 );
 
-//faq 시퀀스
+
+//FAQ 시퀀스
 CREATE SEQUENCE faq_seq
 START WITH      1
 INCREMENT BY    1
@@ -221,7 +221,7 @@ CREATE SEQUENCE classQnaComment_seq
 START WITH      1
 INCREMENT BY    1
 NOCACHE         
-NOCYCLE;			
+NOCYCLE;         
 
 insert into classQnaComment values(classQnaComment_seq.nextval,'1','stu2','tc1','왜냐면요 제가 문제를 실수했거든요',sysdate,2);
 
@@ -315,7 +315,7 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into privateQnaReply values(privateQnaReply_seq.nextval,1,'stu1','admin1','임시 공휴일 휴강 답변드려요','저도 궁금하네요',sysdate);
+insert into privateQnaReply values(privateQnaReply_seq.nextval,1,'admin1','임시 공휴일 휴강 답변드려요','저도 궁금하네요',sysdate);
 
 
 //17.결제내역
@@ -330,7 +330,6 @@ CREATE TABLE payment(
     paymentDate DATE DEFAULT SYSDATE,
     paymentState VARCHAR2(40) NOT NULL
 );
-
 //결제내역 시퀀스
 CREATE SEQUENCE payment_seq
 START WITH      1
@@ -387,42 +386,50 @@ insert into courseHistory values(courseHistory_seq.nextval,3,1,'stu3','tc3');
 
 
 
+
 ==============================테이블 다지우기=====================================
-DROP TABLE courseHistory
-DROP TABLE refund
-DROP TABLE payment
-DROP TABLE privateQnaReply
-DROP TABLE privateQna
-DROP TABLE classDataAttach
-DROP TABLE classData
-DROP TABLE review
-DROP TABLE classQnaComment
-DROP TABLE classQna
-DROP TABLE refundInfo
-DROP TABLE notice
-DROP TABLE notice
-DROP TABLE profile
-DROP TABLE course
-DROP TABLE student
-DROP TABLE admin
-DROP TABLE teacher
-DROP TABLE auth
+DROP TABLE courseHistory;
+DROP TABLE refund;
+DROP TABLE payment;
+DROP TABLE privateQnaReply;
+DROP TABLE privateQna;
+DROP TABLE classDataAttach;
+DROP TABLE classData;
+DROP TABLE review;
+DROP TABLE classQnaComment;
+DROP TABLE classQna;
+DROP TABLE refundInfo;
+DROP TABLE notice;
+DROP TABLE faq;
+DROP TABLE profile;
+DROP TABLE course;
+DROP TABLE student;
+DROP TABLE admin;
+DROP TABLE teacher;
+DROP TABLE auth;
 
 
 ================================시퀀스 다지우기==========================================
-DROP SEQUENCE courseHistory_seq
-DROP SEQUENCE refund_seq
-DROP SEQUENCE payment_seq
-DROP SEQUENCE privateQnaReply_seq
-DROP SEQUENCE privateQna_seq
-DROP SEQUENCE classData_seq
-DROP SEQUENCE review_seq
-DROP SEQUENCE classQnaComment_seq
-DROP SEQUENCE classQna_seq
-DROP SEQUENCE refundInfo_seq
-DROP SEQUENCE notice_seq
-DROP SEQUENCE notice_seq
-DROP SEQUENCE course_seq
+DROP SEQUENCE courseHistory_seq;
+DROP SEQUENCE refund_seq;
+DROP SEQUENCE payment_seq;
+DROP SEQUENCE privateQnaReply_seq;
+DROP SEQUENCE privateQna_seq;
+DROP SEQUENCE classData_seq;
+DROP SEQUENCE review_seq;
+DROP SEQUENCE classQnaComment_seq;
+DROP SEQUENCE classQna_seq;
+DROP SEQUENCE refundInfo_seq;
+DROP SEQUENCE notice_seq;
+DROP SEQUENCE faq_seq;
+DROP SEQUENCE course_seq;
+DROP SEQUENCE profile_seq;
+
+
+
+
+
+ 
 
 
 
@@ -431,4 +438,13 @@ DROP SEQUENCE course_seq
 
 alter table COURSE rename column COURSEPICURENAME to COURSEPICTURENAME
 /
+
+
+CREATE TABLE profileImageAttach(
+	teacherPno number(20) CONSTRAINT attach_pno_fk REFERENCES profile(teacherPno) NOT NULL,
+	teacherProfilePicture varchar2(100) NOT NULL,
+	teacherProfileUuid varchar2(100) CONSTRAINT profileImageAttach_pk PRIMARY KEY,
+	uploadPath varchar2(100) NOT null
+)
+
  

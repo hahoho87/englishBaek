@@ -4,6 +4,34 @@
 <head>
 <meta charset="UTF-8">
 <title>uploadAjax.jsp</title>
+
+
+<!-- Favicons -->
+<link href="../../../resources/img/favicon.png" rel="icon">
+<link href="../../../resources/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Bootstrap CSS File -->
+<link href="../../../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link href="../../../resources/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="../../../resources/lib/animate/animate.min.css" rel="stylesheet">
+<link href="../../../resources/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+<script src="../../../resources/lib/popper/popper.min.js"></script>
+<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../resources/lib/easing/easing.min.js"></script>
+<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="../../../resources/contactform/contactform.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="../../../resources/js/main.js"></script>
 <style>
 .uploadResult {
 	width: 100%;
@@ -57,23 +85,32 @@
 </head>
 <body>
 	<h3>Spring file upload with AJAX</h3>
-	<div class='uploadDiv'>
-		<input type="file" name="uploadFile" multiple>
+	<div class="inputArea uploadDiv">
+		<label for="gdsImg">이미지</label> 
+		<input type="file" id="gdsImg" name="uploadFile" />
+		<div class="select_img">
+			<img src="" />
+		</div>
 	</div>
-	<button id="uploadBtn">upload</button>
-
+	
 	<!-- 섬네일 이미지 원본 표시 -->
 	<div class="bigPictureWrapper">
 		<div class="bigPicture"></div>
 	</div>
 	<!-- END 섬네일 이미지 원본 표시 -->
-
-	<!-- 업로드 결과 출력 -->
-	<div class="uploadResult">
-		<ul>
-		</ul>
-	</div>
-	<!-- END 업로드 결과 출력 -->
+	<button id="uploadBtn">upload</button>
+<script>
+	$("#gdsImg").change(function() {
+		if (this.files && this.files[0]) {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$(".select_img img").attr("src", data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+		}
+	});
+	
+</script>
 
 	<!-- jQuery 지정  -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
@@ -211,6 +248,7 @@
 	</script>
 
 </body>
+
 </html>
 
 

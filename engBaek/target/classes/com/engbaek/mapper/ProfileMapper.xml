@@ -42,6 +42,25 @@
 			</foreach>
 		</trim>
 	</sql>
+	
+	<!-- 검색용 쿼리 보관 -->
+	<sql id="searchCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							upper(t.name) LIKE '%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							upper(p.teacherSubject) LIKE
+							'%'||upper(#{keyword})||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 
 	<select id="getListWithPaging"
 		resultType="com.engbaek.domain.ProfileJoinVO">
@@ -53,12 +72,13 @@
 				   , p.teacherProfileUuid, t.name, t.email1, t.email2, t.career 
  					  FROM profile p, teacher t
  					  WHERE p.teacherId = t.teacherId
+ 					  AND
  		]]>
 
 		<include refid="criteria"></include>
  			
  		<![CDATA[
- 			AND rownum <= #{pageNum} * #{amount}
+ 			rownum <= #{pageNum} * #{amount}
  			)
  		WHERE rn > (#{pageNum} -1) * #{amount}	
  		]]>
@@ -109,11 +129,13 @@
 
 	<!-- getTotalCount -->
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM profile WHERE
+		SELECT COUNT(*) FROM profile p, teacher t 
+		WHERE  p.teacherId = t.teacherId
+		AND 
 
-		<include refid="criteria"></include>
+		<include refid="searchCriteria"></include>
 
-		teacherPno > 0
+		p.teacherPno > 0
 	</select>
 
 	<resultMap type="com.engbaek.domain.ProfileVO"
@@ -205,6 +227,13 @@
 		WHERE p.teacherId =
 		t.teacherId
 	</select>
+	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM teacher
+      WHERE
+      teacherId = #{teacherId}
+</select>
+	
 
 
 </mapper>   

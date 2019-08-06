@@ -43,14 +43,14 @@ public class ProfileControllerTests {
 //								.getModelMap());
 //	}
 	
-//	@Test
-//	public void testGet() throws Exception {
-//		log.info(mockMvc.perform(MockMvcRequestBuilders
-//								 .get("/profile/info")
-//								 .param("teacherPno", "1"))
-//								 .andReturn()
-//								 .getModelAndView().getModelMap());
-//	}
+	@Test
+	public void testGet() throws Exception {
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+								 .get("/profile/info")
+								 .param("teacherPno", "1"))
+								 .andReturn()
+								 .getModelAndView().getModelMap());
+	}
 	
 //	@Test
 //	public void testModify() throws Exception {
@@ -66,12 +66,12 @@ public class ProfileControllerTests {
 //		log.info(resultPage);
 //	}
 	
-	@Test
-	public void testListPaging() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/profile/list")
-				 .param("pageNum", "1")
-				 .param("amount", "3"))
-				 .andReturn().getModelAndView().getModelMap());
-	}
+//	@Test
+//	public void testListPaging() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/profile/list")
+//				 .param("pageNum", "1")
+//				 .param("amount", "3"))
+//				 .andReturn().getModelAndView().getModelMap());
+//	}
 
 }

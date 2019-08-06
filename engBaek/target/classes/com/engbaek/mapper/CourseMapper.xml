@@ -102,12 +102,13 @@
 							, t.email2
  					 FROM course c, teacher t
  					 WHERE c.teacherId = t.teacherId
+ 					 AND 
  		]]>
 
 		<include refid="criteria"></include>
  			
  		<![CDATA[
- 			AND rownum <= #{pageNum} * #{amount}
+ 			rownum <= #{pageNum} * #{amount}
  			)
  		WHERE rn > (#{pageNum} -1) * #{amount}	
  		]]>

@@ -301,9 +301,8 @@ insert into privateQna values(privateQna_seq.nextval,'stu3','임시 공휴일 �
 //16.일대일문의 답변
 CREATE TABLE privateQnaReply(
     privateQnaReplyNo NUMBER(20) CONSTRAINT p_qna_comment_pk PRIMARY KEY,
-    privateQnaNo NUMBER(20) CONSTRAINT pqc_p_qna_board_fk REFERENCES privateQna(privateQnaNo) NOT NULL,
-    studentId  VARCHAR2(40) CONSTRAINT pqc_student_fk REFERENCES student(studentId) NOT NULL,
-    adiminId VARCHAR2(40) CONSTRAINT pqc_admin_fk REFERENCES admin(adminId) NOT NULL,
+    privateQnaNo NUMBER(20) CONSTRAINT pqc_p_qna_board_fk REFERENCES privateQna(privateQnaNo) NOT NULL UNIQUE,
+    adminId VARCHAR2(40) CONSTRAINT pqc_admin_fk REFERENCES admin(adminId) NOT NULL,
     privateQnaReplyTitle VARCHAR2(100) NOT NULL,
     privateQnaReplyContent VARCHAR2(2000) NOT NULL,
     privateQnaReplyRegdate DATE DEFAULT SYSDATE

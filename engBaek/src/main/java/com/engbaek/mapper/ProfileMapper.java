@@ -30,4 +30,8 @@ public interface ProfileMapper {
 	
 	// 강사소개 조회 join(result map 이용)
 	public ProfileVO selectOneProfile(Long teacherPno);
+
+	// 강사소개 등록 id체크
+	public int idCheck(String teacherId);
+	
 }

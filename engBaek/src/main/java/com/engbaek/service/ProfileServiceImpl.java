@@ -60,4 +60,10 @@ public class ProfileServiceImpl implements ProfileService{
 		return removeResult;
 	}
 
+	@Override
+	public int idCheck(String teacherId) {
+		log.info("id check : " + teacherId);
+		return mapper.idCheck(teacherId);
+	}
+
 }

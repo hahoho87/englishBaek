@@ -16,4 +16,5 @@ public interface ProfileService {
 	public ProfileVO get(Long teacherPno);
 	public boolean modify(ProfileVO  profile);
 	public boolean remove(Long teacherPno);
+	public int idCheck(String teacherId);
 }

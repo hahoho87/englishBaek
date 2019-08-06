@@ -106,7 +106,7 @@ public class CourseMapperTests {
 	public void testSearch() {
 		Criteria cri = new Criteria();
 		
-		cri.setKeyword("미");
+		cri.setKeyword("쳐");
 		cri.setType("A");
 		
 		List<CourseJoinVO> list = mapper.getListWithPaging(cri);

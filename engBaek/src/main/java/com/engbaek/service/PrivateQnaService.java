@@ -18,7 +18,7 @@ public interface PrivateQnaService {
 	public void register(PrivateQnaVO privateQna);
 
 	//1:1문의 게시물 상세 보기 
-	public PrivateQnaVO get(Long privateQna_bno);
+	public PrivateQnaVO read(Long privateQna_bno);
 
 	//1:1문의 게시물 수정
 	public boolean modify(PrivateQnaVO privateQna);

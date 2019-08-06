@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class CommentVO {
+public class ClassQnaCommentVO {
 	private long commentNo; // Q&A 댓글번호
 	private long courseCode; // 강좌 코드
 	private String teacherId; // 강사 ID

@@ -14,9 +14,9 @@ public interface ClassQnaService {
 	//강의별 Q&A 등록 
 	public void register(ClassQnaVO classQna);
 	//강의별 Q&A 상세조회 
-	public ClassQnaVO get(Long classQna_bno);
+	public ClassQnaVO get(Long classQnaNo);
 	//강의별 Q&A 수정 
 	public boolean modify(ClassQnaVO classQna);
 	//강의별 Q&A 삭제 
-	public boolean remove(Long classQna_bno);
+	public boolean remove(Long classQnaNo);
 }

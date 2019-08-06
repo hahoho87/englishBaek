@@ -263,12 +263,10 @@
 	<select id="selectOneProfile" resultMap="profileMap">
 		SELECT
 		p.teacherPno
-		,
-		p.teacherSubject
+		, p.teacherSubject
 		, p.teacherProfile
 		, p.teacherProfilePicture
-		,
-		p.teacherProfileUuid
+		, p.teacherProfileUuid
 		, t.teacherId
 		, t.name
 		, t.email1

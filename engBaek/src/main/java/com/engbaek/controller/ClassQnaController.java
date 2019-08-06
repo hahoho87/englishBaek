@@ -11,8 +11,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.PageDTO;
+import com.engbaek.service.ClassQnaService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -21,39 +24,60 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ClassQnaController {
 	
-	// 강의별 Q&A 목록
+	private ClassQnaService service; 
+	
+	// 강의별 Q&A 전체 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
+		model.addAttribute("classQnaList", service.getList(cri));
+		int total = service.getTotal(cri);
+		log.info("list total" + total);
+		model.addAttribute("pageMaker",new PageDTO(cri,total));
 	}
 	
-	// 강의별 Q&A 조회 or 수정 화면
+	// 강의별 Q&A 게시물 하나가져옴
 	@GetMapping({ "/read", "/modify" })
-	public void get(@RequestParam("classQnaBno") Long classQnaBno, @ModelAttribute("cri") Criteria cri, Model model) {
-
+	public void get(@RequestParam("classQnaNo") Long classQnaNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("Q&A 게시물 하나가져옴");
+		model.addAttribute("classQna",service.get(classQnaNo));
+		 
 	}
 	// 강의별 Q&A 수정
 	@PostMapping("/modify")
 	public String modify(ClassQnaVO classQna, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/classQna/read";
+		log.info("modify: " + classQna);
+		
+		if(service.modify(classQna)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/classQna/read?classQnaNo="+classQna.getClassQnaNo();
 	}
 	
 	// 강의별 Q&A 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("classQnaBno") Long classQnaBno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("classQnaNo") Long classQnaNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("remove" + classQnaNo);
+		
+		if(service.remove(classQnaNo)) {
+			rttr.addFlashAttribute("result","success");
+		}		
 		return "redirect:/classQna/list";
 	}
 	
-	// 강의별 Q&A 등록 화면
+	// 강의별 Q&A 등록 화면 이동
 	@GetMapping("/register")
-	public void register() {
-
-	}
+	public void register() {} 
 	
-	// 강의별 Q&A 등록
+	// (학생)강의별 Q&A 등록하기
 	@PostMapping("/register")
-	public String register(ClassQnaVO classQna, RedirectAttributes rttr) {
-		return "redirect:/classQna/list";
-
+	public String register(ClassQnaVO classQna, RedirectAttributes rttr) { //등록후 다시 목록으로 가기위해 RedirectAttributes사용
+		
+		log.info("register: " + classQna);
+		service.register(classQna);
+		
+		rttr.addFlashAttribute("result", classQna.getClassQnaNo()); //추가적으로 새롭게 등록되는 게시물 번호 같이 전달 
+		
+		return "redirect:/classQna/list"; //redirect: 접두어는 스프링 mvc가 내부적으로 response.sendRedirect() 해주기 때문에 사용 
 	}
 }

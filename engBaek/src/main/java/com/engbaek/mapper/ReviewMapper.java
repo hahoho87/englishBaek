@@ -6,6 +6,7 @@ import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ReviewVO;
 
 public interface ReviewMapper {
+	
 	// 수강후기 게시글 수
 	public int getTotalCount(Criteria cri);
 
@@ -25,7 +26,7 @@ public interface ReviewMapper {
 	public Integer insertSelectKey(ReviewVO review);
 
 	// 수강후기 등록(without notice_bno)
-	// public void insert(NoticeVO course);
+	public void insert(ReviewVO review);
 
 	// 수강후기 목록
 	public List<ReviewVO> getList();

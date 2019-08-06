@@ -17,7 +17,7 @@ public interface ReviewService {
 	public void register(ReviewVO notice);
 	
 	// 수강 후기 조회
-	public ReviewVO get(Long bno);
+	public ReviewVO read(Long bno);
 	
 	// 수강 후기 수정
 	public boolean modify(ReviewVO review);

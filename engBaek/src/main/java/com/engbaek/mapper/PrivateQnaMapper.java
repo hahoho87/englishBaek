@@ -18,10 +18,10 @@ public interface PrivateQnaMapper {
 	public int update(PrivateQnaVO privateQna);
 		
 	//1:1문의 삭제 
-	public int delete(Long  p_qna_bno);
+	public int delete(Long  privateQnaNo);
 	
 	//1:1문의 읽기 
-	public PrivateQnaVO read(Long  p_qna_bno);
+	public PrivateQnaVO read(Long  privateQnaNo);
 	
 	//게시물 번호 사용자에게 보이게 하기 
 	public Integer insertSelectKey(PrivateQnaVO  privateQna);

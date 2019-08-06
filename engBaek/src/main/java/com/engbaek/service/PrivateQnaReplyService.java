@@ -1,19 +1,24 @@
 package com.engbaek.service;
 
+import java.util.List;
+
+import com.engbaek.domain.PaymentVO;
 import com.engbaek.domain.PrivateQnaReplyVO;
 
 public interface PrivateQnaReplyService {
 	
 	//1:1문의 답글 수정 
-	public int modify(PrivateQnaReplyVO privateQnaReply);
+	public boolean modify(PrivateQnaReplyVO privateQnaReply);
 	
 	//1:1문의 답글 상세보기 
-	public PrivateQnaReplyVO get(Long privateQnaReplyNo);
+	public PrivateQnaReplyVO read(Long privateQnaReplyNo);
 	
 	//1:1문의 답글 삭제 
-	public int remove(Long privateQnaReplyNo);
+	public boolean remove(Long privateQnaReplyNo);
 	
 	//1:1문의 답글 등록 
-	public int register(PrivateQnaReplyVO privateQnaReply);
+	public void register(PrivateQnaReplyVO privateQnaReply);
 	
+	//1:1답글 출력
+	public List<PrivateQnaReplyVO> getList(); 
 }

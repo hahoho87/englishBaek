@@ -3,10 +3,31 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.engbaek.mapper.CourseMapper">
-	<select id="getList" resultType="com.engbaek.domain.CourseVO">
-		<!-- 부등호를 쓰기 위해 CDATA를 사용 -->
+	<select id="getList"
+		resultType="com.engbaek.domain.CourseJoinVO">
 	<![CDATA[
-	SELECT * FROM course WHERE courseCode > 0
+	SELECT
+		c.courseCode
+		, c.teacherId
+		, c.classroomNo
+		, c.courseName
+		, c.courseType
+		, c.courseLevel
+		, c.coursePictureName
+		, c.coursePictureUuid
+		, c.curriculumName
+		, c.curriculumUuid
+		, c.courseInfo
+		, c.courseDay
+		, c.courseTime
+		, c.courseStart
+		, c.courseEnd
+		, t.name
+		, t.email1
+		, t.email2
+		FROM course c, teacher t
+		WHERE c.teacherId = t.teacherId
+		AND c.courseCode > 0
 	]]>
 	</select>
 
@@ -16,15 +37,22 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()">
-							courseName LIKE '%'||#{keyword}||'%'
+						<when test="type == 'A'.toString()">
+							upper(courseName) LIKE '%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'B'.toString()">
+							upper(name) LIKE
+							'%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							noticeContent LIKE '%'||#{keyword}||'%'
+							upper(courseType) LIKE
+							'%'||upper(#{keyword})||'%'
 						</when>
-						<when test="type == 'W'.toString()">
-							adminId LIKE '%'||#{keyword}||'%'
+						<when test="type == 'D'.toString()">
+							upper(courseLevel) LIKE
+							'%'||upper(#{keyword})||'%'
 						</when>
+						
 					</choose>
 				</trim>
 			</foreach>
@@ -32,13 +60,49 @@
 	</sql>
 
 	<select id="getListWithPaging"
-		resultType="com.engbaek.domain.CourseVO">
+		resultType="com.engbaek.domain.CourseJoinVO">
 		<![CDATA[
-			SELECT	noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate
- 			FROM	( SELECT /*+INDEX_DESC(notice notice_pk)*/
- 					  rownum rn, noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate 
- 					  FROM notice
- 					  WHERE	
+			SELECT	courseCode
+					, teacherId
+					, classroomNo
+					, courseName
+					, courseType
+					, courseLevel
+					, coursePictureName
+					, coursePictureUuid
+					, curriculumName
+					, curriculumUuid
+					, courseInfo
+					, courseDay
+					, courseTime
+					, courseStart
+					, courseEnd
+					, name
+					, email1
+					, email2
+ 			FROM	( SELECT /*+INDEX_DESC(course course_pk)*/
+		 					 rownum rn
+		 					, c.courseCode
+							, c.teacherId
+							, c.classroomNo
+							, c.courseName
+							, c.courseType
+							, c.courseLevel
+							, c.coursePictureName
+							, c.coursePictureUuid
+							, c.curriculumName
+							, c.curriculumUuid
+							, c.courseInfo
+							, c.courseDay
+							, c.courseTime
+							, c.courseStart
+							, c.courseEnd
+							, t.name
+							, t.email1
+							, t.email2
+ 					 FROM course c, teacher t
+ 					 WHERE c.teacherId = t.teacherId
+ 					 AND 
  		]]>
 
 		<include refid="criteria"></include>
@@ -52,48 +116,218 @@
 
 	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
 	<insert id="insert">
-		INSERT INTO notice (noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate)
-		VALUES (notice_seq.nextval, #{adminId}, #{noticeTitle}, #{noticeContent}, SYSDATE)
+		INSERT INTO course
+		(
+		courseCode
+		, teacherId
+		, classroomNo
+		, courseName
+		, courseType
+		, courseLevel
+		, coursePictureName
+		, coursePictureUuid
+		, curriculumName
+		, curriculumUuid
+		, courseInfo
+		, courseDay
+		, courseTime
+		, courseStart
+		, courseEnd
+		)
+		VALUES 
+		(
+		profile_seq.nextval
+		, #{teacherId}
+		, #{classroomNo}
+		, #{courseName}
+		, #{courseType}
+		, #{courseLevel}
+		, #{coursePictureName}
+		, #{coursePictureUuid}
+		, #{curriculumName}
+		, #{curriculumUuid}
+		, #{courseInfo}
+		, #{courseDay}
+		, #{courseTime}
+		, #{courseStart}
+		, #{courseEnd}
+		)
 	</insert>
 
 
 	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
 	<insert id="insertSelectKey">
 
-		<selectKey keyProperty="noticeNo" order="BEFORE"
+		<selectKey keyProperty="courseCode" order="BEFORE"
 			resultType="long">
-			SELECT notice_seq.nextval FROM dual
+			SELECT course_seq.nextval FROM dual
 		</selectKey>
-
-		INSERT INTO notice (noticeNo, adminId, noticeTitle, noticeContent, noticeRegdate)
-		VALUES (#{noticeNo}, #{adminId}, #{noticeTitle}, #{noticeContent}, SYSDATE)
+		
+		INSERT INTO course
+		(
+			courseCode
+			, teacherId
+			, classroomNo
+			, courseName
+			, courseType
+			, courseLevel
+			, coursePictureName
+			, coursePictureUuid
+			, curriculumName
+			, curriculumUuid
+			, courseInfo
+			, courseDay
+			, courseTime
+			, courseStart
+			, courseEnd
+		)
+		VALUES 
+		(
+			#{courseCode}
+			, #{teacherId}
+			, #{classroomNo}
+			, #{courseName}
+			, #{courseType}
+			, #{courseLevel}
+			, #{coursePictureName}
+			, #{coursePictureUuid}
+			, #{curriculumName}
+			, #{curriculumUuid}
+			, #{courseInfo}
+			, #{courseDay}
+			, #{courseTime}
+			, #{courseStart}
+			, #{courseEnd}
+		)
 	</insert>
-
-	<!-- read -->
-	<select id="read" resultType="com.engbaek.domain.NoticeVO">
-		SELECT * FROM notice WHERE noticeNo = #{noticeNo}
-	</select>
 
 	<!-- delete -->
 	<delete id="delete">
-		DELETE notice where noticeNo = #{noticeNo}
+		DELETE course where courseCode = #{courseCode}
 	</delete>
 
 	<!-- update -->
 	<update id="update">
-		UPDATE notice
-		SET noticeTitle = #{noticeTitle}, noticeContent =#{noticeContent}, noticeRegdate = sysdate
-		WHERE noticeNo = #{noticeNo}
+		UPDATE course
+		SET 
+			teacherId = #{teacherId}
+			, classroomNo = #{classroomNo}
+			, courseName = #{courseName}
+			, courseType = #{courseType}
+			, courseLevel = #{courseLevel}
+			, coursePictureName = #{coursePictureName}
+			, coursePictureUuid = #{coursePictureUuid}
+			, curriculumName = #{curriculumName}
+			, curriculumUuid = #{curriculumUuid}
+			, courseInfo = #{courseInfo}
+			, courseDay = #{courseDay}
+			, courseTime = #{courseTime}
+			, courseStart = #{courseStart}
+			, courseEnd = #{courseEnd}
+		WHERE courseCode = #{courseCode}
 	</update>
 
 	<!-- getTotalCount -->
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM notice WHERE
+		SELECT COUNT(*) FROM cousre WHERE
 
 		<include refid="criteria"></include>
 
-		noticeNo > 0
+		teacherPno > 0
 	</select>
 
+	<resultMap type="com.engbaek.domain.ProfileVO"
+		id="profileMap">
+		<id column="teacherPno" property="teacherPno" />
+		<result column="teacherSubject" property="teacherSubject" />
+		<result column="teacherProfile" property="teacherProfile" />
+		<result column="teacherProfilePicture"
+			property="teacherProfilePicture" />
+		<result column="teacherProfileUuid"
+			property="teacherProfileUuid" />
+
+		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. association => 1 : 1 관계 collection => 1 : 
+			다 관계 (한명의 유저가 작성한 글 목록) 일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용 -->
+		<association javaType="com.engbaek.domain.TeacherVO"
+			property="teacherVO">
+			<id column="teacherId" property="teacherId" />
+			<result column="name" property="name" />
+			<result column="email1" property="email1" />
+			<result column="email2" property="email2" />
+			<result column="phone" property="phone" />
+			<result column="regdate" property="regdate" />
+			<result column="career" property="career" />
+		</association>
+	</resultMap>
+
+	<select id="selectOneProfile" resultMap="profileMap">
+		SELECT
+		p.teacherPno
+		,
+		p.teacherSubject
+		, p.teacherProfile
+		, p.teacherProfilePicture
+		,
+		p.teacherProfileUuid
+		, t.teacherId
+		, t.name
+		, t.email1
+		, t.email2
+		, t.phone
+		, t.regdate
+		, t.career
+		FROM profile p
+		, teacher t
+		WHERE p.teacherId =
+		t.teacherId
+		AND p.teacherPno = #{teacherPno}
+	</select>
+
+	<!-- read with resultMap -->
+	<resultMap type="com.engbaek.domain.ProfileVO"
+		id="profileMapList">
+		<id column="teacherPno" property="teacherPno" />
+		<result column="teacherSubject" property="teacherSubject" />
+		<result column="teacherProfile" property="teacherProfile" />
+		<result column="teacherProfilePicture"
+			property="teacherProfilePicture" />
+		<result column="teacherProfileUuid"
+			property="teacherProfileUuid" />
+
+		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. association => 1 : 1 관계 collection => 1 : 
+			다 관계 (한명의 유저가 작성한 글 목록) 일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용 -->
+		<association javaType="com.engbaek.domain.TeacherVO"
+			property="teacherVO">
+			<id column="teacherId" property="teacherId" />
+			<result column="name" property="name" />
+			<result column="email1" property="email1" />
+			<result column="email2" property="email2" />
+			<result column="phone" property="phone" />
+			<result column="regdate" property="regdate" />
+			<result column="career" property="career" />
+		</association>
+	</resultMap>
+
+	<select id="selectProfileLists" resultMap="profileMapList">
+		SELECT
+		p.teacherPno
+		,
+		p.teacherSubject
+		, p.teacherProfile
+		, p.teacherProfilePicture
+		,
+		p.teacherProfileUuid
+		, t.teacherId
+		, t.name
+		, t.email1
+		, t.email2
+		, t.phone
+		, t.regdate
+		, t.career
+		FROM profile p
+		, teacher t
+		WHERE p.teacherId =
+		t.teacherId
+	</select>
 
 </mapper>

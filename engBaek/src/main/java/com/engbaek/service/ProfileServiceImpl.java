@@ -2,39 +2,68 @@ package com.engbaek.service;
 
 import java.util.List;
 
-import com.engbaek.domain.Criteria;
-import com.engbaek.domain.ProfileVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ProfileJoinVO;
+import com.engbaek.domain.ProfileVO;
+import com.engbaek.mapper.ProfileMapper;
+
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+@Service
+@AllArgsConstructor
 public class ProfileServiceImpl implements ProfileService{
+	
+	@Setter(onMethod_ = @Autowired)
+	private ProfileMapper mapper;
 
 	@Override
 	public int getTotal(Criteria cri) {
-		return 0;
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
 
 	@Override
-	public List<ProfileVO> getList(Criteria cri) {
-		return null;
+	public List<ProfileJoinVO> getList(Criteria cri) {
+		log.info("getList with Criteria : " + cri);
+		return mapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public void register(ProfileVO profile) {
-		
+		log.info("register : " + profile);
+		mapper.insertSelectKey(profile);
 	}
 
 	@Override
 	public ProfileVO get(Long teacherPno) {
-		return null;
+		log.info("read : " + teacherPno);
+		return mapper.selectOneProfile(teacherPno);
 	}
 
 	@Override
 	public boolean modify(ProfileVO profile) {
-		return false;
+		log.info("modify : " + profile);
+		boolean modifyResult = mapper.update(profile) == 1;
+		return modifyResult;
 	}
 
 	@Override
 	public boolean remove(Long teacherPno) {
-		return false;
+		log.info("remove : " + teacherPno);
+		boolean removeResult = mapper.delete(teacherPno) == 1;
+		return removeResult;
+	}
+
+	@Override
+	public int idCheck(String teacherId) {
+		log.info("id check : " + teacherId);
+		return mapper.idCheck(teacherId);
 	}
 
 }

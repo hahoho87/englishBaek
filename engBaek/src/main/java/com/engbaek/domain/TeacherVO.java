@@ -11,14 +11,13 @@ public class TeacherVO {
 	private String name;
 	private String pw; 
 	private Date birthday;
-	private String email;
+	private String email1;
 	private String email2;
 	private String phone;
 	private String gender;
 	private String address;
 	private Date regdate;
 	private String career;
-	private String education;
 	private String authNo; 
 	
 }

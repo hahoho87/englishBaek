@@ -2,6 +2,7 @@ package com.engbaek.service;
 
 import java.util.List;
 
+import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ImageAttachVO;
@@ -11,13 +12,13 @@ public interface CourseService {
 	public int getTotal(Criteria cri);
 
 	//강좌 소개 목록
-	public List<CourseVO> getList(Criteria cri);
+	public List<CourseJoinVO> getList(Criteria cri);
 
 	//강좌 소개 등록
 	public void register(CourseVO course);
 	
 	//강좌 소개 게시물 상세 보기 
-	public CourseVO get(Long courseCode);
+	public CourseJoinVO get(Long courseCode);
 
 	//강좌 소개 게시물 수정
 	public boolean modify(CourseVO course);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
-import com.engbaek.domain.ImageAttachVO;
+import com.engbaek.domain.ProfileAttachVO;
 import com.engbaek.mapper.CourseMapper;
 
 import lombok.AllArgsConstructor;
@@ -60,7 +60,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<ImageAttachVO> getAttachList(Long bno) {
+	public List<ProfileAttachVO> getAttachList(Long bno) {
 		// TODO Auto-generated method stub
 		return null;
 	}

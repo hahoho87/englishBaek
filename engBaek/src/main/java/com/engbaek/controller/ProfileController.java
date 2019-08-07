@@ -1,12 +1,15 @@
 package com.engbaek.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.UUID;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +24,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.PageDTO;
+import com.engbaek.domain.ProfileAttachVO;
 import com.engbaek.domain.ProfileVO;
 import com.engbaek.service.ProfileService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
@@ -63,52 +66,14 @@ public class ProfileController {
 	// 강사 소개 등록
 	@PostMapping("/register")
 	public String register(ProfileVO profile, MultipartFile uploadFile, Model model, RedirectAttributes rttr) {
-		
+
 		log.info("register : " + profile);
 
-		String uploadFolder = "c:\\upload\\profile\\"; // 업로드 경로
-
-		File uploadPath = new File(uploadFolder);
-		log.info("uploadPath : " + uploadPath);
-
-		// uploadPath가 없으면 폴더 생성
-		if (!uploadPath.exists()) {
-			uploadPath.mkdirs(); //
+		log.info("===========================");
+		if (profile.getAttachList() != null) {
+			profile.getAttachList().forEach(attach -> log.info(profile));
 		}
-
-		log.info("-------------------------");
-		log.info("upload file name : " + uploadFile.getOriginalFilename());
-		log.info("upload file size : " + uploadFile.getSize());
-
-		String uploadFileName = uploadFile.getOriginalFilename();
-		profile.setTeacherProfilePicture(uploadFileName.toString()); // 1.업로드 파일명 저장
-
-		// IE의 경우 경로를 제거하고 파일명만 저장
-		uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-
-		// UUID 이용 파일명 중복 방지 처리
-		UUID uuid = UUID.randomUUID();
-		uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-		File saveFile = new File(uploadPath, uploadFileName);
-
-		try {
-			uploadFile.transferTo(saveFile); // 파일 업로드
-			profile.setTeacherProfileUuid(uuid.toString()); // 2.UUID 값 저장
-			// attachDTO.setUploadPath(getFolder());// 3.업로드 경로 저장
-
-			// 섬네일 이미지 파일명 = s_ + 업로드파일명
-			FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-
-			// 가로 100 * 세로 100 섬네일 이미지 생성
-			Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
-			thumbnail.close();
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-//		// END 업로드
+		log.info("===========================");
 
 		service.register(profile);
 		rttr.addFlashAttribute("result", profile.getTeacherPno());
@@ -121,7 +86,11 @@ public class ProfileController {
 	public String remove(@RequestParam("teacherPno") Long teacherPno, @ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
 		log.info("remove : " + teacherPno);
+
+		List<ProfileAttachVO> attachList = service.getAttachList(teacherPno);
+
 		if (service.remove(teacherPno)) {
+			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/profile/list";
@@ -158,37 +127,41 @@ public class ProfileController {
 
 	}
 
-	/*
-	 * // 강사 소개 첨부 이미지 목록
-	 * 
-	 * @GetMapping(value = "/getAttachList", produces =
-	 * MediaType.APPLICATION_JSON_UTF8_VALUE)
-	 * 
-	 * @ResponseBody public ResponseEntity<List<ImageAttachVO>> getAttachList(Long
-	 * profile_bno) { log.info("getAttachList : " + profile_bno);
-	 * 
-	 * return new ResponseEntity<>(service.getAttachList(profile_bno),
-	 * HttpStatus.OK); }
-	 * 
-	 * // 강사 소개 첨부 이미지 삭제 private void deleteFiles(List<ImageAttachVO> attachList) {
-	 * if (attachList == null || attachList.size() == 0) { return; }
-	 * 
-	 * log.info("delete attach files............."); log.info(attachList);
-	 * 
-	 * attachList.forEach(attach -> { try { Path file = Paths.get(
-	 * "C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" +
-	 * attach.getFileName()); Files.deleteIfExists(file);
-	 * 
-	 * if(Files.probeContentType(file).startsWith("image")) { Path thumbNail =
-	 * Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\
-	 * s_" + attach.getUuid() + "_" + attach.getFileName());
-	 * 
-	 * Files.delete(thumbNail); } } catch (Exception e) { e.printStackTrace();
-	 * }//END catch
-	 * 
-	 * });//END forEach
-	 * 
-	 * }
-	 */
+	// 첨부 파일 출력
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<ProfileAttachVO>> getAttachList(Long teacherPno) {
+		log.info("getAttachList : " + teacherPno);
 
+		return new ResponseEntity<>(service.getAttachList(teacherPno), HttpStatus.OK);
+	}
+
+	// 파일 삭제 처리
+	private void deleteFiles(List<ProfileAttachVO> attachList) {
+		if (attachList == null || attachList.size() == 0) {
+			return;
+		}
+
+		log.info("delete attach files.............");
+		log.info(attachList);
+
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getTeacherProfileUuid()
+						+ "_" + attach.getTeacherProfilePicture());
+				Files.deleteIfExists(file);
+
+				if (Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_"
+							+ attach.getTeacherProfileUuid() + "_" + attach.getTeacherProfilePicture());
+
+					Files.delete(thumbNail);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} // END catch
+
+		});// END forEach
+
+	}
 }

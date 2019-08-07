@@ -3,6 +3,7 @@ package com.engbaek.service;
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ProfileAttachVO;
 import com.engbaek.domain.ProfileJoinVO;
 import com.engbaek.domain.ProfileVO;
 
@@ -17,4 +18,6 @@ public interface ProfileService {
 	public boolean modify(ProfileVO  profile);
 	public boolean remove(Long teacherPno);
 	public int idCheck(String teacherId);
+	
+	public List<ProfileAttachVO> getAttachList(Long teacherPno);
 }

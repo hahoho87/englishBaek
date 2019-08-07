@@ -12,8 +12,6 @@
 		, p.teacherId
 		, p.teacherSubject
 		, p.teacherProfile
-		, p.teacherProfilePicture
-		, p.teacherProfileUuid
 		, t.name
 		, t.email1
 		, t.email2
@@ -65,11 +63,9 @@
 	<select id="getListWithPaging"
 		resultType="com.engbaek.domain.ProfileJoinVO">
 		<![CDATA[
-			SELECT	teacherPno, teacherId, teacherSubject, teacherProfile, teacherProfilePicture
-				   , teacherProfileUuid, name, email1, email2, career 
+			SELECT	teacherPno, teacherId, teacherSubject, teacherProfile, name, email1, email2, career 
  			FROM	( SELECT /*+INDEX_DESC(profile teacher_profile_pk)*/
- 					 rownum rn, p.teacherPno, p.teacherId, p.teacherSubject, p.teacherProfile, p.teacherProfilePicture
-				   , p.teacherProfileUuid, t.name, t.email1, t.email2, t.career 
+ 					 rownum rn, p.teacherPno, p.teacherId, p.teacherSubject, p.teacherProfile, t.name, t.email1, t.email2, t.career 
  					  FROM profile p, teacher t
  					  WHERE p.teacherId = t.teacherId
  					  AND
@@ -87,11 +83,9 @@
 	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
 	<insert id="insert">
 		INSERT INTO profile (teacherPno, teacherId,
-		teacherSubject, teacherProfile,
-		teacherProfilePicture, teacherProfileUuid)
+		teacherSubject, teacherProfile)
 		VALUES (profile_seq.nextval, #{teacherId},
-		#{teacherSubject}, #{teacherProfile},
-		#{teacherProfilePicture}, #{teacherProfileUuid})
+		#{teacherSubject}, #{teacherProfile}
 	</insert>
 
 
@@ -104,11 +98,10 @@
 		</selectKey>
 
 		INSERT INTO profile (teacherPno, teacherId, teacherSubject,
-		teacherProfile, teacherProfilePicture, teacherProfileUuid)
+		teacherProfile)
 		VALUES
 		(#{teacherPno}, #{teacherId}, #{teacherSubject},
-		#{teacherProfile},
-		#{teacherProfilePicture}, #{teacherProfileUuid})
+		#{teacherProfile})
 	</insert>
 
 	<!-- delete -->
@@ -122,8 +115,6 @@
 		SET teacherId = #{teacherId},
 		teacherSubject = #{teacherSubject},
 		teacherProfile = #{teacherProfile},
-		teacherProfilePicture = #{teacherProfilePicture},
-		teacherProfileUuid = #{teacherProfileUuid}
 		WHERE teacherPno = #{teacherPno}
 	</update>
 
@@ -143,10 +134,6 @@
 		<id column="teacherPno" property="teacherPno" />
 		<result column="teacherSubject" property="teacherSubject" />
 		<result column="teacherProfile" property="teacherProfile" />
-		<result column="teacherProfilePicture"
-			property="teacherProfilePicture" />
-		<result column="teacherProfileUuid"
-			property="teacherProfileUuid" />
 
 		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. association => 1 : 1 관계 collection => 1 : 
 			다 관계 (한명의 유저가 작성한 글 목록) 일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용 -->
@@ -167,8 +154,6 @@
 		p.teacherPno
 		, p.teacherSubject
 		, p.teacherProfile
-		, p.teacherProfilePicture
-		, p.teacherProfileUuid
 		, t.teacherId
 		, t.name
 		, t.email1
@@ -189,10 +174,6 @@
 		<id column="teacherPno" property="teacherPno" />
 		<result column="teacherSubject" property="teacherSubject" />
 		<result column="teacherProfile" property="teacherProfile" />
-		<result column="teacherProfilePicture"
-			property="teacherProfilePicture" />
-		<result column="teacherProfileUuid"
-			property="teacherProfileUuid" />
 
 		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다. association => 1 : 1 관계 collection => 1 : 
 			다 관계 (한명의 유저가 작성한 글 목록) 일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용 -->
@@ -213,8 +194,6 @@
 		p.teacherPno
 		, p.teacherSubject
 		, p.teacherProfile
-		, p.teacherProfilePicture
-		, p.teacherProfileUuid
 		, t.teacherId
 		, t.name
 		, t.email1
@@ -234,6 +213,5 @@
       teacherId = #{teacherId}
 </select>
 	
-
 
 </mapper>   

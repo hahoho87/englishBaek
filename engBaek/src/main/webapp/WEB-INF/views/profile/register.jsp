@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8">
@@ -10,6 +11,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
+
 
 <!-- Favicons -->
 <link href="../../../resources/img/favicon.png" rel="icon">
@@ -29,6 +31,14 @@
 
 <!-- Main Stylesheet File -->
 <link href="../../../resources/css/style.css" rel="stylesheet">
+<style>
+	.fileDrop {
+		width: 600px;
+		height: 70px;
+		border: 2px dotted gray;
+		background-color: gray;
+	}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -49,10 +59,17 @@
 				<label>강사 소개</label> <input class="form-control" name="teacherProfile" />
 			</div>
 			<div class="form-group">
-				<label for="gdsImg">이미지</label> <input type="file" id="gdsImg" name="teacherProfilePicture" />
+				<label for="gdsImg">이미지</label> <input type="file" id="gdsImg" />
 				<div class="select_img">
 					<img src="" />
 				</div>
+			</div>
+			
+			<div>
+				<!-- 첨부파일 등록 영역 --> 
+				<div class="fileDrop"></div>
+				<!-- 첨부파일 목록 출력 영 -->
+				<div id="uploadList"></div>
 			</div>
 <!-- 			<div class="form-group">
 				<label>강사 uuid</label> <input class="form-control" name="teacherProfileUuid" />
@@ -93,6 +110,9 @@
 	</div>
 	<!-- /.col-lg-6 -->
 </div>
+<!-- /.row -->
+		
+
 <!-- /.row -->
 	</div>
 	<!-- /.panel-body -->
@@ -141,20 +161,94 @@
 		});
 
 		//선택 파일 출력
-		$("#gdsImg")
-				.change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src",
-											data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						});
+		$("#gdsImg").change(function() {
+			if (this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$(".select_img img").attr("src",data.target.result).width(500);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
 	</script>
 	
+	<script>
+	/*
+		// 이미지 파일 여부 판단
+		function checkImageType(fileName){
+			var pattern = /jpg|png|jpeg/i;
+			return fileName.match(pattern);
+		}
+		
+		// 업로드 파일 정보 
+		function getFileInfo(fullName){
+			var fileName, imgsrc, getLink, fileLink;
+			
+			if(checkImageType(fullNmae)){ //이미지 파일일 경우
+				// 이비지 파일 경로(썸네일)
+				imgsrc = "/spring02/upload/displayFile?fileName="+fullName;
+				console.log(imgsrc);
+				// 업로드 파일명
+				fileLink = fullName.substr(14);
+				console.log(fileLink);
+				//날짜별 디렉토리 추출
+				var front = fullName.substr(0, 12);
+				console.log(front);
+				// s_를 제거한 업로드 이미지 파일명
+				var end = fullName.substr(14);
+				console.log(end);
+				// 원본 이미지 파일 디렉토리
+				getLink = "/spring02/uplaod/displayFile?fileName="+front+end;
+				console.log(getLink);
+			
+			} else { //이미지 파일이 아닐 경우
+				// UUID를 제외한 원본 파일명
+				fileLink = fullName.substr(12);
+				console.log(fileLink);
+				// File directory
+				getLink = "/spring02/upload/displayFile?fileName="+fullName;
+				console.log(getLink);
+			}
+			// 목록에 출력할 원본 파일명
+			fileName = fileLink.substr(fileLink.indexOf("_")+1);
+			console.log(fileName);
+			// Json 객채 return
+			return {fileName:fileName, imgsrc:imgsrc, getLink:getLink, fullName:fullName};
+		}
+		
+		
+		$(document).ready(function(){
+			$(".fileDrop").on("dragenter dragover", function(e){
+				e.preventDefault();
+			});
+			//drag & drop 한 파일들 ajax 업로드 요청
+			$(".fileDrop").on("drop", function(e){
+				e.preventDefault();
+				
+				var files = e.originalEvent.dataTransfer.files;
+				var file = files[0];
+				var formData = new FromData();
+				formData.append("file", file); //첨부파일 추가
+				
+				$.ajax({
+					url: "${path}/upload/uploadAjax",
+					data: formData,
+					dataType: "text",
+					processData: false,
+					contentType: false,
+					success: function(data){
+						console.log(data);
+						var fileInfo = getFileInfo(data);
+						var html = "<a href='"+fileInfo.getLink+"'>"+fileInfo.fileName+"</a><br>";
+						html += "<input type='hidden' class=file' value'"+fileInfo.fullName+"'>";
+						//div에 추가
+						$("#uploadedList").append(html);
+					}
+				});
+			});
+		});
+	*/
+	</script>
 	<script>
 $(document).ready(function(e) {
 		
@@ -288,7 +382,7 @@ $(document).ready(function(e) {
 				var targetLi 	= $(this).closest("li");
 				
 				$.ajax({
-					url :'/deleteFile',
+					url :'/images/deleteFile',
 					data : {fileName:targetFile, type:type} ,
 					dataType : 'text',
 					type : 'POST',
@@ -302,7 +396,6 @@ $(document).ready(function(e) {
 		});//END change function
 	
 	})//END $
-	
 	</script>
 
 

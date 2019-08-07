@@ -23,4 +23,6 @@ public class CourseVO {	//강좌
 	private Date courseStart; //개강일
 	private Date courseEnd; //종강일
 	
+	private Long price;
+	
 }

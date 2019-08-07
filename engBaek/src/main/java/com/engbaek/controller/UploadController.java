@@ -89,7 +89,7 @@ public class UploadController {
 						@RequestHeader("User-Agent")String userAgent){
 		log.info("download file : " + fileName);
 		Resource resource 
-			= new FileSystemResource("c:\\upload\\" + fileName);
+			= new FileSystemResource("/Users/bky/upload/" + fileName);
 		log.info("resource : " + resource);
 		if(resource.exists() == false) {	//resource가 없으면 404반환
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -133,7 +133,7 @@ public class UploadController {
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName){
-		File file = new File("c:\\upload\\" + fileName);
+		File file = new File("/Users/bky/upload/" + fileName);
 		ResponseEntity<byte[]> result = null;
 		
 		try {
@@ -156,7 +156,7 @@ public class UploadController {
 		List<ProfileVO> list = new ArrayList<>();
 		log.info("uploadFormAction");
 		log.info("getFolder : " + getFolder());
-		String uploadFolder = "c:\\upload";	//업로드 경로
+		String uploadFolder = "/Users/bky/upload/";	//업로드 경로
 		
 		//업로드 경로 = c:\\upload 폴더 밑에 연\월\일 폴더로 생성
 		File uploadPath = new File(uploadFolder, getFolder());

@@ -53,7 +53,7 @@
 				<label>강사 소개</label> <input class="form-control" name="teacherProfile" />
 			</div>
 			<div class="form-group">
-				<label>강사 사진</label> <input class="form-control" name="teacherProfilePicture" />
+				<label>강사 사진</label> <input class="form-control" name="" />
 			</div>
 			<div class="form-group">
 				<label>강사 uuid</label> <input class="form-control" name="teacherProfileUuid" />

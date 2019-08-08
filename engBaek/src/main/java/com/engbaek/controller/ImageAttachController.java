@@ -120,6 +120,7 @@ public class ImageAttachController {
 			String uploadFileName = m.getOriginalFilename();
 			ProfileAttachVO profileAttachVO = new ProfileAttachVO();
 			profileAttachVO.setTeacherProfilePicture(uploadFileName); // 1.업로드 파일명 저장
+			
 
 			// IE의 경우 경로를 제거하고 파일명만 저장
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
@@ -129,7 +130,10 @@ public class ImageAttachController {
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
 
 			File saveFile = new File(uploadPath, uploadFileName);
-
+			
+			log.info("uploadPath : " + uploadPath);
+			log.info("uploadFileName : " + uploadFileName);
+			
 			try {
 				m.transferTo(saveFile); // 파일 업로드
 				profileAttachVO.setTeacherProfileUuid(uuid.toString()); // 2.UUID 값 저장

@@ -43,7 +43,7 @@ public class CourseMapperTests {
 //		
 //		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
 //		
-//		list.forEach(faq -> log.info(faq));
+//		list.forEach(course -> log.info(course));
 //	}
 	
 //	@Test
@@ -51,21 +51,17 @@ public class CourseMapperTests {
 //		
 //		CourseVO course = new CourseVO();
 //		
-//		
 //		course.setTeacherId("tc3");
 //		course.setClassroomNo(403L);
 //		course.setCourseName("미쳐버린 토익");
 //		course.setCourseType("toeic speacking");
 //		course.setCourseLevel("850");
-//		course.setCoursePictureName("사진 없음");
-//		course.setCoursePictureUuid("사진 없음");
-//		course.setCurriculumName("사진 없음");
-//		course.setCurriculumUuid("사진 없음");
 //		course.setCourseInfo("체고의 강의");
 //		course.setCourseDay("화,수");
 //		course.setCourseTime("11:00 - 13:00");
 //		course.setCourseStart(dt.parse("2019-10-21"));
 //		course.setCourseEnd(dt.parse("2019-10-25"));
+//		course.setPrice(100000L);
 //		
 //		mapper.insertSelectKey(course);
 //		
@@ -80,21 +76,17 @@ public class CourseMapperTests {
 //	@Test
 //	public void testUpdate() throws ParseException {
 //		CourseVO course = new CourseVO();
-//		course.setCourseCode(2L);
 //		course.setTeacherId("tc1");
 //		course.setClassroomNo(401L);
 //		course.setCourseName("미쳐버린 토스");
 //		course.setCourseType("toeic speacking!!");
 //		course.setCourseLevel("6");
-//		course.setCoursePictureName("사진 없음~");
-//		course.setCoursePictureUuid("사진 없음~");
-//		course.setCurriculumName("사진 없음~");
-//		course.setCurriculumUuid("사진 없음~");
 //		course.setCourseInfo("체고의 강의!!");
 //		course.setCourseDay("화,수,목");
 //		course.setCourseTime("13:00 - 15:00");
 //		course.setCourseStart(dt.parse("2019-10-21"));
 //		course.setCourseEnd(dt.parse("2019-10-25"));
+//		course.setPrice(100000L);
 //		
 //		int count = mapper.update(course);
 //		
@@ -106,12 +98,14 @@ public class CourseMapperTests {
 	public void testSearch() {
 		Criteria cri = new Criteria();
 		
-		cri.setKeyword("쳐");
-		cri.setType("A");
+		cri.setKeyword("익");
+		cri.setType("c");
 		
 		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
 		
 		list.forEach(course -> log.info(course));
 	}
+	
+	
 
 }

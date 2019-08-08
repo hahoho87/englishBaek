@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @Log4j
-public class ProfileControllerTests {
+public class CourseControllerTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private WebApplicationContext ctx;
@@ -37,22 +37,39 @@ public class ProfileControllerTests {
 //		
 //		log.info(
 //				mockMvc.perform(MockMvcRequestBuilders
-//								.get("/profile/list"))
+//								.get("/course/list"))
 //								.andReturn()
 //								.getModelAndView()
 //								.getModelMap());
 //	}
 	
 	@Test
-	public void testRegister() throws Exception {
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/profile/register")
-											.param("teacherId", "tc3")
-											.param("teacherSubject", "tt")
-											.param("teacherProfile", "dd"))
-											.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
+	public void testRemove() throws Exception {
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/remove")
+								   .param("courseCode", "14"))
+								   .andReturn().getModelAndView().getViewName();
 		
+		log.info(resultPage);
 	}
+	
+//	@Test
+//	public void testRegister() throws Exception {
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/register")
+//											.param("teacherId", "tc3")
+//											.param("classroomNo", "403")
+//											.param("courseName", "hoho")
+//											.param("courseType", "토익")
+//											.param("courseLevel", "700")
+//											.param("courseInfo", "haha")
+//											.param("couseDay", "월,수")
+//											.param("courseTime", "11:00-13:00")
+//											.param("courseStart", "19-08-11")
+//											.param("courseEnd", "19-08-30")
+//											.param("price", "100000"))
+//											.andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//		
+//	}
 	
 //	@Test
 //	public void testGet() throws Exception {
@@ -65,13 +82,19 @@ public class ProfileControllerTests {
 	
 //	@Test
 //	public void testModify() throws Exception {
-//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/profile/modify")
-//											.param("teacherPno", "2")
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/modify")
+//											.param("courseCode", "2")
 //											.param("teacherId", "tc1")
-//											.param("teacherSubject", "toeic850")
-//											.param("teacherProfile", "controller test")
-//											.param("teacherProfilePicture", "controller test")
-//											.param("teacherProfileUuid", "controller test"))
+//											.param("classroomNo", "401")
+//											.param("courseName", "하하토익")
+//											.param("courseType", "토익")
+//											.param("courseLevel", "550")
+//											.param("courseInfo", "hahahahaha")
+//											.param("courseDay", "월,화,수")
+//											.param("courseTime", "11:00 - 13:00")
+//											.param("courseStart", "19-08-12")
+//											.param("courseEnd", "19-08-16")
+//											.param("price", "100000"))
 //											.andReturn().getModelAndView().getViewName();
 //		
 //		log.info(resultPage);
@@ -79,7 +102,7 @@ public class ProfileControllerTests {
 	
 //	@Test
 //	public void testListPaging() throws Exception {
-//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/profile/list")
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/course/list")
 //				 .param("pageNum", "1")
 //				 .param("amount", "3"))
 //				 .andReturn().getModelAndView().getModelMap());

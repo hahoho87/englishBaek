@@ -29,4 +29,6 @@ public interface CourseMapper {
 	
 	public List<CourseJoinVO> getList();
 	
+	public int idCheck(String teacherId);
+	
 }

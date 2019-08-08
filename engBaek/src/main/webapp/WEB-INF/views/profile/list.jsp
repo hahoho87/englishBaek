@@ -45,7 +45,6 @@
 			<th>이름</th>
 			<th>과목</th>
 			<th>소개</th>
-			<th>사진</th>
 			<th>이메일</th>
 			<th>경력</th>
 		</tr>
@@ -57,7 +56,6 @@
 				<td><a class="move" href="${profile.teacherPno}"> ${profile.name}</a></td>
 				<td>${profile.teacherSubject}</td>
 				<td>${profile.teacherProfile}</td>
-				<td>${profile.teacherProfilePicture}</td>
 				<td>${profile.email1} @ ${profile.email2 }</td>
 				<td>${profile.career}</td>
 			</tr>

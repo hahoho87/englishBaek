@@ -13,16 +13,12 @@ public class CourseVO {	//강좌
 	private String courseName; //강좌이름
 	private String courseType; //과목구분
 	private String courseLevel; //과목단계
-	private String coursePictureName;	//사진
-	private String coursePictureUuid;	//사진 uuid
-	private String curriculumName; //커리큘럼
-	private String curriculumUuid; //커리큘럼 uuid
 	private String courseInfo; //강좌 소개 내용
 	private String courseDay; //강의 요일
 	private String courseTime; //강의 시간
 	private Date courseStart; //개강일
 	private Date courseEnd; //종강일
 	
-	private Long price;
+	private long price;
 	
 }

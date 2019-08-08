@@ -66,14 +66,6 @@
 				<label>강사 소개</label> 
 				<input class="form-control" name="teacherProfile" value="${profile.teacherProfile }"/>
 			</div>
-			<div class="form-group">
-				<label>강사 사진</label> 
-				<input class="form-control" name="teacherProfilePicture" value="${profile.teacherProfilePicture }"/>
-			</div>
-			<div class="form-group">
-				<label>강사 uuid</label> 
-				<input class="form-control" name="teacherProfileUuid" value="${profile.teacherProfileUuid }"/>
-			</div>
 			<!-- 수정 처리 -->
 			<button type="submit" data-oper="modify" class="btn btn-info">Modify</button>
 			<!-- 목록 페이지 이동 -->

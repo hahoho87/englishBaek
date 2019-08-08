@@ -28,4 +28,7 @@ public interface CourseService {
 
 	//강좌 소개 이미지 파일 목록 
 	public List<ProfileAttachVO> getAttachList(Long bno);
+	
+	//강사 id check
+	public int idCheck(String teacherId);
 }

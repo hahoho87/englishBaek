@@ -26,5 +26,7 @@ public class CourseJoinVO {
 	private String name;
 	private String email1;
 	private String email2;
+	
+	private Long price;
 
 }

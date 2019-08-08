@@ -13,10 +13,6 @@
 		, c.courseName
 		, c.courseType
 		, c.courseLevel
-		, c.coursePictureName
-		, c.coursePictureUuid
-		, c.curriculumName
-		, c.curriculumUuid
 		, c.courseInfo
 		, c.courseDay
 		, c.courseTime
@@ -25,8 +21,9 @@
 		, t.name
 		, t.email1
 		, t.email2
+		, c.price
 		FROM course c, teacher t
-		WHERE c.teacherId = t.teacherId
+		WHERE c.teacherId = t.teacherId 
 		AND c.courseCode > 0
 	]]>
 	</select>
@@ -41,8 +38,7 @@
 							upper(courseName) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'B'.toString()">
-							upper(name) LIKE
-							'%'||upper(#{keyword})||'%'
+							upper(name) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'C'.toString()">
 							upper(courseType) LIKE
@@ -68,10 +64,6 @@
 					, courseName
 					, courseType
 					, courseLevel
-					, coursePictureName
-					, coursePictureUuid
-					, curriculumName
-					, curriculumUuid
 					, courseInfo
 					, courseDay
 					, courseTime
@@ -80,6 +72,7 @@
 					, name
 					, email1
 					, email2
+					, price
  			FROM	( SELECT /*+INDEX_DESC(course course_pk)*/
 		 					 rownum rn
 		 					, c.courseCode
@@ -88,10 +81,6 @@
 							, c.courseName
 							, c.courseType
 							, c.courseLevel
-							, c.coursePictureName
-							, c.coursePictureUuid
-							, c.curriculumName
-							, c.curriculumUuid
 							, c.courseInfo
 							, c.courseDay
 							, c.courseTime
@@ -100,6 +89,7 @@
 							, t.name
 							, t.email1
 							, t.email2
+							, c.price
  					 FROM course c, teacher t
  					 WHERE c.teacherId = t.teacherId
  					 AND 
@@ -124,15 +114,12 @@
 		, courseName
 		, courseType
 		, courseLevel
-		, coursePictureName
-		, coursePictureUuid
-		, curriculumName
-		, curriculumUuid
 		, courseInfo
 		, courseDay
 		, courseTime
 		, courseStart
 		, courseEnd
+		, price
 		)
 		VALUES 
 		(
@@ -142,17 +129,23 @@
 		, #{courseName}
 		, #{courseType}
 		, #{courseLevel}
-		, #{coursePictureName}
-		, #{coursePictureUuid}
-		, #{curriculumName}
-		, #{curriculumUuid}
 		, #{courseInfo}
 		, #{courseDay}
 		, #{courseTime}
 		, #{courseStart}
 		, #{courseEnd}
+		, #{price}
 		)
 	</insert>
+	
+	<!-- read -->
+	<select id="read" resultType="com.engbaek.domain.CourseJoinVO">
+		SELECT *
+		FROM course c, teacher t
+	    WHERE c.TEACHERID = t.TEACHERID
+        AND c.courseCode = #{courseCode}
+	</select>
+	
 
 
 	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
@@ -164,23 +157,19 @@
 		</selectKey>
 		
 		INSERT INTO course
-		(
-			courseCode
-			, teacherId
-			, classroomNo
-			, courseName
-			, courseType
-			, courseLevel
-			, coursePictureName
-			, coursePictureUuid
-			, curriculumName
-			, curriculumUuid
-			, courseInfo
-			, courseDay
-			, courseTime
-			, courseStart
-			, courseEnd
-		)
+		(	COURSECODE, 
+			TEACHERID, 
+			CLASSROOMNO, 
+			COURSENAME, 
+			COURSETYPE, 
+			COURSELEVEL, 
+			COURSEINFO, 
+			COURSEDAY, 
+			COURSETIME, 
+			COURSESTART, 
+			COURSEEND, 
+			PRICE) 
+
 		VALUES 
 		(
 			#{courseCode}
@@ -189,15 +178,12 @@
 			, #{courseName}
 			, #{courseType}
 			, #{courseLevel}
-			, #{coursePictureName}
-			, #{coursePictureUuid}
-			, #{curriculumName}
-			, #{curriculumUuid}
 			, #{courseInfo}
 			, #{courseDay}
 			, #{courseTime}
 			, #{courseStart}
 			, #{courseEnd}
+			, #{price}
 		)
 	</insert>
 
@@ -215,25 +201,47 @@
 			, courseName = #{courseName}
 			, courseType = #{courseType}
 			, courseLevel = #{courseLevel}
-			, coursePictureName = #{coursePictureName}
-			, coursePictureUuid = #{coursePictureUuid}
-			, curriculumName = #{curriculumName}
-			, curriculumUuid = #{curriculumUuid}
 			, courseInfo = #{courseInfo}
 			, courseDay = #{courseDay}
 			, courseTime = #{courseTime}
 			, courseStart = #{courseStart}
 			, courseEnd = #{courseEnd}
+			, price = #{price}
 		WHERE courseCode = #{courseCode}
 	</update>
+	
 
 	<!-- getTotalCount -->
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM cousre WHERE
+		SELECT COUNT(*) 
+		FROM course c, teacher t
+		WHERE c.teacherId = t.teacherId 
+		AND
 
-		<include refid="criteria"></include>
-
-		teacherPno > 0
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'A'.toString()">
+							upper(c.courseName) LIKE '%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'B'.toString()">
+							upper(t.name) LIKE '%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							upper(c.courseType) LIKE
+							'%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'D'.toString()">
+							upper(c.courseLevel) LIKE
+							'%'||upper(#{keyword})||'%'
+						</when>
+						
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+			c.courseCode > 0
 	</select>
 
 	<resultMap type="com.engbaek.domain.ProfileVO"
@@ -327,5 +335,13 @@
 		WHERE p.teacherId =
 		t.teacherId
 	</select>
+	
+	<!-- id check -->
+	<select id="idCheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM teacher
+      WHERE
+      teacherId = #{teacherId}
+	</select>
+	
 
 </mapper>

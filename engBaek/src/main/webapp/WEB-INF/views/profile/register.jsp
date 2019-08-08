@@ -46,7 +46,8 @@
 		<!-- 게시물 등록 폼 -->
 		<form role="form" method="post" action="/profile/register">
 			<div class="form-group">
-				<label>강사 ID</label> <input id="teacherId" class="form-control" name="teacherId">
+				<label>강사 ID</label> 
+				<input id="teacherId" class="form-control" name="teacherId">
 				<button type="button" id="idCheck" class="idCheck">id check</button>
 				<p class="result">
 					<span class="msg"></span>

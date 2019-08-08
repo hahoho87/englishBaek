@@ -49,20 +49,28 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public boolean modify(CourseVO course) {
-		// TODO Auto-generated method stub
-		return false;
+		log.info("modify : " + course);
+		boolean modifyResult = mapper.update(course) == 1;
+		return modifyResult;
 	}
 
 	@Override
 	public boolean remove(Long courseCode) {
-		// TODO Auto-generated method stub
-		return false;
+		log.info("remove : " + courseCode);
+		boolean removeResult = mapper.delete(courseCode) == 1;
+		return removeResult;
 	}
 
 	@Override
 	public List<ProfileAttachVO> getAttachList(Long bno) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int idCheck(String teacherId) {
+		log.info("id check : " + teacherId);
+		return mapper.idCheck(teacherId);
 	}
 
 }

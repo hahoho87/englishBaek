@@ -33,7 +33,6 @@
 </head>
 <body>
 	<div class="panel-body">
-		<!-- 게시물 등록 폼 -->
 		<form role="form" method="post" action="/faq/modify">
 			<input type="hidden">
 			<div class="form-group">
@@ -65,7 +64,6 @@
 			<button data-oper='list' class="btn btn-default">List</button>
 			<!-- 목록 페이지 이동 -->
 		</form>
-		<!-- END 게시물 등록 폼 -->
 				<!-- 폼 태그 추가 -->
 		<form id="operForm" action="/faq/modify">
 			<input type="hidden" id="faqNo" 

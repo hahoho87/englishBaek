@@ -9,8 +9,5 @@
         <module name="englishBaek" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="englishBaek" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,7 +1,15 @@
 package com.engbaek.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.engbaek.domain.CourseAttachVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.PageDTO;
@@ -26,7 +35,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/course/*")
 @AllArgsConstructor
 public class CourseController {
-	
+
 	private CourseService service;
 
 	// 강좌소개 목록
@@ -38,20 +47,27 @@ public class CourseController {
 		log.info("total count : " + total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	
+
 	// 강좌소개 등록 화면
 	@GetMapping("/register")
 	public void register() {
-		
+
 	}
 
 	// 강좌소개 등록
 	@PostMapping("/register")
 	public String register(CourseVO course, RedirectAttributes rttr) {
 		log.info("register : " + course);
+		
+		log.info("=============================");
+		if(course.getCourseAttachList() != null) {
+		   course.getCourseAttachList().forEach(attach -> log.info(attach));
+		}
+		log.info("=============================");
+		
 		service.register(course);
 		rttr.addFlashAttribute("result", course.getCourseCode());
-		
+
 		return "redirect:/course/list";
 
 	}
@@ -67,73 +83,84 @@ public class CourseController {
 	@PostMapping("/modify")
 	public String modify(CourseVO course, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify : " + course);
-		if(service.modify(course)) {
+		
+		if (service.modify(course)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/course/info?courseCode=" + course.getCourseCode();
 	}
-	
-	// 강좌소개 삭제 
+
+	// 강좌소개 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("courseCode") Long courseCode, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("courseCode") Long courseCode, @ModelAttribute("cri") Criteria cri,
+			RedirectAttributes rttr) {
 		log.info("delete : " + courseCode);
-		if(service.remove(courseCode)) {
+		
+		List<CourseAttachVO> attachList = service.getAttachList(courseCode);
+		
+		if (service.remove(courseCode)) {
+			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/course/list";
+		return "redirect:/course/list" + cri.getListLink();
 	}
-	
+
 	// 회원 확인
-		@ResponseBody
-		@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-		public int postIdCheck(HttpServletRequest req) throws Exception {
-			log.info("post idCheck");
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(HttpServletRequest req) throws Exception {
+		log.info("post idCheck");
 
-			String teacherId = req.getParameter("teacherId");
-			int idCheck = service.idCheck(teacherId);
+		String teacherId = req.getParameter("teacherId");
+		int idCheck = service.idCheck(teacherId);
 
-			int result = 0;
+		int result = 0;
 
-			if (idCheck == 1) {
-				result = 1;
-			}
-
-			log.info(result);
-
-			return result;
-
+		if (idCheck == 1) {
+			result = 1;
 		}
-	
-	
-	// 강좌소개 이미지 첨부
-	/*
-	 * @GetMapping(value = "/getAttachList", produces =
-	 * MediaType.APPLICATION_JSON_UTF8_VALUE)
-	 * 
-	 * @ResponseBody public ResponseEntity<List<ImageAttachVO>> getAttachList(Long
-	 * course_bno) { log.info("getAttachList : " + course_bno);
-	 * 
-	 * return new ResponseEntity<>(service.getAttachList(course_bno),
-	 * HttpStatus.OK); }
-	 * 
-	 * // 강좌소개 이미지 삭제 private void deleteFiles(List<ImageAttachVO> attachList) { if
-	 * (attachList == null || attachList.size() == 0) { return; }
-	 * 
-	 * log.info("delete attach files............."); log.info(attachList);
-	 * 
-	 * attachList.forEach(attach -> { try { Path file = Paths.get(
-	 * "C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" +
-	 * attach.getFileName()); Files.deleteIfExists(file);
-	 * 
-	 * if(Files.probeContentType(file).startsWith("image")) { Path thumbNail =
-	 * Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\
-	 * s_" + attach.getUuid() + "_" + attach.getFileName());
-	 * 
-	 * Files.delete(thumbNail); } } catch (Exception e) { e.printStackTrace();
-	 * }//END catch
-	 * 
-	 * });//END forEach
-	 * 
-	 * }
-	 */
+
+		log.info(result);
+
+		return result;
+
+	}
+
+	// 첨부파일 출력
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<CourseAttachVO>> getAttachList(Long courseCode) {
+		log.info("getAttachList : " + courseCode);
+
+		return new ResponseEntity<>(service.getAttachList(courseCode), HttpStatus.OK);
+	}
+
+	// 파일 삭제 처리
+	private void deleteFiles(List<CourseAttachVO> attachList) {
+		if (attachList == null || attachList.size() == 0) {
+			return;
+		}
+
+		log.info("delete attach files.............");
+		log.info(attachList);
+
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get(
+						"C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
+				Files.deleteIfExists(file);
+
+				if (Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
+							+ attach.getCoursePictureName());
+
+					Files.delete(thumbNail);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} // END catch
+
+		});// END forEach
+
+	}
 }

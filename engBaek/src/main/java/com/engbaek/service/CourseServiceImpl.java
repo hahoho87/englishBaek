@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.engbaek.domain.CourseAttachVO;
 import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
-import com.engbaek.domain.ProfileAttachVO;
+import com.engbaek.mapper.CourseAttachMapper;
 import com.engbaek.mapper.CourseMapper;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +24,9 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private CourseMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private CourseAttachMapper attachMapper;
 
 	@Override
 	public int getTotal(Criteria cri) {
@@ -35,10 +40,19 @@ public class CourseServiceImpl implements CourseService {
 		return mapper.getListWithPaging(cri);
 	}
 
+	@Transactional
 	@Override
 	public void register(CourseVO course) {
 		log.info("register : " + course);
 		mapper.insertSelectKey(course);
+		
+		if(course.getCourseAttachList() == null || course.getCourseAttachList().size() <=0 ) {
+			return;
+		}
+		course.getCourseAttachList().forEach(attach -> {
+			attach.setCourseCode(course.getCourseCode());
+			attachMapper.insert(attach);
+		});
 	}
 
 	@Override
@@ -47,24 +61,38 @@ public class CourseServiceImpl implements CourseService {
 		return mapper.read(courseCode);
 	}
 
+	@Transactional
 	@Override
 	public boolean modify(CourseVO course) {
 		log.info("modify : " + course);
+		
+		attachMapper.deleteAll(course.getCourseCode());
 		boolean modifyResult = mapper.update(course) == 1;
+		
+		if(modifyResult 
+				&& course.getCourseAttachList() != null
+				&& course.getCourseAttachList().size() > 0) {
+			course.getCourseAttachList().forEach(attach -> {
+				attach.setCourseCode(course.getCourseCode());
+				attachMapper.insert(attach);
+			});
+		}
+		
 		return modifyResult;
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long courseCode) {
 		log.info("remove : " + courseCode);
-		boolean removeResult = mapper.delete(courseCode) == 1;
-		return removeResult;
+		attachMapper.delete(courseCode);
+		return mapper.delete(courseCode) == 1;
 	}
 
 	@Override
-	public List<ProfileAttachVO> getAttachList(Long bno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CourseAttachVO> getAttachList(Long courseCode) {
+		log.info("get Attach list by courseCode" + courseCode);
+		return attachMapper.findByCourseCode(courseCode);
 	}
 
 	@Override

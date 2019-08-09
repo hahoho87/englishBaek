@@ -2,10 +2,10 @@ package com.engbaek.service;
 
 import java.util.List;
 
+import com.engbaek.domain.CourseAttachVO;
 import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
-import com.engbaek.domain.ProfileAttachVO;
 
 public interface CourseService {
 	//강좌 소개 총 게시물 수 
@@ -27,7 +27,7 @@ public interface CourseService {
 	public boolean remove(Long courseCode);
 
 	//강좌 소개 이미지 파일 목록 
-	public List<ProfileAttachVO> getAttachList(Long bno);
+	public List<CourseAttachVO> getAttachList(Long courseCode);
 	
 	//강사 id check
 	public int idCheck(String teacherId);

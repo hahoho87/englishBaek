@@ -15,7 +15,7 @@
             <div class="title-box-d">
               <h3 class="title-d"> 강좌 등록</h3>
             </div>
-            <form class="form-a" method="post" action="/course/register">
+            <form role="form" class="form-a" method="post" action="/course/register">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
@@ -125,37 +125,37 @@
                    </div>
                 </div>
                 <div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">FILE ATTACH</div>
-			<!-- /.panel-heading -->
-			<div class="panel-body">
-				<div class="form-group uploadDiv">
-					<div class='uploadDiv'>
-						<input type="file" name="uploadFile" multiple>
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">FILE ATTACH</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body">
+								<div class="form-group uploadDiv">
+									<div class='uploadDiv'>
+										<input type="file" name="uploadFile" multiple>
+									</div>
+				
+									<!-- 섬네일 이미지 원본 표시 -->
+									<div class="bigPictureWrapper">
+										<div class="bigPicture"></div>
+									</div>
+									<!-- END 섬네일 이미지 원본 표시 -->
+				
+									<!-- 업로드 결과 출력 -->
+									<div class="uploadResult">
+										<ul>
+										</ul>
+									</div>
+									<!-- END 업로드 결과 출력 -->
+								</div>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
 					</div>
-
-					<!-- 섬네일 이미지 원본 표시 -->
-					<div class="bigPictureWrapper">
-						<div class="bigPicture"></div>
-					</div>
-					<!-- END 섬네일 이미지 원본 표시 -->
-
-					<!-- 업로드 결과 출력 -->
-					<div class="uploadResult">
-						<ul>
-						</ul>
-					</div>
-					<!-- END 업로드 결과 출력 -->
+					<!-- /.col-lg-6 -->
 				</div>
-			</div>
-			<!-- /.panel-body -->
-		</div>
-		<!-- /.panel -->
-	</div>
-	<!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
+				<!-- /.row -->
 
                 <div class="col-md-12">
                   <button type="submit" class="btn btn-a">Submit</button>
@@ -339,7 +339,7 @@ $(".idCheck").click(function() {
 						str += "<i class='fa fa-times'></i></button><br>";
 						str += "<img src='/display?fileName=" + fileCallPath + "'>";
 						str += "</div></li>"
-						
+						console.log(str);
 					} else {		//이미지가 아니면 다운로드 링크 작성
 						
 						var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid  + "_" +
@@ -352,6 +352,7 @@ $(".idCheck").click(function() {
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 						str += "<img src='/resources/img/attach.png'></a>";
 						str += "</div></li>";
+						console.log(str);
 					}
 				});
 				
@@ -367,7 +368,7 @@ $(".idCheck").click(function() {
 				var targetLi 	= $(this).closest("li");
 				
 				$.ajax({
-					url :'/deleteFile',
+					url :'courseImages/deleteFile',
 					data : {fileName:targetFile, type:type} ,
 					dataType : 'text',
 					type : 'POST',

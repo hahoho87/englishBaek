@@ -33,6 +33,8 @@ import com.engbaek.domain.CourseAttachVO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import net.sf.jmimemagic.Magic;
+import net.sf.jmimemagic.MagicMatch;
 
 @Log4j
 @Controller
@@ -73,12 +75,12 @@ public class CourseUploadController {
 	
 	//업로드 파일 검사 - 이미지 파일 여부
 	private boolean checkImageType(File file) {
+		
 		try {
-			String contenType = Files.probeContentType(file.toPath());
-			
+			MagicMatch match = Magic.getMagicMatch(file, false);
 			//이미지 파일이면 true 반환
-			return contenType.startsWith("image");
-		} catch (IOException e) {
+			return match.getMimeType().contains("image");
+		} catch ( Exception e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -189,6 +191,8 @@ public class CourseUploadController {
 			//UUID 이용 파일명 중복 방지 처리
 			UUID uuid = UUID.randomUUID();
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			log.info(uploadPath);
+			log.info(uploadFileName);
 			
 			File saveFile 
 				= new File(uploadPath, uploadFileName);
@@ -197,9 +201,8 @@ public class CourseUploadController {
 				m.transferTo(saveFile);	//파일 업로드 
 				courseAttach.setCoursePictureUuid(uuid.toString()); //2.UUID 값 저장
 				courseAttach.setUploadPath(getFolder()); //3.업로드 경로 저장
-				
 				//이미지 파일이면 섬네일 이미지 파일 생성 
-				//if(checkImageType(saveFile)) {
+				if(checkImageType(saveFile)==true) {
 					//courseAttach.setImage(true);  		 //4.이미지 여부 저장
 					//섬네일 이미지 파일명 = s_ + 업로드파일명
 					FileOutputStream thumbnail
@@ -212,7 +215,7 @@ public class CourseUploadController {
 						m.getInputStream(), thumbnail, 100, 100
 					);
 					thumbnail.close();
-				//}//END 섬네일 이미지 생성
+				}//END 섬네일 이미지 생성
 				list.add(courseAttach);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();

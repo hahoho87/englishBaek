@@ -3,6 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
+
+<form id="operForm" action="/course/modify">
+	<input type="hidden" id="courseCode" name="courseCode" value="${course.courseCode }">
+	<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
+	<input type="hidden" name="pageNum" value="${cri.pageNum }"> 
+	<input type="hidden" name="amount" value="${cri.amount }">
+	
+	<!-- 검색 조건과 키워드 파라미터 추가 -->
+	<input type="hidden" name="type" value="${cri.type }"> 
+	<input type="hidden" name="keyword" value="${cri.keyword }">
+</form>
+<!-- /.panel-body -->
+
 <!--/ News Single Star /-->
   <section class="news-single nav-arrow-b">
     <div class="container">
@@ -15,7 +28,7 @@
             <div class="title-box-d">
               <h3 class="title-d"> 강좌 수정</h3>
             </div>
-            <form class="form-a" method="post" action="/course/modify">
+            <form class="form-a" id="mainForm" method="post" action="/course/modify">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
@@ -34,8 +47,8 @@
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
                     <label for="inputCourseType">유형</label>
-                <select class="form-control form-control-lg form-control-a" id="first" name="courseType" id="selOne" 
-                		onchange="doChange(this, 'selTwo')" >
+                <select class="form-control form-control-lg form-control-a" 
+                		id="first" name="courseType" id="selOne" onchange="doChange(this, 'selTwo')" >
         			<option value="default">Type</option>
         			<option value="토익">토익</option>
         			<option value="토스">토스</option>
@@ -99,14 +112,14 @@
                   <div class="form-group">
                     <label for="startdayInput">개강일</label>
                     <input type="text" class="form-control form-control-lg form-control-a" 
-                    id="startdayInput" name="courseStart" value='<fmt:formatDate value="${course.courseStart}" pattern="yyyy-MM-dd" />'>
+                    id="startdayInput" name="courseStart" value='${course.courseStart}'>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
                     <label for="enddayInput">종강일</label>
                     <input type="text" class="form-control form-control-lg form-control-a" 
-                    id="enddayInput" name="courseEnd" value='<fmt:formatDate value="${course.courseEnd}" pattern="yyyy-MM-dd" />'>
+                    id="enddayInput" name="courseEnd" value='${course.courseEnd}'>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 icheck-primary">
@@ -130,8 +143,8 @@
                    </div>
                 </div>
                 <div class="col-md-12">
-                  <button type="submit" class="btn btn-a">Submit</button>
-                  <button type="reset" class="btn btn-a">Reset</button>
+                  <button type="submit" data-oper="modify" class="btn btn-a">Submit</button>
+                  <button type="submit" data-oper="list" class="btn btn-a">Cancel</button>
                 </div>
               </div>
             </form>
@@ -205,6 +218,80 @@ $(".idCheck").click(function() {
 	}); // ajax 끝
 }); // End id check
 </script>
+<script>
+	$(function(){
+		var formObj = $("#mainForm");
+		
+		$('button').on("click", function(e){
+			e.preventDefault();
+			
+			var operation = $(this).data("oper");
+			console.log("operation : " + operation);
+			
+			if(operation === 'remove'){ 		//삭제 버튼이 눌린 경우 
+				var deleteConfirm = confirm("정말 삭제하시겠습니까?")
+				if(deleteConfirm == true){
+					alert("삭제가 완료되었습니다.")
+					var courseCodeTag = $("input[name='courseCode']").clone();
+					formObj.append(courseCodeTag);
+					
+					formObj.attr("action", "/course/remove")
+					.attr("method", "post");
+				} else {
+					return;
+				}
+				
+			} else if(operation === 'list') {	//목록 버튼이 눌린 경우
+//				self.location = "/course/list";	
+//				return;
+				
+				//페이지 번호와 게시물 개수 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				//검색 조건과 키워드 복사
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
 
+				formObj.attr("action", "/course/list")
+					   .attr("method", "get");
+				formObj.empty();	//폼 태그 모든 내용을 지움
+				
+				//페이지 번호와 게시물 개수만 폼에 추가
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
+				//검색 조건과 키워드 폼에 추가 
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
+				
+			} else {
+				var courseCodeTag = $("input[name='courseCode']").clone();
+
+				//페이지 번호와 게시물 개수 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				//검색 조건과 키워드 복사
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+				
+				formObj.attr("action", "/course/modify")
+				   .attr("method", "post");
+				
+				formObj.append(courseCodeTag);
+				//페이지 번호와 게시물 개수만 폼에 추가
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
+				//검색 조건과 키워드 폼에 추가 
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
+			}
+			
+			formObj.submit();
+		});
+	});
+	</script>
 	
 <%@ include file="../includes/footer.jsp"%>

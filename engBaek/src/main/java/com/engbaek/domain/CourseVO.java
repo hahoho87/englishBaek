@@ -1,6 +1,6 @@
 package com.engbaek.domain;
 
-import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -16,9 +16,11 @@ public class CourseVO {	//강좌
 	private String courseInfo; //강좌 소개 내용
 	private String courseDay; //강의 요일
 	private String courseTime; //강의 시간
-	private Date courseStart; //개강일
-	private Date courseEnd; //종강일
+	private String courseStart; //개강일
+	private String courseEnd; //종강일
 	
 	private long price;
+	
+	private List<CourseAttachVO> courseAttachList;
 	
 }

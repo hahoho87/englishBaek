@@ -70,7 +70,7 @@ public class CourseController {
 		if(service.modify(course)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/course/info";
+		return "redirect:/course/info?courseCode=" + course.getCourseCode();
 	}
 	
 	// 강좌소개 삭제 

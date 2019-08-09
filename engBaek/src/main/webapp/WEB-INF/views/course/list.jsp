@@ -45,11 +45,18 @@
 					<div class="grid-option">
 						<form>
 							<select class="custom-select">
-								<option selected>All</option>
-								<option value="1">New to Old</option>
-								<option value="2">For Rent</option>
-								<option value="3">For Sale</option>
-							</select>
+								<option value="">ALL</option>
+                				<optgroup label="Toeic">
+                    				<option value="550">토익-550</option>
+                    				<option value="700">토익-700</option>
+                    				<option value="850">토익-850</option>
+				                </optgroup>
+				                <optgroup label="Toeic Speaking">
+				                    <option value="5">토스-5</option>
+				                    <option value="6">토스-6</option>
+				                    <option value="7">토스-7</option>
+				                </optgroup>
+				            </select>
 						</form>
 					</div>
 				</div>
@@ -69,10 +76,9 @@
 											</a>
 										</h2>
 									</div>
-									<div class="card-body-a">
+									<div class="card-body-a"> 
 										<div class="price-box d-flex">
-											<span class="price-a"> 개강 | <fmt:formatDate
-													value="${course.courseStart}" pattern="yyyy-MM-dd" /></span>
+											<span class="price-a"> 개강 | ${course.courseStart}</span>
 										</div>
 										<a href="${course.courseCode}" class="move link-a">상세보기<span
 											class="ion-ios-arrow-forward"></span>
@@ -101,12 +107,15 @@
 						</div>
 					</div>
 				</c:forEach>
-				<!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
+
+			</div>
+		</div>
+		<!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
 				
 				            
             
 				<div class='row'>
-					<div class="col-lg-12">
+					<div class="col-lg-6">
 						<form id="searchForm" action="/course/list">
 							<select name="type">
 								<c:set var="type" value="${pageMaker.cri.type }" />
@@ -128,8 +137,7 @@
 					<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
 				</div>
 				<!-- END 검색창 - 검색 조건 및 키워드 입력 영역 -->
-
-				<!-- 페이지 번호 출력 -->
+		<!-- 페이지 번호 출력 -->
 				<div class="pull-left">
 					<nav class="pagination-a">
 						<ul class="pagination justify-content-end">
@@ -157,9 +165,6 @@
 					</nav>
 				</div>
 				<!-- END 페이지 번호 출력 -->
-
-			</div>
-		</div>
 	</section>
 	<!--/ Property Grid End /-->
 

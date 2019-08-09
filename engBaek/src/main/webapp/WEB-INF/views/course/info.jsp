@@ -33,7 +33,7 @@
 						class="breadcrumb-box d-flex justify-content-lg-end">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="../index">Home</a></li>
-							<li class="breadcrumb-item"><a href="course/list.jsp">강좌
+							<li class="breadcrumb-item"><a href="/course/list">강좌
 									관리</a></li>
 							<li class="breadcrumb-item active" aria-current="page">
 								${course.courseName }</li>
@@ -97,10 +97,9 @@
 												: </strong> <span>${course.courseDay } </span></li>
 										<li class="d-flex justify-content-between"><strong>개강일
 												: </strong> <span>
-												<fmt:formatDate value="${course.courseStart}" pattern="yyyy-MM-dd" /></span></li>
+												${course.courseStart}</span></li>
 										<li class="d-flex justify-content-between"><strong>종강일
-												: </strong> <span><fmt:formatDate value="${course.courseEnd}"
-													pattern="yyyy-MM-dd" /></span></li>
+												: </strong> <span>${course.courseEnd}</span></li>
 										<li class="d-flex justify-content-between"><strong>가격
 												: </strong> <span>₩ ${course.price }</span></li>
 									</ul>

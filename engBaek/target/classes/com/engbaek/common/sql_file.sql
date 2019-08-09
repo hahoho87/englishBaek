@@ -447,4 +447,14 @@ CREATE TABLE profileImageAttach(
 	uploadPath varchar2(100) NOT null
 )
 
+
+
+CREATE TABLE courseAttach
+(
+    coursePictureUuid VARCHAR2(100) CONSTRAINT courseAttach_pk PRIMARY KEY,
+    coursePictureName VARCHAR2(100) NOT NULL,
+    uploadPath VARCHAR2(100) NOT NULL,
+    courseCode NUMBER(10, 0) CONSTRAINT course_attach_fk REFERENCES COURSE(courseCode)
+
+)
  

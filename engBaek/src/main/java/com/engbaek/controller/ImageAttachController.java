@@ -68,7 +68,7 @@ public class ImageAttachController {
 	private boolean checkImageType(File file) {
 		try {
 			String contenType = Files.probeContentType(file.toPath());
-
+			log.info("content type : " + contenType);
 			// 이미지 파일이면 true 반환
 			contenType.startsWith("image");
 			return contenType.startsWith("image");
@@ -140,6 +140,7 @@ public class ImageAttachController {
 				profileAttachVO.setUploadPath(getFolder()); // 3.업로드 경로 저장
 
 				// 이미지 파일이면 섬네일 이미지 파일 생성 
+				//if(checkImageType(saveFile)) {
 					//attachDTO.setImage(true); // 4.이미지 여부 저장
 					// 섬네일 이미지 파일명 = s_ + 업로드파일명
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
@@ -149,6 +150,7 @@ public class ImageAttachController {
 					
 					thumbnail.close();
 				list.add(profileAttachVO);
+				//}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

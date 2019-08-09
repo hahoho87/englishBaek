@@ -43,14 +43,14 @@ public class CourseControllerTests {
 //								.getModelMap());
 //	}
 	
-	@Test
-	public void testRemove() throws Exception {
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/remove")
-								   .param("courseCode", "14"))
-								   .andReturn().getModelAndView().getViewName();
-		
-		log.info(resultPage);
-	}
+//	@Test
+//	public void testRemove() throws Exception {
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/remove")
+//								   .param("courseCode", "14"))
+//								   .andReturn().getModelAndView().getViewName();
+//		
+//		log.info(resultPage);
+//	}
 	
 //	@Test
 //	public void testRegister() throws Exception {
@@ -61,7 +61,7 @@ public class CourseControllerTests {
 //											.param("courseType", "토익")
 //											.param("courseLevel", "700")
 //											.param("courseInfo", "haha")
-//											.param("couseDay", "월,수")
+//											.param("courseDay", "월,수")
 //											.param("courseTime", "11:00-13:00")
 //											.param("courseStart", "19-08-11")
 //											.param("courseEnd", "19-08-30")
@@ -80,25 +80,25 @@ public class CourseControllerTests {
 //								 .getModelAndView().getModelMap());
 //	}
 	
-//	@Test
-//	public void testModify() throws Exception {
-//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/modify")
-//											.param("courseCode", "2")
-//											.param("teacherId", "tc1")
-//											.param("classroomNo", "401")
-//											.param("courseName", "하하토익")
-//											.param("courseType", "토익")
-//											.param("courseLevel", "550")
-//											.param("courseInfo", "hahahahaha")
-//											.param("courseDay", "월,화,수")
-//											.param("courseTime", "11:00 - 13:00")
-//											.param("courseStart", "19-08-12")
-//											.param("courseEnd", "19-08-16")
-//											.param("price", "100000"))
-//											.andReturn().getModelAndView().getViewName();
-//		
-//		log.info(resultPage);
-//	}
+	@Test
+	public void testModify() throws Exception {
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/course/modify")
+											.param("courseCode", "2")
+											.param("teacherId", "tc1")
+											.param("classroomNo", "401")
+											.param("courseName", "하하토익")
+											.param("courseType", "토익")
+											.param("courseLevel", "550")
+											.param("courseInfo", "hahahahaha")
+											.param("courseDay", "월,화,수")
+											.param("courseTime", "11:00 - 13:00")
+											.param("courseStart", "19-08-12")
+											.param("courseEnd", "19-08-16")
+											.param("price", "100000"))
+											.andReturn().getModelAndView().getViewName();
+		
+		log.info(resultPage);
+	}
 	
 //	@Test
 //	public void testListPaging() throws Exception {

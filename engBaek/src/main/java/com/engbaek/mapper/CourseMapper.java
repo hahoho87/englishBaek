@@ -2,6 +2,7 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
+import com.engbaek.domain.CourseAttachVO;
 import com.engbaek.domain.CourseJoinVO;
 import com.engbaek.domain.CourseVO;
 import com.engbaek.domain.Criteria;
@@ -30,5 +31,7 @@ public interface CourseMapper {
 	public List<CourseJoinVO> getList();
 	
 	public int idCheck(String teacherId);
+	
+	public List<CourseAttachVO> findByCourseCode(Long CourseCode);
 	
 }

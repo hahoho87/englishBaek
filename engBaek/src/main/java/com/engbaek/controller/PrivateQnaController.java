@@ -115,11 +115,11 @@ public class PrivateQnaController {
 	@GetMapping({ "/replyRead", "/replyModify" })
 	public void replyRead(@RequestParam("privateQnaReplyNo") Long privateQnaReplyNo, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("privateQna get:"+privateQnaReplyNo);
-		model.addAttribute("privateQnaReply", replyservice.read(privateQnaReplyNo));
+		model.addAttribute("privateQnaReply",replyservice.read(privateQnaReplyNo));
 	}
 
 	// 일대일 문의 답변 수정
-	@PostMapping("/replyModify")
+	@PostMapping("/replymodify")
 	public String replyModify(PrivateQnaReplyVO privateQnaReply, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		log.info("modify:"+ privateQnaReply);
@@ -132,6 +132,7 @@ public class PrivateQnaController {
 	
 	// 일대일 문의 답변 삭제
 	@PostMapping("/replyRemove")
+	
 	public String replyRemove(@RequestParam("privateQnaReplyNo") Long privateQnaReplyNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("remove : " + privateQnaReplyNo);
 	      if(replyservice.remove(privateQnaReplyNo)) {

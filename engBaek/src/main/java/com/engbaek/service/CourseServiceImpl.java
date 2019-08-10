@@ -46,10 +46,10 @@ public class CourseServiceImpl implements CourseService {
 		log.info("register : " + course);
 		mapper.insertSelectKey(course);
 		
-		if(course.getCourseAttachList() == null || course.getCourseAttachList().size() <=0 ) {
+		if(course.getAttachList() == null || course.getAttachList().size() <=0 ) {
 			return;
 		}
-		course.getCourseAttachList().forEach(attach -> {
+		course.getAttachList().forEach(attach -> {
 			attach.setCourseCode(course.getCourseCode());
 			attachMapper.insert(attach);
 		});
@@ -70,9 +70,9 @@ public class CourseServiceImpl implements CourseService {
 		boolean modifyResult = mapper.update(course) == 1;
 		
 		if(modifyResult 
-				&& course.getCourseAttachList() != null
-				&& course.getCourseAttachList().size() > 0) {
-			course.getCourseAttachList().forEach(attach -> {
+				&& course.getAttachList() != null
+				&& course.getAttachList().size() > 0) {
+			course.getAttachList().forEach(attach -> {
 				attach.setCourseCode(course.getCourseCode());
 				attachMapper.insert(attach);
 			});

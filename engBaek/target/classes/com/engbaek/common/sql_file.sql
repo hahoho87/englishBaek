@@ -2,11 +2,11 @@ CREATE TABLE auth(
     authNo VARCHAR2(10) CONSTRAINT auth_pk PRIMARY KEY
 );
 
-insert into auth values('S');
-insert into auth values('N');
-insert into auth values('Y');
-insert into auth values('R');
-insert into auth values('A');
+insert into auth values('ROLE_S');
+insert into auth values('ROLE_N');
+insert into auth values('ROLE_Y');
+insert into auth values('ROLE_R');
+insert into auth values('ROLE_A');
 
 
 CREATE TABLE teacher(
@@ -26,11 +26,11 @@ CREATE TABLE teacher(
  
  
  insert into teacher values('tc1','김하나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
- '경기도 개멀구 힘들동',sysdate,'서울대학교','Y');
+ '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
   insert into teacher values('tc2','김두나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
- '경기도 개멀구 힘들동',sysdate,'서울대학교','Y');
+ '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
   insert into teacher values('tc3','김세나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
- '경기도 개멀구 힘들동',sysdate,'서울대학교','Y');
+ '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
  
  
  //3.관리자    
@@ -41,9 +41,9 @@ CREATE TABLE admin(
     authNo     VARCHAR2(10) CONSTRAINT a_auth_fk REFERENCES auth(authNo) NOT NULL
 );
 
-insert into admin values('admin1','1111','관리자1','A');
-insert into admin values('admin2','1111','관리자2','A');
-insert into admin values('admin3','1111','관리자3','A');
+insert into admin values('admin1','1111','관리자1','ROLE_A');
+insert into admin values('admin2','1111','관리자2','ROLE_A');
+insert into admin values('admin3','1111','관리자3','ROLE_A');
 
 //4.학생
 CREATE TABLE student(
@@ -61,30 +61,27 @@ CREATE TABLE student(
  );
  
  insert into student values('stu1','김학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
- sysdate,'S');
+ sysdate,'ROLE_S');
   insert into student values('stu2','이학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
- sysdate,'S');
+ sysdate,'ROLE_S');
   insert into student values('stu3','박학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
- sysdate,'S');
+ sysdate,'ROLE_S');
  
  
  //5.강좌
 CREATE TABLE course(
     courseCode     NUMBER(20) CONSTRAINT course_pk PRIMARY KEY,
     teacherId      VARCHAR2(40) CONSTRAINT c_teacher_fk REFERENCES teacher(teacherId) NOT NULL,
-    classroomNo        NUMBER(20)  NOT NULL,
+    classroomNo    NUMBER(20)  NOT NULL,
     courseName     VARCHAR2(40) NOT NULL,
     courseType     VARCHAR2(40) NOT NULL,
     courseLevel    VARCHAR2(40) NOT NULL,
-    coursePictureName      VARCHAR2(40) NOT NULL,
-    coursePictureUuid VARCHAR2(2000) NOT NULL,
-    curriculumName      VARCHAR2(40) NOT NULL,
-    curriculumUuid VARCHAR2(2000) NOT NULL,
     courseInfo     VARCHAR2(2000) NOT NULL,
     courseDay      VARCHAR2(40) NOT NULL,
     courseTime     VARCHAR2(40) NOT NULL,
-    courseStart    DATE NOT NULL,
-    courseEnd      DATE NOT NULL	
+    courseStart    VARCHAR2(40) NOT NULL,
+    courseEnd      VARCHAR2(40) NOT NULL,
+    price          NUMBER(20)  NOT NULL,
 );
 
 CREATE SEQUENCE course_seq
@@ -93,14 +90,14 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into course values(course_seq.nextval,'tc1',12,'미친토익','토익','550이상','파일없음','파일없음','파일없음','파일없음','기본기를 
-탄탄하게 잡아주는 기본토익','월화수','9:00부터11:00',sysdate,sysdate);
+insert into course values(course_seq.nextval,'tc1',12,'미친토익','토익','550이상','기본기를 
+탄탄하게 잡아주는 기본토익','월화수','9:00부터11:00',sysdate,sysdate,20000);
  
-insert into course values(course_seq.nextval,'tc2',12,'돌아버린토익','토익','750이상','파일없음','파일없음','파일없음','파일없음','고득점 
-탄탄하게 잡아주는 토익','월화수','9:00부터11:00',sysdate,sysdate);
+insert into course values(course_seq.nextval,'tc2',12,'돌아버린토익','토익','750이상','고득점 
+탄탄하게 잡아주는 토익','월화수','9:00부터11:00',sysdate,sysdate,15000);
 
-insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','lv7','파일없음','파일없음','파일없음','파일없음','기본기를 
-탄탄하게 잡아주는 기본토스','월화수','9:00부터11:00',sysdate,sysdate);
+insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','lv7','기본기를 
+탄탄하게 잡아주는 기본토스','월화수','9:00부터11:00',sysdate,sysdate,50000);
  
  
  //6.강사소개
@@ -108,9 +105,7 @@ CREATE TABLE profile(
     teacherPno  NUMBER(20) CONSTRAINT teacher_profile_pk PRIMARY KEY,
     teacherId  VARCHAR2(40) CONSTRAINT tp_teacher_fk REFERENCES teacher(teacherId) NOT NULL,
     teachersubject VARCHAR2(2000) NOT NULL,
-    teacherProfile VARCHAR2(2000) NOT NULL,
-    teacherProfilePicture VARCHAR2(40) NOT NULL,
-    teacherProfileUuid VARCHAR2(40) NOT NULL
+    teacherProfile VARCHAR2(2000) NOT NULL
 );
 
 CREATE SEQUENCE profile_seq
@@ -119,9 +114,9 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중','파일없음','파일없음');
-insert into profile values(profile_seq.nextval,'tc2','토익850','현)잉글리시백에서 미친토익 강의 중','파일없음','파일없음');
+insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중');
+insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중');
+insert into profile values(profile_seq.nextval,'tc2','토익850','현)잉글리시백에서 미친토익 강의 중');
 
 
 //7.FAQ
@@ -325,8 +320,6 @@ CREATE TABLE payment(
     studentId  VARCHAR2(40) CONSTRAINT pay_student_fk REFERENCES student(studentId) NOT NULL,
     paymentMethod VARCHAR2(40) NOT NULL,
     paymentPrice   NUMBER(20) NOT NULL,
-    cardType   VARCHAR2(40),
-    cardNo VARCHAR2(40),
     paymentDate DATE DEFAULT SYSDATE,
     paymentState VARCHAR2(40) NOT NULL
 );
@@ -337,9 +330,9 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into payment values(payment_seq.nextval,1,'stu1','카드',290000,'하나카드','5678****7777',sysdate,'결제완료');
-insert into payment values(payment_seq.nextval,2,'stu1','카드',290000,'하나카드','5678****7777',sysdate,'결제완료');
-insert into payment values(payment_seq.nextval,3,'stu1','카드',290000,'하나카드','5678****7777',sysdate,'결제완료');
+insert into payment values(payment_seq.nextval,1,'stu1','카드',290000,sysdate,'결제완료');
+insert into payment values(payment_seq.nextval,2,'stu1','카드',290000,sysdate,'결제완료');
+insert into payment values(payment_seq.nextval,3,'stu1','카드',290000,sysdate,'결제완료');
 
 //18.환불내역
 CREATE TABLE refund(
@@ -386,8 +379,30 @@ insert into courseHistory values(courseHistory_seq.nextval,3,1,'stu3','tc3');
 
 
 
+CREATE TABLE profileAttach
+(
+   teacherPno number(20) CONSTRAINT attach_profile_fk REFERENCES profile(teacherPno) NOT NULL,
+   teacherProfilePicture varchar2(100) NOT NULL,
+   teacherProfileUuid varchar2(100) CONSTRAINT profileAttach_pk PRIMARY KEY,
+   uploadPath varchar2(100) NOT null,
+   fileType CHAR(1) DEFAULT 'I'
+);
+
+
+
+CREATE TABLE courseAttach
+(
+    coursePictureUuid VARCHAR2(100) CONSTRAINT courseAttach_pk PRIMARY KEY,
+    coursePictureName VARCHAR2(100) NOT NULL,
+    uploadPath VARCHAR2(100) NOT NULL,
+    courseCode NUMBER(10, 0) CONSTRAINT course_attach_fk REFERENCES COURSE(courseCode) not null,
+   fileType CHAR(1) DEFAULT 'I'
+);
+
 
 ==============================테이블 다지우기=====================================
+DROP TABLE courseAttach
+DROP TABLE profileAttach
 DROP TABLE courseHistory;
 DROP TABLE refund;
 DROP TABLE payment;
@@ -424,37 +439,3 @@ DROP SEQUENCE notice_seq;
 DROP SEQUENCE faq_seq;
 DROP SEQUENCE course_seq;
 DROP SEQUENCE profile_seq;
-
-
-
-
-
- 
-
-
-
-
-
-
-alter table COURSE rename column COURSEPICURENAME to COURSEPICTURENAME
-/
-
-
-CREATE TABLE profileImageAttach(
-	teacherPno number(20) CONSTRAINT attach_pno_fk REFERENCES profile(teacherPno) NOT NULL,
-	teacherProfilePicture varchar2(100) NOT NULL,
-	teacherProfileUuid varchar2(100) CONSTRAINT profileImageAttach_pk PRIMARY KEY,
-	uploadPath varchar2(100) NOT null
-)
-
-
-
-CREATE TABLE courseAttach
-(
-    coursePictureUuid VARCHAR2(100) CONSTRAINT courseAttach_pk PRIMARY KEY,
-    coursePictureName VARCHAR2(100) NOT NULL,
-    uploadPath VARCHAR2(100) NOT NULL,
-    courseCode NUMBER(10, 0) CONSTRAINT course_attach_fk REFERENCES COURSE(courseCode)
-
-)
- 

@@ -203,7 +203,7 @@ public class CourseUploadController {
 				courseAttach.setUploadPath(getFolder()); //3.업로드 경로 저장
 				//이미지 파일이면 섬네일 이미지 파일 생성 
 				if(checkImageType(saveFile)==true) {
-					//courseAttach.setImage(true);  		 //4.이미지 여부 저장
+					courseAttach.setFileType(true);  		 //4.이미지 여부 저장
 					//섬네일 이미지 파일명 = s_ + 업로드파일명
 					FileOutputStream thumbnail
 						= new FileOutputStream(

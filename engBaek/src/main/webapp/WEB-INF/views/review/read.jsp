@@ -24,6 +24,17 @@
             <div class="panel-body">
 				 게시물 등록 폼 	-->
 			<form id="operForm" action="/review/read">
+
+						<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
+						<input type="hidden"  
+							   name="pageNum" value="${cri.pageNum }">
+						<input type="hidden"  
+							   name="amount" value="${cri.amount }">	
+						<!-- 검색 조건과 키워드 파라미터 추가 -->   
+						<input type="hidden"  
+							   name="type" value="${cri.type }">
+						<input type="hidden"  
+							   name="keyword" value="${cri.keyword }">
 				<div>
 					<label>reviewNo</label>
 						<input class="form-control" name="reviewNo" id="reviewNo"
@@ -35,13 +46,13 @@
 					<div class="form-group">
 						<label>강의명</label>
 						<input class="form-control" 
-								  name="coursecode" 
-								  readonly="readonly" value="${review.courseCode}"></div>
+								  name="courseName" 
+								  readonly="readonly" value="${review.courseName}"></div>
 					<div>				
 						<label>강사명</label>
 						<input class="form-control" 
-								  name="teacherId" 
-								  readonly="readonly" value="${review.teacherId}"></div>			   	
+								  name="name" 
+								  readonly="readonly" value="${review.name}"></div>			   	
 					<div class="form-group">
 						<label>Text area</label>
 						<textarea rows="3" class="form-control" 
@@ -50,31 +61,20 @@
 					<div class="form-group">
 						<label>Writer</label>
 						<input class="form-control" name="studentId"
-							   readonly="readonly"  value="${review.studentId}"></div>	
-							   
+							   readonly="readonly"  value="${review.studentId}"></div>
 							   </form>	
 					<button  type="submit" data-oper="modify" class="btn btn-default">
 						Modify</button>	<!-- 수정 페이지 이동 -->
 					<button data-oper="remove" class="btn btn-danger">
 						Remove</button>	<!-- 삭제 처리 -->
-					<button data-oper="list" class="btn btn-info">
-						List</button>	<!-- 목록 페이지 이동 -->		   
+					 
+					<button  type="submit" data-oper="list" class="btn btn-info">
+						List</button>	<!-- 목록 페이지 이동 -->	
 						
-						<!-- 폼 태그 추가 -->
-					<form id="operForm2" action="/review/modify">
-						<input type="hidden" id="reviewNo" 
-							   name="bno" value="${review.reviewNo }">
-						<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
-						<input type="hidden"  
-							   name="pageNum" value="${cri.pageNum }">
-						<input type="hidden"  
-							   name="amount" value="${cri.amount }">	
-						<!-- 검색 조건과 키워드 파라미터 추가 -->   
-						<input type="hidden"  
-							   name="type" value="${cri.type }">
-						<input type="hidden"  
-							   name="keyword" value="${cri.keyword }">
-					</form>
+							<!-- 폼 태그 추가 -->
+					<form id="operForm" action="/review/modify">
+						
+					</form>	
 				<!-- </form> -->
 <!-- 				
 						
@@ -83,10 +83,21 @@
         </div>      /.panel
     </div>   		/.col-lg-6
 </div>				/.row -->
-
+<!-- JavaScript Libraries -->
+<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+<script src="../../../resources/lib/popper/popper.min.js"></script>
+<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../resources/lib/easing/easing.min.js"></script>
+<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="../../../resources/contactform/contactform.js"></script>
+<!-- Template Main Javascript File -->
+<script src="../../../resources/js/main.js"></script>
 
 <script>
-$(function(){
+$(function(){   
 	 
 	 var  operForm = $("#operForm");
 	 
@@ -94,12 +105,11 @@ $(function(){
 	 $("button[data-oper='modify']").on("click",function(e){
 		 operForm.attr("action","/review/modify").submit();
 		 
+		 
 	 });
 	 //목록 버튼 이벤트 처리 
 	 $("button[data-oper='list']").on("click",function(e){
 		 
-		 operForm.find("reviewNo").remove();
-		 operForm.attr("action","/review/list");
 		 
 			//페이지 번호와 게시물 개수 복사
 			var pageNumTag = $("input[name='pageNum']").clone();

@@ -9,4 +9,5 @@ public class CourseAttachVO {
 	private String coursePictureName;
 	private String coursePictureUuid;
 	private String uploadPath;
+	private boolean fileType;
 }

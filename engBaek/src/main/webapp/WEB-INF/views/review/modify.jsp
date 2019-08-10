@@ -64,12 +64,11 @@
                    	   	   					      pattern="yyyy-MM-dd"/>"> --%>
 					<button type="submit" 
 							data-oper="modify" class="btn btn-default">
-						Modify</button>	<!-- 수정 처리 -->
+						완료</button>	<!-- 수정 처리 -->
 					<button type="submit" 
 							data-oper="remove" class="btn btn-danger">
-						Remove</button>	<!-- 삭제 처리 -->
-					<button data-oper='list' class="btn btn-info">
-						List</button>	<!-- 목록 페이지 이동 -->
+						삭제</button>	<!-- 삭제 처리 -->
+				
 				</form>
 				<!-- END 게시물 등록 폼 -->			
             </div>
@@ -81,7 +80,16 @@
 </div>
 <!-- /.row --> 
 
-
+	<!-- JavaScript Libraries -->
+	<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+	<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+	<script src="../../../resources/lib/popper/popper.min.js"></script>
+	<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../../resources/lib/easing/easing.min.js"></script>
+	<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+	<!-- Contact Form JavaScript File -->
+	<script src="../../../resources/contactform/contactform.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -98,15 +106,15 @@ $(document).ready(function(){
 		//삭제 버튼을 눌렀을 시 이동 경로 
 		if(operation ==='remove'){
 			formobj.attr("action","/review/remove");
-		}else if(operation==='list'){
-			//목록으로 버튼을 눌렀을 시 경로 
-			self.location="/review/list";
-			return;
+		}else(operation==='list'){
 		
-		formobj.submit();
+			formobj.attr("action","/review/list");
+		
+		      formobj.submit();
 		
 		
-	);
+		}
+		)}
 });
 
 </script>

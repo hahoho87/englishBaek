@@ -215,7 +215,7 @@ $(".idCheck").click(function() {
 	var teacherId = $("#teacherId").val()
 
 	$.ajax({
-		url : "/profile/idCheck",
+		url : "/course/idCheck",
 		type : "post",
 		data : {
 			teacherId : teacherId
@@ -252,18 +252,19 @@ $(".idCheck").click(function() {
 				console.dir(jobj);
 				
 				str += "<input type='hidden' " + 
-					   		  "name='attachList["+i+"].fileName' " + 
-					   		  "value='"+jobj.data("filename")+"'>";
+		   		  	    "name='attachList["+i+"].coursePictureName' " + 
+		   		  		"value='"+jobj.data("filename")+"'>";
 				str += "<input type='hidden' " + 
-					   		  "name='attachList["+i+"].uuid' " + 
-					   		  "value='"+jobj.data("uuid")+"'>";	   
+				   		  "name='attachList["+i+"].coursePictureUuid' " + 
+				   		  "value='"+jobj.data("uuid")+"'>";	   
 				str += "<input type='hidden' " + 
-					   		  "name='attachList["+i+"].uploadPath' " + 
-					   		  "value='"+jobj.data("path")+"'>";
+				   		  "name='attachList["+i+"].uploadPath' " + 
+				   		  "value='"+jobj.data("path")+"'>";
 				str += "<input type='hidden' " + 
-					   		  "name='attachList["+i+"].fileType' " + 
-					   		  "value='"+jobj.data("type")+"'>";
+				   		  "name='attachList["+i+"].fileType' " + 
+				   		  "value='"+jobj.data("type")+"'>";
 			});
+			console.log(str);
 			formObj.append(str).submit();
 			
 		});
@@ -323,35 +324,38 @@ $(".idCheck").click(function() {
 				var str = "";
 				$(uploadResultArr).each(function(i, obj){
 					//업로드 파일명 <li>추가
-					if(obj.image){	//이미지인 경우
+					if(obj.fileType){	//이미지인 경우
+
 						//섬네일 파일명 인코딩 처리
-						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid  + "_" + obj.fileName);
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.coursePictureUuid  + "_" + obj.coursePictureName);
 						//원본 이미지 경로 및 파일명
-						var originPath = obj.uploadPath + "\\" + obj.uuid  + "_" + obj.fileName;
+						var originPath = obj.uploadPath + "\\" + obj.coursePictureUuid  + "_" + obj.coursePictureName;
 						// 경로 구분자 \를 /로 변경
-						//originPath = originPath.replace(new RegExp(/\\/g), "/");
+						originPath = originPath.replace(new RegExp(/\\/g), "/");
 						
 						str += "<li data-path='"+obj.uploadPath+"'";
-						str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";
+						str += " data-uuid='"+obj.coursePictureUuid+"' data-filename='"+obj.coursePictureName+"' data-type='"+obj.fileType+"'";
 						str += "><div>";
-						str += "<span> " + obj.fileName + "</span>";
+						str += "<span> " + obj.coursePictureName + "</span>";
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>";
 						str += "<i class='fa fa-times'></i></button><br>";
 						str += "<img src='/display?fileName=" + fileCallPath + "'>";
 						str += "</div></li>"
 						console.log(str);
+						
 					} else {		//이미지가 아니면 다운로드 링크 작성
 						
-						var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid  + "_" +
-								 obj.fileName);
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.coursePictureUuid  + "_" +
+								 obj.coursePictureName);
 						
 						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 						str += "<li ";
-						str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-						str += "<span> " + obj.fileName + "</span>";
+						str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.coursePictureUuid+"' data-filename='"+obj.coursePictureName+"' data-type='"+obj.fileType+"' ><div>";
+						str += "<span> " + obj.coursePictureName + "</span>";
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 						str += "<img src='/resources/img/attach.png'></a>";
 						str += "</div></li>";
+						
 						console.log(str);
 					}
 				});
@@ -368,7 +372,7 @@ $(".idCheck").click(function() {
 				var targetLi 	= $(this).closest("li");
 				
 				$.ajax({
-					url :'courseImages/deleteFile',
+					url :'/courseImages/deleteFile',
 					data : {fileName:targetFile, type:type} ,
 					dataType : 'text',
 					type : 'POST',

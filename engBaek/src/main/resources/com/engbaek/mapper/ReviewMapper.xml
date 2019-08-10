@@ -14,12 +14,12 @@
   	<trim prefix ="OR">
   	<choose>
   		<when test ="type == 'T'.toString()">
-  			title like '%' || #{keyword} || '%'
+  			reviewTitle like '%' || #{keyword} || '%'
   		</when>
   		
-  		<when test ="type == 'W'.toString()">
-  			writer like '%' || #{keyword} || '%'
-  		</when>
+  		<when test ="type == 'C'.toString()">
+  			reviewContent like '%' || #{keyword} || '%'
+		</when>
   	</choose>
   
   	</trim>
@@ -30,8 +30,10 @@
 </sql>
   
   <!-- read -->
-	<select id="read" resultType="com.engbaek.domain.ReviewVO">
-		SELECT * FROM review WHERE reviewNo = #{reviewNo}
+	<select id="read" resultType="com.engbaek.domain.ReviewJoinVO">
+		select r.reviewNo, r.teacherId,r.reviewTitle,r.reviewContent,r.studentId, r.reviewRegdate,c.courseName, t.name, c.courseCode,c.courseEnd
+		FROM course c join teacher t on t.teacherId = c.teacherId join review r on r.teacherId = t.teacherId 
+		WHERE reviewNo =#{reviewNo}
 	</select>
   
   
@@ -83,20 +85,22 @@
 </select>
   
  <select id="getListWithPaging" 
-  		  resultType="com.engbaek.domain.ReviewVO">
+  		  resultType="com.engbaek.domain.ReviewJoinVO">
   	<![CDATA[
-  		SELECT 
-  		reviewNo,teacherId,courseCode,studentId,reviewTitle,reviewContent,reviewRegdate
-  		FROM (SELECT /*+INDEX_DESC(review review_pk) */
-  				rownum rn,reviewNo,teacherId,courseCode,studentId,reviewTitle,reviewContent,reviewRegdate
-  				FROM review
-  				WHERE 
-  	
+  		select rownum rn, teacherId,reviewTitle,reviewContent,studentId,reviewNO,
+                reviewRegdate,courseName,name,courseCode,courseEnd
+FROM( select  /*+INDEX_DESC(review review_pk)*/rownum rn, r.teacherId,r.reviewTitle,r.reviewContent,r.studentId,r.reviewNo,
+                r.reviewRegdate,c.courseName, t.name, c.courseCode,c.courseEnd
+from course c join teacher t 
+on t.teacherId = c.teacherId 
+join review r
+on r.teacherId = t.teacherId 
+where reviewNo>0  AND
   	]]>
   	
   		<include refid="criteria"></include>
   	
-  	<![CDATA[	 	rownum <= #{pageNum} * #{amount} 
+  	<![CDATA[	 rownum <= #{pageNum} * #{amount} 
   	)
   		WHERE rn > (#{pageNum}-1) * #{amount}
   	]]>

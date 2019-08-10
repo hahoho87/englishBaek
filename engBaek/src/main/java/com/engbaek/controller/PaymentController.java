@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.PageDTO;
 import com.engbaek.domain.PaymentVO;
+import com.engbaek.domain.PrivateQnaVO;
+import com.engbaek.service.PaymentService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,43 +23,62 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/payment/*")
 @AllArgsConstructor
 public class PaymentController {
+	private PaymentService service;
+	
+	
+	@GetMapping("/list") 
+	public void list(Model model) {
+		 log.info("list");
+	      model.addAttribute("list", service.getList());
 
-	// 결제 내역 목록
-	@GetMapping("/list")
-	public void list(Model model, Criteria cri) {
-		log.info("list");
+	   
 	}
-
-	// 결제 내역 등록 화면
-	@GetMapping("/register")
-	public void register() {
-
-	}
-
-	// 결제 내역 등록
-	@PostMapping("/register")
-	public String register(PaymentVO payment, RedirectAttributes rttr) {
-		return "redirect:/payment/list";
-
-	}
-
-	// 결제 내역 삭제
+	
+	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("paymentNo") Long paymentNo, @ModelAttribute("cri") Criteria cri,
-			RedirectAttributes rttr) {
-		return "redirect:/refund/list";
+	public String remove(@RequestParam("paymentNo") Long paymentNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("remove : " + paymentNo);
+	      if(service.remove(paymentNo)) {
+	         rttr.addFlashAttribute("result", "success");
+	      }
+		
+		return "redirect:/payment/list";
 	}
-
-	// 결제 내역 상세 조회 or 수정 화면
-	@GetMapping({ "/info", "/modify" })
-	public void get(@RequestParam("paymentNo") Long paymentNo, @ModelAttribute("cri") Criteria cri, Model model) {
-
-	}
-
-	// 결제 내역 수정
+	
 	@PostMapping("/modify")
 	public String modify(PaymentVO payment, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/refund/info";
-	}
 
+		log.info("modify:"+ payment);
+		if(service.modify(payment)){
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/payment/list";
+	}
+	
+	
+	
+	
+	@GetMapping("/payRegister")
+	public void payRegister() {
+		log.info("register");
+		System.out.println("67");
+	
+
+	}
+	
+	@PostMapping("/payRegister")
+	public String payRegister(PaymentVO payment,RedirectAttributes rttr) {
+	
+		System.out.println("73");
+		
+	      service.register(payment);
+	      rttr.addFlashAttribute("result",payment.getPaymentNo());
+		return "redirect:/payment/list";
+	      
+	     
+	}
+	      
+		
+	
 }

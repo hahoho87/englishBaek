@@ -65,6 +65,18 @@
     <!-- /.col-lg-6 -->
 </div>
 <!-- /.row -->
+
+	<!-- JavaScript Libraries -->
+	<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+	<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+	<script src="../../../resources/lib/popper/popper.min.js"></script>
+	<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../../resources/lib/easing/easing.min.js"></script>
+	<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+	<!-- Contact Form JavaScript File -->
+	<script src="../../../resources/contactform/contactform.js"></script>
+
  <script>
  
  $(function(){

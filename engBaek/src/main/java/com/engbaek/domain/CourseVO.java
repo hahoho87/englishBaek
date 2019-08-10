@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class CourseVO {	//강좌
 	
-	private long courseCode; // 강좌 코드
+	private Long courseCode; // 강좌 코드
 	private String teacherId; // 강사 ID
-	private long classroomNo; //강의실 번호
+	private Long classroomNo; //강의실 번호
 	private String courseName; //강좌이름
 	private String courseType; //과목구분
 	private String courseLevel; //과목단계
@@ -19,8 +19,8 @@ public class CourseVO {	//강좌
 	private String courseStart; //개강일
 	private String courseEnd; //종강일
 	
-	private long price;
+	private Long price;
 	
-	private List<CourseAttachVO> courseAttachList;
+	private List<CourseAttachVO> attachList;
 	
 }

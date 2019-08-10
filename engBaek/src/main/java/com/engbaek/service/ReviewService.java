@@ -3,6 +3,7 @@ package com.engbaek.service;
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
 
 public interface ReviewService {
@@ -17,7 +18,7 @@ public interface ReviewService {
 	public void register(ReviewVO notice);
 	
 	// 수강 후기 조회
-	public ReviewVO read(Long bno);
+	public ReviewJoinVO read(Long bno);
 	
 	// 수강 후기 수정
 	public boolean modify(ReviewVO review);

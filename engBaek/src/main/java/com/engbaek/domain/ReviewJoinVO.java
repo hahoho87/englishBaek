@@ -5,8 +5,9 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ReviewVO {
-
+public class ReviewJoinVO {
+	
+	///Review
 	  private long reviewNo;
 	  private String teacherId; 
 	  private long courseCode;
@@ -14,5 +15,13 @@ public class ReviewVO {
 	  private String reviewTitle; 
 	  private String reviewContent;
 	  private Date reviewRegdate; 
+	  
+	  private String courseName; //강좌이름
+	  private Date courseStart; //개강일
+	  private Date courseEnd; //종강일
+	  
+	  //선생님 이름
+		private String  name;
+	  
 	  
 }

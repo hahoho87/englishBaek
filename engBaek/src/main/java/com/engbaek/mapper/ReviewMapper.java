@@ -3,6 +3,7 @@ package com.engbaek.mapper;
 import java.util.List;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
 
 public interface ReviewMapper {
@@ -20,7 +21,7 @@ public interface ReviewMapper {
 	public int delete(Long reveiw_bno);
 	
 	// 수강후기 조회
-	public ReviewVO read(Long reveiw_bno);
+	public ReviewJoinVO read(Long reveiw_bno);
 
 	// 수강후기 등록
 	public Integer insertSelectKey(ReviewVO review);

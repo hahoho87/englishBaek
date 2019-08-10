@@ -32,6 +32,6 @@ public interface CourseMapper {
 	
 	public int idCheck(String teacherId);
 	
-	public List<CourseAttachVO> findByCourseCode(Long CourseCode);
+	public List<CourseAttachVO> findByCourseCode(Long courseCode);
 	
 }

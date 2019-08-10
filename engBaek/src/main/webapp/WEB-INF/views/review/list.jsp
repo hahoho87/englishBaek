@@ -13,6 +13,7 @@
 	<thead>
 		<tr>
 			<th>No.</th>
+			<th>강좌명</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
@@ -22,6 +23,7 @@
 
 		<tr>
 			<td>${review.reviewNo}</td>
+			<td>${review.courseName}</td>
 			<td>
 				<a href="../review/read?reviewNo=${review.reviewNo}"> ${review.reviewTitle}</a>
 			</td>
@@ -86,6 +88,29 @@
 </div>
 <!-- END 페이지 번호 출력 -->
 
+<!--  페이지 번호와 개수 넘겨주기 -->
+<form id="actionForm" action="/reivew/list">
+	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }"> <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+	<!-- 검색 키워드와 조건 파라미터 추가 -->
+	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }"> <input type="hidden" name="type" value="${pageMaker.cri.type }">
+</form>
+
+
+<!-- JavaScript Libraries -->
+<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+<script src="../../../resources/lib/popper/popper.min.js"></script>
+<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../resources/lib/easing/easing.min.js"></script>
+<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="../../../resources/contactform/contactform.js"></script>
+<!-- Template Main Javascript File -->
+<script src="../../../resources/js/main.js"></script>
+
+
+
 <script>
 //a 태그의 move 클래스 속성을 이용
 
@@ -106,9 +131,7 @@ $("#regBtn").on("click", function() {
 });
 	
 //페이지 번호 클릭 해당 페이지 목록 표시하기 
-
-
-		var actionForm = $("#actionForm");
+		var actionForm = $("#searchForm");
 		$(".paginate_button a").on("click", function(e) {
 			e.preventDefault(); //a 태그 기본 동작 막기
 

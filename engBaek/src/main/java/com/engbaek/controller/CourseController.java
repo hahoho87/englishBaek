@@ -60,8 +60,8 @@ public class CourseController {
 		log.info("register : " + course);
 		
 		log.info("=============================");
-		if(course.getCourseAttachList() != null) {
-		   course.getCourseAttachList().forEach(attach -> log.info(attach));
+		if(course.getAttachList() != null) {
+		   course.getAttachList().forEach(attach -> log.info(attach));
 		}
 		log.info("=============================");
 		
@@ -147,11 +147,11 @@ public class CourseController {
 		attachList.forEach(attach -> {
 			try {
 				Path file = Paths.get(
-						"C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
+						"/Users/bky/upload/" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
 				Files.deleteIfExists(file);
 
 				if (Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
+					Path thumbNail = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
 							+ attach.getCoursePictureName());
 
 					Files.delete(thumbNail);

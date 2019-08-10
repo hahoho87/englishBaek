@@ -9,13 +9,17 @@ public interface PaymentMapper {
 
 
 	//결제내역 총 게시물 수  
-	public int getTotalCount(Criteria cri);
+	//public int getTotalCount(Criteria cri);
 	
 	//결제내역 게시판 페이징 
-	public List<PaymentVO> getListWithPaging(Criteria cri);
+	//public List<PaymentVO> getListWithPaging(Criteria cri);
 	
+	
+	//결제 내역 조회 
+	
+	public List<PaymentVO>getList();
 	//결제내역 수정 
-	public int update(PaymentVO payment);
+	public int update(PaymentVO paymentNo);
 		
 	//결제내역 삭제 
 	public int delete(Long paymentNo);

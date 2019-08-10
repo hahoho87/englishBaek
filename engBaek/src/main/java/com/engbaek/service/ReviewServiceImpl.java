@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
 import com.engbaek.mapper.ReviewMapper;
 
@@ -43,7 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 수강 후기 조회
 	@Override
-	public ReviewVO read(Long reviewNo) {
+	public ReviewJoinVO read(Long reviewNo) {
 		return mapper.read(reviewNo);
 	}
 

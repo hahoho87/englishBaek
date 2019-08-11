@@ -37,12 +37,13 @@
 		
 		
 	</select>
-  <!-- 회원의 결제 내역 출력 -->
+  <!-- 회원의 개강전인 결제 내역 출력 -->
   
    <select id="getList" 
   		  resultType="com.engbaek.domain.PaymentJoinVO">
   	<![CDATA[
-  		SELECT  paymentNo,
+  		    
+    SELECT     paymentNo,
   				courseCode,
   				studentId,
   				paymentMethod,
@@ -50,7 +51,8 @@
   				paymentState,
   				courseName,
   				courseStart,
-  				courseEnd
+  				courseEnd,
+  				price
   		FROM (SELECT /*+INDEX_DESC((payment payment_pk)*/
   					p.paymentNo,
   					p.courseCode,
@@ -63,10 +65,43 @@
   					c.courseEnd,
   					c.price
   					FROM payment p, course c
-  					WHERE p.courseCode =c.courseCode)
+  					WHERE p.courseCode =c.courseCode AND c.courseStart >(SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')FROM DUAL))
   					
-  					WHERE paymentNo > 0
-
+  			WHERE paymentNo > 0
+  	]]>
+  </select>
+  
+    <!-- 개강한 결제 내역 출력  취소 불가-->
+  
+   <select id="getList2" 
+  		  resultType="com.engbaek.domain.PaymentJoinVO">
+  	<![CDATA[
+  	    
+    SELECT     paymentNo,
+  				courseCode,
+  				studentId,
+  				paymentMethod,
+  				paymentDate,
+  				paymentState,
+  				courseName,
+  				courseStart,
+  				courseEnd,
+  				price
+  		FROM (SELECT /*+INDEX_DESC((payment payment_pk)*/
+  					p.paymentNo,
+  					p.courseCode,
+  					p.studentId,
+  					p.paymentMethod,
+  					p.paymentDate,
+  					p.paymentState,
+  					c.courseName,
+  					c.courseStart,
+  					c.courseEnd,
+  					c.price
+  					FROM payment p, course c
+  					WHERE p.courseCode =c.courseCode AND c.courseStart <(SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')FROM DUAL))
+  					
+  			WHERE paymentNo > 0
   	]]>
   </select>
   
@@ -83,7 +118,7 @@
          resultType="long">
          SELECT payment_seq.nextval FROM dual
       </selectKey>
-	INSERT INTO payment(paymentNo,courseCode,studentId,paymentMethod,paymentPrice,paymentState)
+	INSERT INTO payment(paymentNo,courseCode,studentId,paymentMethod,paymentPrice,paymentDate,paymentState)
   	VALUES(#{paymentNo},#{courseCode},#{studentId},#{paymentMethod},#{paymentPrice},sysdate,#{paymentState})
    </insert>
   

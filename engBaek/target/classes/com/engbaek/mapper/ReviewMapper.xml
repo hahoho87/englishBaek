@@ -105,6 +105,14 @@ where reviewNo>0  AND
   		WHERE rn > (#{pageNum}-1) * #{amount}
   	]]>
   </select>
+  
+  
+ <select id="andCourse" resultType="com.engbaek.domain.CourseHistoryJoinVO">
+  <![CDATA[
+    SELECT  *
+	FROM courseHistory ch, course c,teacher t
+	where ch.courseCode= c.courseCode AND t.teacherId=c.teacherId
+	AND c.courseEnd < (SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD')FROM DUAL)
+	]]>
+</select>
   </mapper>
-  
-  

@@ -2,7 +2,6 @@ package com.engbaek.service;
 
 import java.util.List;
 
-import com.engbaek.domain.CourseHistoryJoinVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
@@ -27,8 +26,6 @@ public interface ReviewService {
 	// 수강 후기 삭제
 	public boolean remove(Long review_bno);
 	
-	//후기 남길 수 있는 목록 가져오기
-	public List<CourseHistoryJoinVO> andCourse();
-	
-	
+	//수강중인 강좌 목록
+	public List<ReviewJoinVO> getReviewClassList(Criteria cri);
 }

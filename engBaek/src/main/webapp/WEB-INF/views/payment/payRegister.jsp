@@ -6,39 +6,60 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<title>Baek 어학원</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
 
+<!-- Favicons -->
+<link href="../../../resources/img/favicon.png" rel="icon">
+<link href="../../../resources/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Bootstrap CSS File -->
+<link href="../../../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link href="../../../resources/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="../../../resources/lib/animate/animate.min.css" rel="stylesheet">
+<link href="../../../resources/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="../../../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Main Stylesheet File -->
+<link href="../../../resources/css/style.css" rel="stylesheet">ㄴ
 <title>수강신청</title>
 </head>
 <body>	<div class="panel-body">
 		<!-- 게시물 등록 폼 -->
 		<form role="form" method="post" action="/payment/payRegister">
+			<!--  <div class="form-group">
+
+			<input type="hidden" class="form-control" name="paymentNo" value="1" />
+			</div>  -->
+			
 			<div class="form-group">
-			<input type="hidden"  class ="form-control"  name="paymentNo" value="7" />
+			<label>강의명:${courseName}</label>
+			<input type="hidden" class="form-control" name="courseCode" value="${courseCode}" />
 			</div>
 			<div class="form-group">
-			<label>강의명:미친토익</label>
-			<input type="hidden" class="form-control" name="courseCode" value="1" />
+				<label>결제금액:${paymentPrice}</label>
+				<input type="hidden" class=
+				"form-control" name="paymentPrice" value="${paymentPrice}" />
 			</div>
 			<div class="form-group">
-				<label>결제금액 :210,000 </label>
-				<input type="hidden" class="form-control" name="paymentPrice" value="210000" />
-			</div>
-			<div class="form-group">
+			<label>결제자:</label>
 				 <input  type="hidden" class="form-control" name="studentId" value="stu1" />
 			</div>
 			<div class="form-group">
 				 <input  type="hidden" class="form-control" name="paymentMethod" value="card" />
 			</div>
-			<div class="form-group">
-				 <input  type="hidden" class="form-control" name="cardType" value="card" />
-			</div>
 			
 			<div class="form-group">
-				 <input  type="hidden" class="form-control" name="cardNo" value="5555-55555" />
-			</div>
-			
-			<div class="form-group">
-				 <input  type="hidden" class="form-control" name="paymentState" value="complete" />
+				 <input  type="hidden" class="form-control" name="paymentState" value="결제완료" />
 			</div>
 			<button type="submit" class="btn btn-default" id="pay">결제하기</button>
 			
@@ -64,7 +85,6 @@
 
 <script>
 
-
 var IMP = window.IMP; // 생략가능
 IMP.init('imp98130930'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
@@ -78,10 +98,10 @@ IMP.request_pay({
 	    pg : 'inicis', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:결제테스트',
-	    amount : 14000,
+	    name : '주문명:${courseName}',
+	    amount :'${paymentPrice}',
 	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
+	    buyer_name : 'stu1',
 	    buyer_tel : '010-1234-5678',
 	    buyer_addr : '서울특별시 강남구 삼성동',
 	    buyer_postcode : '123-456',

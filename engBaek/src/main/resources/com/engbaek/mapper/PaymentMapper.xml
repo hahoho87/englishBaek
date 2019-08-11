@@ -107,8 +107,8 @@
   
   <!-- 후기 등록 pk 값 몰라도될 경우 -->
   <insert id="insert" >
-  	INSERT INTO privateQna(privateQnaNo,courseCode,studentId,paymentMethod,paymentPrice,cardType,cardNo,paymentDate,paymentState)
-  	VALUES(payment_seq.nextval,#{courseCode},#{paymentMethod},#{paymentPrice},#{cardType},#{cardNo},sysdate,#{paymentState})
+  	INSERT INTO privateQna(privateQnaNo,courseCode,studentId,paymentMethod,paymentPrice,paymentDate,paymentState)
+  	VALUES(payment_seq.nextval,#{courseCode},#{paymentMethod},#{paymentPrice},sysdate,#{paymentState})
   </insert>
   
    <!-- 수강신청을 하면 결제 내역에 추가 -->

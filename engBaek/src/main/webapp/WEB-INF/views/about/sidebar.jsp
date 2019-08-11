@@ -13,10 +13,10 @@
 	<h2 class="panel-title"><span class="color-b">학원안내</span></h2>
     </div>    
     <nav class="nav flex-column">
-    	<a class="nav-link" href="about.jsp">학원소개</a>
-    	<a class="nav-link" href="contact.jsp">오시는 길</a>
-    	<a class="nav-link" href="history.jsp">학원연혁</a>
-    	<a class="nav-link" href="facilities.jsp">편의시설</a>
+    	<a class="nav-link" href="about">학원소개</a>
+    	<a class="nav-link" href="contact">오시는 길</a>
+    	<a class="nav-link" href="history">학원연혁</a>
+    	<a class="nav-link" href="facilities">편의시설</a>
 	</nav>
 </div>
 	<!-- END sidenav -->

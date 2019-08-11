@@ -2,6 +2,7 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.engbaek.domain.ClassQnaVO;
@@ -37,5 +38,8 @@ public interface ClassQnaMapper {
 	/*
 	 * //강의별 public void insert(ClassQnaVO classQna_bno);
 	 */
+	
+	//댓글 갯수
+	public void updateReplyCnt(@Param("classQnaNo") Long classQnaNo, @Param("amount") int amount); 
 	
 }

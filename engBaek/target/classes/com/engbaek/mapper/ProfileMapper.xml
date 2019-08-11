@@ -81,6 +81,7 @@
  			)
  		WHERE rn > (#{pageNum} -1) * #{amount}	
  		]]>
+ 		
 	</select>
 
 	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->

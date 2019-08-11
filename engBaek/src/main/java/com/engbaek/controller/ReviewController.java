@@ -24,6 +24,12 @@ import lombok.extern.log4j.Log4j;
 public class ReviewController {
 private ReviewService service;
 	
+	//수강중인 강좌 조회
+	@GetMapping("/review_class_list")
+	public void classList(Model model, Criteria cri) {
+		log.info("reviewClassList");
+		model.addAttribute("reviewClassList", service.getReviewClassList(cri));
+	}
 	// 후기 목록
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
@@ -40,7 +46,6 @@ private ReviewService service;
 	public void get(@RequestParam("reviewNo") Long review_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("review get:"+review_bno);
 		model.addAttribute("review",service.read(review_bno));
-		
 	}
 	
 	// 후기 수정
@@ -66,8 +71,8 @@ private ReviewService service;
 
 	// 후기 등록 화면, 등록 화면만 출력
 	@GetMapping("/register")
-	public void register(Model model) {
-		  model.addAttribute("coursehistory",service.andCourse());
+	public void register() {
+
 	}
 
 	// 후기 등록
@@ -76,7 +81,6 @@ private ReviewService service;
 		
 		  log.info("register : " + review);
 	      service.register(review);
-	    
 	      rttr.addFlashAttribute("result",review.getReviewNo());
 		
 		return "redirect:/review/list";

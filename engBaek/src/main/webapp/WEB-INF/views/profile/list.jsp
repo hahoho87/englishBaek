@@ -64,14 +64,14 @@
 					<select class="custom-select" id="search">
 						<option value="">ALL</option>
                 		<optgroup label="Toeic">
-                    		<option value="550">토익-550</option>
-                    		<option value="700">토익-700</option>
-                    		<option value="850">토익-850</option>
+                    		<option value="토익-550" <c:if test='${param.keyword == "토익-550"}'>selected</c:if>>토익-550</option>
+                    		<option value="토익-700" <c:if test='${param.keyword == "토익-700"}'>selected</c:if>>토익-700</option>
+                    		<option value="토익-850" <c:if test='${param.keyword == "토익-850"}'>selected</c:if>>토익-850</option>
 				        </optgroup>
 				        <optgroup label="Toeic Speaking">
-				            <option value="5">토스-5</option>
-				            <option value="6">토스-6</option>
-				            <option value="7">토스-7</option>
+				            <option value="토스-5" <c:if test='${param.keyword == "토스-5"}'>selected</c:if>>토스-5</option>
+				            <option value="토스-6" <c:if test='${param.keyword == "토스-6"}'>selected</c:if>>토스-6</option>
+				            <option value="토스-7" <c:if test='${param.keyword == "토스-7"}'>selected</c:if>>토스-7</option>
 				        </optgroup>
 				    </select>
 				</form>
@@ -278,13 +278,13 @@
 					console.log(searchValue);
 					
 					if(searchValue == "ALL"){
-						searchValue = '';	
-						actionForm.submit();
+						actionForm.attr("action","/profile/list").submit();
 						return false;
 					}
 					actionForm.append("<input type='hidden' name='type' value='C'>");	
 					actionForm.append("<input type='hidden' name='keyword' value='"+searchValue+"'>")
 					actionForm.attr("action","/profile/list").submit();
+					return false;
 				});
 				
 		});	

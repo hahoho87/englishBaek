@@ -12,7 +12,7 @@
 
   <!--/ Services Star /-->
   <section class="section-services section-t8">
-    <div class="container">
+    <div class="container">  
       <div class="row">
       
         <div class="col-md-12">
@@ -20,8 +20,8 @@
             <div class="title-box">
             <br>
               <h2 class="title-a">회원가입</h2>
-              </div>
-            </div>
+              </div> 
+            </div> 
           </div>
         </div>
         	

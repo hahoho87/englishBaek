@@ -13,19 +13,22 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class MainController {
 
-   @GetMapping("/about")
-   public void about() {
-   }
-   
-   @GetMapping("/contact")
-   public void contact() {
-   }
-   @GetMapping("/facilities")
-   public void facilities() {
-   }
-   
-   @GetMapping("/history")
-   public void history() {
-   }
-   
+	@GetMapping("/about")
+	public void about() {
+	}
+	
+	@GetMapping("/contact")
+	public void contact() {
+	}
+	@GetMapping("/facilities")
+	public void facilities() {
+	}
+	
+	@GetMapping("/history")
+	public void history() {
+	}
+	
+	@GetMapping("/mypage")
+	public void mypage() {
+	}
 }  

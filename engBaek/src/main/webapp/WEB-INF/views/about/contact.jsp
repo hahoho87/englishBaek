@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
   <%-- <jsp:include page="../includes/header.jsp"></jsp:include> --%>
+  <%@ include file="../includes/header.jsp" %>
 
 <!--/ Intro Single star /-->
   <section class="intro-single">
@@ -120,18 +114,18 @@
   <div id="preloader"></div>
 
   <!-- JavaScript Libraries -->
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../lib/popper/popper.min.js"></script>
-  <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../lib/easing/easing.min.js"></script>
-  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="../lib/scrollreveal/scrollreveal.min.js"></script>
+  <script src="../../../resources/lib/jquery/jquery.min.js"></script>
+  <script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../../resources/lib/popper/popper.min.js"></script>
+  <script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../resources/lib/easing/easing.min.js"></script>
+  <script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
   <!-- Contact Form JavaScript File -->
-  <script src="../contactform/contactform.js"></script>
+  <script src="../../../resources/contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="../js/main.js"></script>
+  <script src="../../../resources/js/main.js"></script>
   
 </body>
 </html>

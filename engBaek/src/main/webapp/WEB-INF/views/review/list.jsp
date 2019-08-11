@@ -39,7 +39,7 @@
 
 <!-- 새로운 후기 등록 버튼 -->
 <button id="regBtn" type="button" class="btn btn-xs pull-right">등록 </button>
-
+<button id="classReviewListBtn" type="button">강의목록</button>
 
 
 <!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
@@ -57,6 +57,7 @@
 			</select>
 			<input type="text" name="keyword" value="${pageMaker.cri.keyword }"> <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }"> <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 			<button class="btn btn-default">Search</button>
+		
 		</form>
 	</div>
 
@@ -139,6 +140,9 @@ $("#regBtn").on("click", function() {
 			actionForm.find("input[name='pageNum']").val($(this).attr('href'));
 			//폼 전송
 			actionForm.submit();
-		});                                            
+		});  
+		$("#classReviewListBtn").on("click", function(){
+			self.location = "/review/review_class_list";
+		});
 </script>
 <%-- %@ include file = "../includes/footer.jsp" %>--%>

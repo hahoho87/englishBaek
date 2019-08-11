@@ -41,12 +41,12 @@
 							upper(name) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							upper(courseType) LIKE
-							'%'||upper(#{keyword})||'%'
+							upper(courseLevel) LIKE
+							'%'||upper(#{keyword})||'%' AND courseType = '토익' 
 						</when>
 						<when test="type == 'D'.toString()">
 							upper(courseLevel) LIKE
-							'%'||upper(#{keyword})||'%'
+							'%'||upper(#{keyword})||'%' AND courseType = '토스' 
 						</when>
 						
 					</choose>

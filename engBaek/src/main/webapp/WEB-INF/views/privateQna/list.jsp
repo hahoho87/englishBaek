@@ -5,8 +5,34 @@
 <%--<%@ include file="../includes/header.jsp" --%>
 <%@ include file="../about/sidebar.jsp"%>
 
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <title>Baek 어학원</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="../../../resources/img/favicon.png" rel="icon">
+  <link href="../../../resources/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../../../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../../../resources/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../../resources/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../../resources/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../../../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
 <form action="/privateQna/list">
-<table border="3">
+<table  class="table table-striped table-bordered table-hover" border="3">
 	<!-- 목록 출력 -->
 	<thead>
 		<tr>

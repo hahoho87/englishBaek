@@ -40,6 +40,7 @@ private ReviewService service;
 	public void get(@RequestParam("reviewNo") Long review_bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("review get:"+review_bno);
 		model.addAttribute("review",service.read(review_bno));
+		
 	}
 	
 	// 후기 수정
@@ -65,8 +66,8 @@ private ReviewService service;
 
 	// 후기 등록 화면, 등록 화면만 출력
 	@GetMapping("/register")
-	public void register() {
-
+	public void register(Model model) {
+		  model.addAttribute("coursehistory",service.andCourse());
 	}
 
 	// 후기 등록
@@ -75,6 +76,7 @@ private ReviewService service;
 		
 		  log.info("register : " + review);
 	      service.register(review);
+	    
 	      rttr.addFlashAttribute("result",review.getReviewNo());
 		
 		return "redirect:/review/list";

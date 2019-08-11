@@ -26,11 +26,18 @@ public class ClassQnaController {
 	
 	private ClassQnaService service; 
 	
+	//Q&A 강의중인 강좌 조회
+	@GetMapping("/qna_class_list")
+	public void classList(Model model, Criteria cri) {
+		log.info("QnaClassList");
+		model.addAttribute("qnaClassList", service.getQnaClassList(cri));
+	}
+	
 	// 강의별 Q&A 전체 목록
 	@GetMapping("/list")
-	public void list(Model model, Criteria cri) {
+	public void list(@RequestParam("courseCode") Long courseCode, Model model, Criteria cri) {
 		log.info("list");
-		model.addAttribute("classQnaList", service.getList(cri));
+		model.addAttribute("classQnaList", service.getList(courseCode, cri));
 		int total = service.getTotal(cri);
 		log.info("list total" + total);
 		model.addAttribute("pageMaker",new PageDTO(cri,total));
@@ -41,7 +48,6 @@ public class ClassQnaController {
 	public void get(@RequestParam("classQnaNo") Long classQnaNo, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("Q&A 게시물 하나가져옴");
 		model.addAttribute("classQna",service.get(classQnaNo));
-		 
 	}
 	// 강의별 Q&A 수정
 	@PostMapping("/modify")
@@ -56,13 +62,13 @@ public class ClassQnaController {
 	
 	// 강의별 Q&A 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("classQnaNo") Long classQnaNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(ClassQnaVO classQna,@RequestParam("classQnaNo") Long classQnaNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("remove" + classQnaNo);
 		
 		if(service.remove(classQnaNo)) {
 			rttr.addFlashAttribute("result","success");
 		}		
-		return "redirect:/classQna/list";
+		return "redirect:/classQna/list?courseCode="+classQna.getCourseCode();
 	}
 	
 	// 강의별 Q&A 등록 화면 이동
@@ -78,6 +84,6 @@ public class ClassQnaController {
 		
 		rttr.addFlashAttribute("result", classQna.getClassQnaNo()); //추가적으로 새롭게 등록되는 게시물 번호 같이 전달 
 		
-		return "redirect:/classQna/list"; //redirect: 접두어는 스프링 mvc가 내부적으로 response.sendRedirect() 해주기 때문에 사용 
+		return "redirect:/classQna/list?courseCode="+classQna.getCourseCode(); //redirect: 접두어는 스프링 mvc가 내부적으로 response.sendRedirect() 해주기 때문에 사용 
 	}
 }

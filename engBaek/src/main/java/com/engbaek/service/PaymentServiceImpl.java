@@ -49,12 +49,19 @@ public class PaymentServiceImpl implements PaymentService{
 		boolean removeResult = mapper.delete(paymentNo) == 1;
 		return removeResult;
 	}
+	//결제 취소를 위한 수정 결제 상태를 취소로 
 	@Override
 	public boolean modify(PaymentVO payment) {
 		
 		log.info("modify : " + payment);
 		boolean modifyResult = mapper.update(payment) == 1;
 		return modifyResult;
+	}
+	@Override
+	public List<PaymentVO> getList2() {
+     log.info("getList2");
+		
+		return mapper.getList2();
 	}
 
 }

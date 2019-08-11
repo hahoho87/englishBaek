@@ -28,19 +28,19 @@
 					<!-- 강의명 -->
 					<label for="CourseId"> 강의명</label>
 					<select  class="form-control" name="courseCode">
-						<option value="1">미친토익</option>
-						<option value="2">돌아버린 토익</option>
-						<option value="3">미친토스</option>
-					</select>
+					<c:forEach  items="${coursehistory}" var="coursehistory">
+						<option  value="${coursehistory.courseCode}">${coursehistory.courseName}</option>
+					</c:forEach>
 					
+					</select>
 					
 					
 					<!-- 강사명 -->
 					<label for="teacherId">강사명</label>
 					<select id="course" class="form-control" name="teacherId" >
-						<option value="tc1">김하나</option>
-						<option value="tc2">김두나</option>
-						<option value="tc3">김세나</option>
+						<c:forEach  items="${coursehistory}" var="coursehistory">
+						<option  value="${coursehistory.teacherId}">${coursehistory.name}</option>
+					</c:forEach>
 					</select>
 					
 					<div class="form-group">

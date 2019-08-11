@@ -14,10 +14,13 @@ public interface PaymentMapper {
 	//결제내역 게시판 페이징 
 	//public List<PaymentVO> getListWithPaging(Criteria cri);
 	
+	//결제 내역 조회 (취소 불가능)
 	
-	//결제 내역 조회 
+		public List<PaymentVO>getList();
+		
+	//결제 내역 조회 (취소 가능)
 	
-	public List<PaymentVO>getList();
+	public List<PaymentVO>getList2();
 	//결제내역 수정 
 	public int update(PaymentVO paymentNo);
 		

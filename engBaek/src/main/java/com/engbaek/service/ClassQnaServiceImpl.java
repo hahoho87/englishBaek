@@ -27,9 +27,9 @@ public class ClassQnaServiceImpl implements ClassQnaService{
 
 	//강의별 Q&A 목록 
 	@Override	
-	public List<ClassQnaVO> getList(Criteria cri) {
+	public List<ClassQnaVO> getList(Long courseCode, Criteria cri) {
 		log.info("getList with criteria: " + cri);
-		return mapper.getList();
+		return mapper.getList(courseCode);
 		//return mapper.getListWithPaging(cri);			
 	}
 
@@ -58,6 +58,13 @@ public class ClassQnaServiceImpl implements ClassQnaService{
 	public boolean remove(Long classQnaNo) {
 		log.info("remove: " + classQnaNo);
 		return mapper.delete(classQnaNo) == 1;
+	}
+
+	//강의중인 강좌 목록 
+	@Override
+	public List<ClassQnaVO> getQnaClassList(Criteria cri) {
+		log.info("get Qna Class List");
+		return mapper.getQnaClassList();
 	}
 
 }

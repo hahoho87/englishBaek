@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.ClassDataVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.PageDTO;
+import com.engbaek.service.ClassDataService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,40 +23,67 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ClassDataController {
 	
+	private ClassDataService service;
+	
+	//강의중인 강좌 목록 
+	@GetMapping("/classData_class_list")
+	public void classList(Model model, Criteria cri) {
+		log.info("classList");
+		model.addAttribute("classDataClassList", service.getClassList(cri));
+	}
 	// 강의 공지사항 & 수업자료 목록
 	@GetMapping("/list")
-	public void list(Model model, Criteria cri) {
+	public void list(@RequestParam("courseCode") Long courseCode, Model model, Criteria cri) {
 		log.info("list");
+		model.addAttribute("classDataList", service.getList(courseCode, cri));
+		//int total = service.getTotal(cri);
+		//log.info("list total" + total);
+		//model.addAttribute("pageMaker",new PageDTO(cri,total));
 	}
 	
 	// 강의 공지사항 & 수업자료 상세 조회 or 수정 화면
 	@GetMapping({ "/read", "/modify" })
 	public void get(@RequestParam("classDataNo") Long classDataNo, @ModelAttribute("cri") Criteria cri, Model model) {
-
+		log.info("수업자료 및 공지사항 게시물 하나가져옴");
+		model.addAttribute("classData", service.get(classDataNo));
 	}
 	
 	// 강의 공지사항 & 수업자료 수정
 	@PostMapping("/modify")
 	public String modify(ClassDataVO classData, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/class/read";
+			log.info("modify: " + classData);
+		
+		if(service.modify(classData)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/class/read?classDataNo="+classData.getClassDataNo();
 	}
 	
 	// 강의 공지사항 & 수업자료 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam("classDataNo") Long classDataNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return "redirect:/class/list";
+	public String remove(ClassDataVO classData, @RequestParam("classDataNo") Long classDataNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		
+		log.info("remove" + classDataNo);
+		
+		if(service.remove(classDataNo)) {
+			rttr.addFlashAttribute("result","success");
+		}	
+		return "redirect:/class/list?courseCode="+classData.getCourseCode();
 	}
 	
 	// 강의 공지사항 & 수업자료 등록 화면
 	@GetMapping("/register")
-	public void register() {
-
-	}
+	public void register() {}
 	
 	// 강의 공지사항 & 수업자료 등록
 	@PostMapping("/register")
 	public String register(ClassDataVO classData, RedirectAttributes rttr) {
-		return "redirect:/class/list";
+		
+		log.info("register" + classData);
+		service.register(classData);
+		
+		rttr.addFlashAttribute("result", classData.getClassDataNo());
+		return "redirect:/class/list?courseCode=" + classData.getCourseCode();
 
 	}
 	

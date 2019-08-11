@@ -6,7 +6,8 @@
 <%--<%@ include file="../includes/header.jsp" --%>
 <%@ include file="../about/sidebar.jsp" %>
 <button id="registerBtn" type="button">등록</button>
-<form id="classQnaForm0"  action="/classQna/list">
+<button id="classQnaListBtn" type="button">강의목록</button>
+<form id="classQnaForm0" action = "/classQna/list">
 	<table border="3">
 	  <!-- 목록 출력 -->                 
                    	<thead>
@@ -19,7 +20,7 @@
                    	</thead>
                    	<c:forEach items="${classQnaList}" var="classQna">
                    	
-                   	   <tr><td>${classQna.classQnaNo}</td>
+                   	   <tr><td>${classQna.rownum}</td>
                    	   <td>
                    	   <a class="move" href="${classQna.classQnaNo}">
                    	   	   ${classQna.classQnaTitle}</a></td>                 	   	   	                    	   	   	 
@@ -30,6 +31,7 @@
                    	   </tr>                  
                    </c:forEach>                                    
                 </table>
+                   <input type="hidden" name="courseCode" value="${param.courseCode}"> 
               </form> 
             
 <script>
@@ -45,7 +47,11 @@ $(function(){
 	});
 	
 	$("#registerBtn").on("click",function(){ 
-		self.location = "/classQna/register";
+		actionForm.attr("action","/classQna/register").submit();
+	});
+	
+	$("#classQnaListBtn").on("click", function(){
+		self.location = "/classQna/qna_class_list";
 	});
 		
 });

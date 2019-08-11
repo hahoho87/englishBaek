@@ -149,6 +149,7 @@ public class CourseUploadController {
 						FileCopyUtils.copyToByteArray(file),
 						header,
 						HttpStatus.OK);
+			log.info("disply");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -212,7 +213,7 @@ public class CourseUploadController {
 					
 					//가로 100 * 세로 100 섬네일 이미지 생성
 					Thumbnailator.createThumbnail(
-						m.getInputStream(), thumbnail, 100, 100
+						m.getInputStream(), thumbnail, 1000, 1000
 					);
 					thumbnail.close();
 				}//END 섬네일 이미지 생성

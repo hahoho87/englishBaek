@@ -27,8 +27,15 @@
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
                     <label for="inputClassroom">강의실</label>
-                    <input type="text" name="classroomNo" class="form-control form-control-lg form-control-a" id="inputClassroom"
-                      placeholder="강의실 *" >
+                    <select class="form-control form-control-lg form-control-a" id="inputClassroom" name="classroomNo">
+	        			<option value="default">Time</option>
+	        			<option value="301">301호</option>
+	        			<option value="302">302호</option>
+	        			<option value="303">303호</option>
+	        			<option value="304">401호</option>
+	        			<option value="305">402호</option>
+	        			<option value="306">403호</option>
+    				</select>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">

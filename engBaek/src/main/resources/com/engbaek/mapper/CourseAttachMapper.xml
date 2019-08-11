@@ -15,7 +15,7 @@
 	
 	<select id="findByCourseCode" resultType="com.engbaek.domain.CourseAttachVO">
 		SELECT * FROM courseAttach
-		WHERE courseCode = ${courseCode}
+		WHERE courseCode = #{courseCode}
 	</select>
 
 	<delete id="deleteAll">

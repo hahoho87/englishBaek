@@ -26,6 +26,7 @@
 
 <form id="classQnaForm1" action="/classQna/read" >
 <input type="hidden" id="classQnaNo" name="classQnaNo" value="${classQna.classQnaNo}">
+<input type="hidden" id="courseCode" name="courseCode" value="${classQna.courseCode}">
 </form>
 
 <button type = "submit" id="updateBtn">수정</button>
@@ -183,7 +184,7 @@ $(function(){
 	   });
 	   
 	   $("#deleteBtn").on("click",function(){
-		   classQnaForm1.attr("action","/classQna/remove");
+		  classQnaForm1.attr("action","/classQna/remove");
 		  classQnaForm1.attr("method","post");
 		  classQnaForm1.submit();
 		  alert("삭제가 완료되었습니다.");

@@ -31,7 +31,9 @@ public interface ClassQnaMapper {
 	public void insert(ClassQnaVO classQna);
 	//게시판 목록
 	
-	public List<ClassQnaVO> getList();
+	public List<ClassQnaVO> getList(Long courseCode);
+	
+	public List<ClassQnaVO> getQnaClassList();
 	/*
 	 * //강의별 public void insert(ClassQnaVO classQna_bno);
 	 */

@@ -7,7 +7,7 @@
 <%@ include file="../about/sidebar.jsp" %>
 
 <form role="form" action="/classQna/register" method="post">
-<input type="hidden" name="courseCode" value="1">
+<input type="hidden" name="courseCode" value="${param.courseCode}">
 <input type="hidden" name="teacherId" value="tc1">
 <div>
 <label>제목 : </label>           

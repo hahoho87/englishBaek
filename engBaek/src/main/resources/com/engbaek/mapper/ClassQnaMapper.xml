@@ -25,10 +25,18 @@
 		</trim>
 	</sql>
 	
+	<!-- 강의중인 강좌 목록 -->
+	<select id="getQnaClassList" resultType="com.engbaek.domain.ClassQnaVO">
+		select rownum, c.courseName, t.name, c.courseCode, c.courseStart
+			from course c join teacher t 
+			on t.teacherId = c.teacherId 
+            where c.teacherId = 'tc3' <!-- 로그인계정으로 바꿔야함  -->
+	</select>
+	
 	<!-- (학생)Qna 전체 목록 조회 -->
 	<select id="getList" resultType="com.engbaek.domain.ClassQnaVO">
 		<![CDATA[
-			SELECT * FROM classQna WHERE classQnaNo > 0 		
+			SELECT rownum, classQnaNo, classQnaTitle, studentId, classQnaRegdate FROM classQna WHERE courseCode = #{courseCode}
 		]]>		
 	</select>
 	

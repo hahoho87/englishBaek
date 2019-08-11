@@ -234,7 +234,11 @@
 						</when>
 						<when test="type == 'D'.toString()">
 							upper(c.courseLevel) LIKE
-							'%'||upper(#{keyword})||'%'
+							'%'||upper(#{keyword})||'%' AND c.courseType = '토익'
+						</when>
+						<when test="type == 'E'.toString()">
+							upper(c.courseLevel) LIKE
+							'%'||upper(#{keyword})||'%' AND c.courseType = '토스'
 						</when>
 						
 					</choose>

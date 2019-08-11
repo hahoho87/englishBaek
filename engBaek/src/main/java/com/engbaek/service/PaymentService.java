@@ -8,8 +8,11 @@ import com.engbaek.domain.PrivateQnaReplyVO;
 
 public interface PaymentService {
 	
-	//결제 내역 목록
+	//수강 취소 가능한 결제 내역 목록
 	public List<PaymentVO> getList();
+	
+	//수강 취소 불가능 결제 내역 목록
+		public List<PaymentVO> getList2();
 	
 	//결제 내역 게시물 등록 
 	public void register(PaymentVO payment);

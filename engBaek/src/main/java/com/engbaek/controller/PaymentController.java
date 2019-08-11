@@ -30,7 +30,8 @@ public class PaymentController {
 	public void list(Model model) {
 		 log.info("list");
 	      model.addAttribute("list", service.getList());
-
+	      model.addAttribute("list2", service.getList2());
+	      log.info("list2");
 	   
 	}
 	

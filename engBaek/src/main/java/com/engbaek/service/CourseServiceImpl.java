@@ -68,7 +68,7 @@ public class CourseServiceImpl implements CourseService {
 		
 		attachMapper.deleteAll(course.getCourseCode());
 		boolean modifyResult = mapper.update(course) == 1;
-		
+		log.info("modifyResult : " + modifyResult);
 		if(modifyResult 
 				&& course.getAttachList() != null
 				&& course.getAttachList().size() > 0) {
@@ -92,6 +92,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<CourseAttachVO> getAttachList(Long courseCode) {
 		log.info("get Attach list by courseCode" + courseCode);
+		log.info(courseCode);
 		return attachMapper.findByCourseCode(courseCode);
 	}
 

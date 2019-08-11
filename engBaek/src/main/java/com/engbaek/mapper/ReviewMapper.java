@@ -2,6 +2,7 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
+import com.engbaek.domain.CourseHistoryJoinVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
@@ -31,4 +32,7 @@ public interface ReviewMapper {
 
 	// 수강후기 목록
 	public List<ReviewVO> getList();
+	
+	//강좌가 종료된 수강 후기를 쓸수있는 강좌목록 출력 
+	public List<CourseHistoryJoinVO> andCourse();
 }

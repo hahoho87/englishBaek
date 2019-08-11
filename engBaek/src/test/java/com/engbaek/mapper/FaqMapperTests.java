@@ -24,7 +24,7 @@ public class FaqMapperTests {
 	
 	@Test
 	public void testGetList() {
-		mapper.getList().forEach(faq -> log.info(faq));;
+		mapper.getList().forEach(faq -> log.info(faq));
 	}
 	
 //	@Test

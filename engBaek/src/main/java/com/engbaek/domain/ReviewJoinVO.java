@@ -17,8 +17,8 @@ public class ReviewJoinVO {
 	  private Date reviewRegdate; 
 	  
 	  private String courseName; //강좌이름
-	  private Date courseStart; //개강일
-	  private Date courseEnd; //종강일
+	  private String courseStart; //개강일
+	  private String courseEnd; //종강일
 	  
 	  //선생님 이름
 		private String  name;

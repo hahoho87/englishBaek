@@ -4,16 +4,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%--<%@ include file="../includes/header.jsp" --%>
 <%@ include file="../about/sidebar.jsp"%>
-
+<h2>결제 취소 가능한 강좌</h2>
 <form action="/payment/list" id="operForm" >
-<table border="4">
+<table border="5">
 	<!-- 목록 출력 -->
+	
+	
 	<thead>
 		<tr>
 			<th>No.</th>
 			<th>강좌명</th>
 			<th>결제수단</th>
 			<th>결제일</th>
+			<th>금액</th>
 			<th>결제 상태</th>
 		</tr>
 	</thead>
@@ -28,13 +31,62 @@
 			<td>
 				<fmt:formatDate value="${payment.paymentDate}" pattern="yyyy-MM-dd" />
 			</td>
-			<td> <button id="cancel" value="${payment.paymentState}">${payment.paymentState}</button></td>
+			<td> ${payment.price}</td>
+			<td>
+			 <c:if test="${payment.paymentState !='결제취소완료'}"> 
+			<a class="move"  id="cancel" href="${payment.paymentNo}">${payment.paymentState} </a>
+			</c:if>
+			<c:if test="${payment.paymentState eq '결제취소완료'}"> 
+			 ${payment.paymentState}
+			</c:if>
+			</td>
 		</tr>
-	
+			
 	</c:forEach>
+
+</table>
+<input type="hidden" name="paymentState" value="결제취소완료">
+</form> 
+
+
+<h2>수강 완료(결제 취소 불가능) 결재내역</h2>
+<form action="/payment/list"  >
+<table border="5">
+	<!-- 목록 출력 -->
 	
+	
+	<thead>
+		<tr>
+			<th>No.</th>
+			<th>강좌명</th>
+			<th>결제수단</th>
+			<th>결제일</th>
+			<th>금액</th>
+			<th>결제 상태</th>
+		</tr>
+	</thead>
+	<c:forEach items="${list2}" var="paymentRefundNo">
+
+		<tr>
+			
+			<td>${paymentRefundNo.paymentNo}</td>
+			<td>
+				 ${paymentRefundNo.courseName}
+			</td>
+			<td>${paymentRefundNo.paymentMethod}</td>
+			<td>
+				<fmt:formatDate value="${paymentRefundNo.paymentDate}" pattern="yyyy-MM-dd" />
+			</td>
+			<td>${paymentRefundNo.price}</td>
+			<td>취소 불가능</td>
+		</tr>
+			
+	</c:forEach>
+
 </table>
 </form> 
+
+
 
 <!-- JavaScript Libraries -->
 <script src="../../../resources/lib/jquery/jquery.min.js"></script>
@@ -58,30 +110,19 @@ var  operForm = $("#operForm");
 $(".move").on("click", function(e){ 
 	//a 태그의 기본 동작 막고
 	e.preventDefault();	
-	
-	actionForm.append("<input type='hidden' name='reviewNo' value='"+
-					 $(this).attr('href')+"'>'");
-	actionForm.attr("action", "/review/register");
-	actionForm.submit();
-});
-
-
-$("#cancel").on("click",function(e){
-
-	e.preventDefault();	
-	
-
 	var deletcheck=confirm("결제를 취소 하시겠습니까?")
 	 if(deletcheck==true){
 	 alert("결제 취소가 완료되었습니다.");
-	 
-	 operForm.attr("action","/payment/modify").attr("method","post");
-	 
-	 operForm.submit();
+	
+	operForm.append("<input type='hidden' name='paymentNo' value='"+
+					 $(this).attr('href')+"'>'");
+	operForm.attr("action", "/payment/modify").attr("method","post");
+	e.preventDefault();	
+	operForm.submit();
 	 }else{
 		 return;
 	 }
-})
+});
 
 	 
 

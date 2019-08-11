@@ -12,20 +12,23 @@ public interface ClassDataService {
 	   public int getTotal(Criteria cri);
 	   
 	   //수업자료&공지 게시판 목록
-	   public List<ClassDataVO> getList(Criteria cri);
+	   public List<ClassDataVO> getList(Long courseCode, Criteria cri);
+	   
+	   //강의중인 강좌 목록
+	   public List<ClassDataVO> getClassList(Criteria cri);
 	   
 	   //수업자료&공지 게시물 등록 
-	   public void register(ClassDataVO class_);
+	   public void register(ClassDataVO classData);
 	   
 	   //수업자료&공지 게시물 상세 정보 
-	   public ClassDataVO get(Long class_bno);
+	   public ClassDataVO get(Long classDataNo);
 	   
 	   //수업자료&공지 게시물 수정
-	   public boolean modify(ClassDataVO class_);
+	   public boolean modify(ClassDataVO classData);
 	   
 	   //수업자료&공지 게시물 삭제
-	   public boolean remove(Long class_bno);
+	   public boolean remove(Long classDataNo);
 	   
 	   //수업자료&공지 첨부파일 목록 
-	   public List<ClassDataAttachVO> getAttachList(Long class_bno);
+	   public List<ClassDataAttachVO> getAttachList(Long classDataNo);
 }

@@ -23,7 +23,7 @@
                    	   <tr><td>${classQna.rownum}</td>
                    	   <td>
                    	   <a class="move" href="${classQna.classQnaNo}">
-                   	   	   ${classQna.classQnaTitle}</a></td>                 	   	   	                    	   	   	 
+                   	   	   ${classQna.classQnaTitle} <b>[${classQna.replyCnt}]</b></a></td>                 	   	   	                    	   	   	 
                    	   	   <td>${classQna.studentId}</td> 
                    	   	   <td>  
                    	   	   <fmt:formatDate value="${classQna.classQnaRegdate}" pattern="yyyy-MM-dd"/>

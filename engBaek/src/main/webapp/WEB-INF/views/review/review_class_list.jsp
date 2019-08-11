@@ -7,8 +7,8 @@
 <%@ include file="../about/sidebar.jsp" %>
 
 <br>
-<h3>강의중인 강좌</h3>
-<form id="studentClassForm">
+<h3>수강내역</h3>
+<form id="reviewClassForm">
 <table border="3">
 	  <!-- 목록 출력 -->                 
                    	<thead>
@@ -19,15 +19,15 @@
                    			<th>개강일</th>
                    		</tr>
                    	</thead>
-                   	<c:forEach items="${studentClassList}" var="classStudent">
+                   	<c:forEach items="${reviewClassList}" var="classReview">
                    		<tr>
-                   	  <td>${classStudent.rownum}</td>
+                   	  <td>${classReview.rownum}</td>
                    	   <td>
-                   	   <a class="move" href="${classStudent.courseCode}">
-                   	   	   ${classStudent.courseName}</a></td> 
-                   	   	   <td>${classStudent.name}</td>                	   	   	                    	   	   	 
+                   	   <a class="move" href="${classReview.courseCode}">
+                   	   	   ${classReview.courseName}</a></td> 
+                   	   	   <td>${classReview.name}</td>                	   	   	                    	   	   	 
                    	   	   <td>  
-                   	   	   ${classStudent.courseStart}
+                   	   	  ${classReview.courseStart}
                    	   	   </td>             	   	      	   	 
                    	   </tr>                  
                    </c:forEach>                                                   
@@ -37,14 +37,16 @@
 <script>
 $(function(){
 	
-	var actionForm = $("#studentClassForm");
-	
+	var actionForm = $("#reviewClassForm");
+
 	$(".move").on("click",function(e){	
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='courseCode' value='"
 			+$(this).attr('href')+"'>'");	
-		actionForm.attr("action","/classStudent/studentList").submit();
+		actionForm.attr("action","/review/list").submit();
 	});
+
+	
 });
 
 </script>

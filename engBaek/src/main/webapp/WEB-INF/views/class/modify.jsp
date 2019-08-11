@@ -34,7 +34,7 @@ var formObj = $("form");
 
 $(function(){
 	var classDataNo = "${classData.classDataNo}"; //게시글 번호 
-
+	var courseCode = '${classData.courseCode}';
 	$("#updateDoneBtn").on("click", function(e){
 		var classDataTitle = $("input[name='classDataTitle']").val();
 		var classDataContent = $("textarea[name='classDataContent']").val();
@@ -45,6 +45,8 @@ $(function(){
 			alert("내용을 입력해주세요");
 			return false;
 		}else{
+			formObj.append("<input type='hidden' name='courseCode' value='"
+					+courseCode+"'>'");
 			formObj.submit();
 			alert("수정이 완료 되었습니다");
 		}

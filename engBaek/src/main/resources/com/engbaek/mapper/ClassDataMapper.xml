@@ -27,7 +27,7 @@
 	</sql>
 	
    		<select id="getList" resultType = "com.engbaek.domain.ClassDataVO">
-   			SELECT rownum, classDataTitle, t.name, classDataRegdate,cd.classDataNo 
+   			SELECT rownum, classDataTitle, t.name, classDataRegdate,cd.classDataNo,c.courseCode
 				FROM classData cd JOIN teacher t 
 				ON cd.teacherId = t.teacherId
 				JOIN course c 
@@ -44,7 +44,7 @@
    		</select>
    		
    		<select id="read" resultType="com.engbaek.domain.ClassDataVO">
-			select rownum, cd.classDataTitle, t.name, cd.classDataRegdate, cd.classDataContent, cd.classDataNo
+			select rownum, cd.classDataTitle, t.name, cd.classDataRegdate, cd.classDataContent, cd.classDataNo,cd.courseCode
 			FROM classData cd join teacher t on t.teacherId = cd.teacherId where cd.classDataNo = #{classDataNo}
 		</select> 
 		

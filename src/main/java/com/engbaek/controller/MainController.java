@@ -28,4 +28,7 @@ public class MainController {
 	public void history() {
 	}
 	
+	@GetMapping("/mypage")
+	public void mypage() {
+	}
 }  

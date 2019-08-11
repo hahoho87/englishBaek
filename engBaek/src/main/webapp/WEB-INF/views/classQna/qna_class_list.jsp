@@ -27,7 +27,7 @@
                    	   	   ${classQna.courseName}</a></td> 
                    	   	   <td>${classQna.name}</td>                	   	   	                    	   	   	 
                    	   	   <td>  
-                   	   	   <fmt:formatDate value="${classQna.courseStart}" pattern="yyyy-MM-dd"/>
+                   	   	  ${classQna.courseStart}
                    	   	   </td>             	   	      	   	 
                    	   </tr>                  
                    </c:forEach>                                                   

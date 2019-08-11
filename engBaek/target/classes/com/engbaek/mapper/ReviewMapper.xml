@@ -106,13 +106,16 @@ where reviewNo>0  AND
   	]]>
   </select>
   
-  
- <select id="andCourse" resultType="com.engbaek.domain.CourseHistoryJoinVO">
-  <![CDATA[
-    SELECT  *
-	FROM courseHistory ch, course c,teacher t
-	where ch.courseCode= c.courseCode AND t.teacherId=c.teacherId
-	AND c.courseEnd < (SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD')FROM DUAL)
-	]]>
-</select>
+  <!-- 강의중인 강좌 목록 -->
+	<select id="getReviewClassList" resultType="com.engbaek.domain.ReviewJoinVO">
+		select rownum, c.courseName, t.name, c.courseCode, c.courseStart
+			from course c join teacher t 
+			on t.teacherId = c.teacherId 
+            join coursehistory ch
+            on c.courseCode = ch.courseCode
+            where ch.studentId = 'stu1' and c.courseStart > (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')FROM DUAL)
+            <!-- 로그인할때 stu1 바꿔야 해 ~~~요 뭬롱 ㅎ힣 -->
+	</select>
   </mapper>
+  
+  

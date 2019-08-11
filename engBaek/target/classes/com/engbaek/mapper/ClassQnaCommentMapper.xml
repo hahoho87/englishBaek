@@ -30,7 +30,7 @@
 	
 	
 	<insert id="insert">
-		INSERT INTO classQnaComment values(classQnaComment_seq.nextval,2,'stu2','tc1', #{commentContent},SYSDATE,#{classQnaNo})
+		INSERT INTO classQnaComment values(classQnaComment_seq.nextval,#{courseCode},'stu2','tc1', #{commentContent},SYSDATE,#{classQnaNo})
 	</insert>
   	
 	<delete id="delete">

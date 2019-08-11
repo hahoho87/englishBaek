@@ -12,6 +12,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ClassQnaCommentPageDTO {
-	private int commentCnt;		//전체 댓글 갯수
+	private int replyCnt;		//전체 댓글 갯수
 	private List<ClassQnaCommentVO> list;	//댓글 목록
 }

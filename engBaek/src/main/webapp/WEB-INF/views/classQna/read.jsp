@@ -56,6 +56,7 @@
 		console.log("JS TEST");
 	
 		var classQnaNoValue = '<c:out value="${classQna.classQnaNo}"/>';
+		var courseCodeValue = '<c:out value = "${classQna.courseCode}"/>';
 		var commentUL = $(".chat");
 		
 		showList(1);
@@ -95,7 +96,7 @@
 	$("#commentRegister").on("click",function(e){	
 		var commentWrite = $('#commentWrite').val();
 		commentService.add(
-			{commentContent: commentWrite, classQnaNo: classQnaNoValue},function(result){
+			{commentContent: commentWrite, classQnaNo: classQnaNoValue, courseCode: courseCodeValue},function(result){
 			//$("#classQnaForm1").attr("action","/classQna/read").submit();
 			$('#commentWrite').val('');
 			showList(1);
@@ -108,8 +109,9 @@
 		 commentService.remove(commentNo, function(count){
 				console.log(count);
 				
-				if(count === "success"){
+				if(count == "success"){
 					alert("삭제가 완료되었습니다.");
+					showList(1);
 				}
 			}, function(err){
 				alert('삭제실패');

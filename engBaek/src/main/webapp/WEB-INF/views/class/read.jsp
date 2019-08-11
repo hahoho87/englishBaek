@@ -25,7 +25,7 @@
 
 <form id="classDataForm" action="/class/read" >
 <input type="hidden" id="classDataNo" name="classDataNo" value="${classData.classDataNo}">
-<input type="hidden" id="courseCode" name="courseCode" value="${param.courseCode}">
+<input type="hidden" id="courseCode" name="courseCode" value="${classData.courseCode}">
 </form>
 
 <button type = "submit" id="updateBtn">수정</button>

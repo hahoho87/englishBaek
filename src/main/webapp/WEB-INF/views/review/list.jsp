@@ -3,10 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%--<%@ include file="../includes/header.jsp" --%>
-<%@ include file="../about/sidebar.jsp"%>
 
+ <%@ include file="../includes/header.jsp" %>
 
+ <%@ include file="../about/mypage.jsp" %>
 
+  <section class="intro-single">
+ <div class="container">
+      <div class="row">
+      <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">수강후기</h1>
+          </div>
+        </div>
+  
+<div class="container">
 <form action="/review/list">
 <table border="3">
 	<!-- 목록 출력 -->
@@ -36,11 +47,12 @@
 
 </table>
 </form> 
+</div>
 
 <!-- 새로운 후기 등록 버튼 -->
 <button id="regBtn" type="button" class="btn btn-xs pull-right">등록 </button>
 
-
+<br>
 
 <!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
 <div class='row'>
@@ -94,8 +106,9 @@
 	<!-- 검색 키워드와 조건 파라미터 추가 -->
 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }"> <input type="hidden" name="type" value="${pageMaker.cri.type }">
 </form>
-
-
+</div>
+</div>
+</section>
 <!-- JavaScript Libraries -->
 <script src="../../../resources/lib/jquery/jquery.min.js"></script>
 <script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>

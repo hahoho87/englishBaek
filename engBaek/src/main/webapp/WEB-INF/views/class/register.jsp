@@ -50,8 +50,8 @@ $(function(){
 	 });
 	
 	$("#cancel").on("click",function(e){
-		self.location = "/classQna/list";
-	});
+		self.location = "/class/list?courseCode="+${param.courseCode};
+	}); 
 });
 </script>
 <%--<%@ include file="../includes/footer.jsp" --%>

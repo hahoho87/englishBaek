@@ -2,7 +2,7 @@
 <html lang="kor">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta charset="utf-8">
+  <meta charset="utf-8"> 
   <title>Baek 어학원</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -63,11 +63,11 @@
           </li>
           <li class="nav-item dropdown">
 	<a class="nav-link dropdown-toggle" href="../#.html" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">수강신청</a>
+              aria-haspopup="true" aria-expanded="false">강의 소개</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="../property-single.html">강사소개</a>
-              <a class="dropdown-item" href="../blog-single.html">토익</a>
-              <a class="dropdown-item" href="../agents-grid.html">토익 스피킹</a>
+            <a class="dropdown-item" href="../property-single.html">강사소개</a>
+              <a class="dropdown-item" href="../blog-single.html">강좌내역</a>
+
             </div>
           </li>
           <li class="nav-item">
@@ -90,9 +90,14 @@
           <li>
           <span>　　</span>
           <small>
-          <a href="../#">로그인</a>｜
-          <a href="join/join1.jsp">회원가입</a>｜
-          <a href="../#">마이페이지</a>
+         <sec:authorize access="isAnonymous()">
+          <a href="../member/customLogin">로그인</a>｜
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+          <a href="../member/customLogout">로그아웃</a>｜
+          </sec:authorize>
+          <a href="../join/join1">회원가입</a>｜
+          <a href="../member/member">마이페이지</a>
           </small>
           </li>
         </ul>

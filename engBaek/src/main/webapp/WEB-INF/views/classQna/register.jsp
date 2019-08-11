@@ -51,7 +51,7 @@ $(function(){
 	 });
 	
 	$("#cancel").on("click",function(e){
-		self.location = "/classQna/list";
+		self.location = "/classQna/list?courseCode="+${param.courseCode};
 	});
 });
 

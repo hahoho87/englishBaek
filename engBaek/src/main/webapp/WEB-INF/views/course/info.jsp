@@ -3,16 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
-<style>
-	.uploadList li {
-		list-style-type: none;
-	}
-	
-	.uploadList {
-		list-style-type: none;
-	}
-
-</style>
 
 <form id="operForm" action="/course/modify">
 	<input type="hidden" id="courseCode" name="courseCode" value="${course.courseCode }">
@@ -23,9 +13,12 @@
 	<!-- 검색 조건과 키워드 파라미터 추가 -->
 	<input type="hidden" name="type" value="${cri.type }"> 
 	<input type="hidden" name="keyword" value="${cri.keyword }">
+	
+	<!-- 결제 관련 정보 -->
+   <input type="hidden" name="paymentPrice" value="${course.price }"> 
+   <input type="hidden" name="courseName" value="${course.courseName}"> 
 </form>
 <!-- /.panel-body -->
-
 
 <form id="mainForm">
 	<!--/ Intro Single star /-->
@@ -64,7 +57,7 @@
 					<div id="property-single-carousel"
 						class="owl-carousel owl-arrow gallery-property">
 						<div class="carousel-item-b uploadResult">
-							<ul class="uploadList">
+							<ul class="uploadList list-unstyled">
 							</ul>
 						</div>
 						<div class="carousel-item-b">
@@ -344,7 +337,40 @@
 				formObj.append(typeTag);
 				formObj.append(keywordTag);
 				
-			} else {
+			}  else if(operation === 'payment') {   //수강신청 버튼 눌릴경우 
+	            //결제 관련 정보
+	            var priceTag = $("input[name='paymentPrice']").clone();
+	            var courseCodeTag = $("input[name='courseCode']").clone();
+	            var courseNameTag = $("input[name='courseName']").clone();
+	            
+	      
+	            
+	            //페이지 번호와 게시물 개수 복사
+	            var pageNumTag = $("input[name='pageNum']").clone();
+	            var amountTag = $("input[name='amount']").clone();
+	            
+	            //검색 조건과 키워드 복사
+	            var typeTag = $("input[name='type']").clone();
+	            var keywordTag = $("input[name='keyword']").clone();
+
+	            formObj.attr("action", "/payment/payRegister")
+	                  .attr("method", "get");
+	            //formObj.empty();   //폼 태그 모든 내용을 지움
+	            
+	            //결제 정보 폼에 추가
+	            formObj.append(courseCodeTag);
+	            formObj.append(priceTag);
+	            formObj.append(courseNameTag);
+	            
+	            //페이지 번호와 게시물 개수만 폼에 추가
+	            formObj.append(pageNumTag);
+	            formObj.append(amountTag);
+	            
+	            //검색 조건과 키워드 폼에 추가 
+	            formObj.append(typeTag);
+	            formObj.append(keywordTag);
+	            
+	         } else {
 				var courseCodeTag = $("input[name='courseCode']").clone();
 
 				//페이지 번호와 게시물 개수 복사
@@ -390,7 +416,7 @@
 			$(arr).each(function(i, obj){
 				//업로드 파일명 <li>추가
 				if(obj.fileType){	//이미지인 경우
-					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + 
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + 
 													      obj.coursePictureUuid  + "_" +
 													      obj.coursePictureName);
 

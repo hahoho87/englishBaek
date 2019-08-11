@@ -9,7 +9,7 @@
 	<![CDATA[
 	SELECT
 		p.teacherPno
-		, p.teacherId
+		, t.teacherId
 		, p.teacherSubject
 		, p.teacherProfile
 		, t.name
@@ -28,7 +28,10 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()">
+						<when test="type == 'A'.toString()">
+							upper(name) LIKE '%'||upper(#{keyword})||'%'
+						</when>
+						<when test="type == 'B'.toString()">
 							upper(name) LIKE '%'||upper(#{keyword})||'%'
 						</when>
 						<when test="type == 'C'.toString()">
@@ -65,7 +68,7 @@
 		<![CDATA[
 			SELECT	teacherPno, teacherId, teacherSubject, teacherProfile, name, email1, email2, career 
  			FROM	( SELECT /*+INDEX_DESC(profile teacher_profile_pk)*/
- 					 rownum rn, p.teacherPno, p.teacherId, p.teacherSubject, p.teacherProfile, t.name, t.email1, t.email2, t.career 
+ 					 rownum rn, p.teacherPno, t.teacherId, p.teacherSubject, p.teacherProfile, t.name, t.email1, t.email2, t.career 
  					  FROM profile p, teacher t
  					  WHERE p.teacherId = t.teacherId
  					  AND
@@ -211,7 +214,13 @@
       SELECT COUNT(*) FROM teacher
       WHERE
       teacherId = #{teacherId}
-</select>
+	</select>
 	
+	<select id="selectId" resultType="com.engbaek.domain.ProfileJoinVO">
+		SELECT t.teacherId, p.teacherPno, t.name
+		FROM profile p, teacher t
+		WHERE p.teacherId(+) = t.teacherId
+        AND p.teacherID IS NULL
+	</select>
 
 </mapper>   

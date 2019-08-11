@@ -8,4 +8,5 @@ public class ProfileAttachVO {
 	private String teacherProfilePicture;
 	private String teacherProfileUuid;
 	private String uploadPath;
+	private boolean fileType;
 }

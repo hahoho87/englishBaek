@@ -14,5 +14,5 @@ public class ClassStudentVO {
 	private String courseName; //강좌이름
 	private String courseCode; //강좌 코드
 	private String studentId; //학생 id
-	private Date courseStart; //개강일
+	private String courseStart; //개강일
 }

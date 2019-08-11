@@ -53,7 +53,7 @@ public class ProfileServiceImpl implements ProfileService {
 		// 첨부파일이 있는 경우
 		profile.getAttachList().forEach(attach -> {
 			attach.setTeacherPno(profile.getTeacherPno());
-			attachMapper.insert(profile);
+			attachMapper.insert(attach);
 		});
 	}
 
@@ -76,7 +76,7 @@ public class ProfileServiceImpl implements ProfileService {
 				&& profile.getAttachList().size() > 0) {
 			profile.getAttachList().forEach(attach -> {
 				attach.setTeacherPno(profile.getTeacherPno());
-				attachMapper.insert(profile);	//첨부파일 등록
+				attachMapper.insert(attach);	//첨부파일 등록
 			});
 		}
 		return modifyResult;
@@ -101,6 +101,12 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<ProfileAttachVO> getAttachList(Long teacherPno) {
 		log.info("get Attach List by teacherPno : " + teacherPno);
 		return attachMapper.findByTeacherPno(teacherPno); 
+	}
+
+	@Override
+	public List<ProfileJoinVO> selectId() {
+		log.info("get list without cri");
+		return mapper.selectId();
 	}
 
 }

@@ -55,12 +55,13 @@ public class ProfileController {
 	public void get(@RequestParam("teacherPno") Long teacherPno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("get or modify : " + teacherPno);
 		model.addAttribute("profile", service.get(teacherPno));
+		model.addAttribute("profileList",service.selectId());
 	}
 
 	// 강사 소개 등록 화면
 	@GetMapping("/register")
-	public void register() {
-
+	public void register(Model model) {
+		model.addAttribute("profileList",service.selectId());
 	}
 
 	// 강사 소개 등록
@@ -147,12 +148,12 @@ public class ProfileController {
 
 		attachList.forEach(attach -> {
 			try {
-				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getTeacherProfileUuid()
+				Path file = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\" + attach.getTeacherProfileUuid()
 						+ "_" + attach.getTeacherProfilePicture());
 				Files.deleteIfExists(file);
 
 				if (Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_"
+					Path thumbNail = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\s_"
 							+ attach.getTeacherProfileUuid() + "_" + attach.getTeacherProfilePicture());
 
 					Files.delete(thumbNail);

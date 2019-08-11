@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%--<%@ include file="../includes/header.jsp" --%>
-<%@ include file="../about/sidebar.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8">
@@ -37,83 +37,177 @@
 <link
 	href="../../../resources/lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
+	
+	<!--/ Intro Single star /-->
+  <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">강사 소개</h1>
+            <span class="color-text-a">Teacher Profile</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a href="/profile/list">강사 소개</a>
+              </li>
+            </ol>
+          </nav>
+                      <div class="grid-option">
+				<form>
+					<select class="custom-select" id="search">
+						<option value="">ALL</option>
+                		<optgroup label="Toeic">
+                    		<option value="550">토익-550</option>
+                    		<option value="700">토익-700</option>
+                    		<option value="850">토익-850</option>
+				        </optgroup>
+				        <optgroup label="Toeic Speaking">
+				            <option value="5">토스-5</option>
+				            <option value="6">토스-6</option>
+				            <option value="7">토스-7</option>
+				        </optgroup>
+				    </select>
+				</form>
+			</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
 
-<table class="table table-striped table-bordered table-hover">
-	<!-- 목록 출력 -->
-	<thead>
-		<tr>
-			<th>이름</th>
-			<th>과목</th>
-			<th>소개</th>
-			<th>이메일</th>
-			<th>경력</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${profileList}" var="profile">
+  <!--/ Agents Grid Star /-->
+<form id="mainForm">
+  <section class="agents-grid grid">
+    <div class="container">
+      <div class="row">
+      <c:forEach items="${profileList}" var="profile">
+        <div class="col-md-4">
+          <div class="card-box-d">
+            <div class="card-img-d">
+              <img src="../../../resources/img/agent-4.jpg" alt="" class="img-d img-fluid">
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="${profile.teacherPno}" class="move link-two">${profile.name }</a>
+                  </h3>
+                </div>
+              </div>
+              <div class="card-body-d">
+                <p class="content-d color-text-a">
+                  ${profile.teacherProfile }
+                </p>
+                <p class="content-d color-text-a">
+                  ${profile.career }
+                </p>
+                <div class="info-agents color-a">
+                  <p>
+                    <strong>과목 : </strong> ${profile.teacherSubject } </p>
+                  <p>
+                    <strong>Email: </strong> ${profile.email1 }@${profile.email2 }</p>
+                </div>
+              </div>
+              <div class="card-footer-d">
+                <div class="socials-footer d-flex justify-content-center">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </c:forEach>
+      </div>
+				<button id="regBtn" type="button" class="col-md-2 btn btn-a pull-right">Register</button>
+					<!-- 페이지 번호 출력 -->
+				<div class="pull-left">
+					<nav class="pagination-a">
+						<ul class="pagination justify-content-end">
+							<c:if test="${pageMaker.prev }">
+								<!-- previous 버튼 표시 -->
+								<li class="paginate_button page-item previous"><a
+									class="page-link" href="${pageMaker.startPage - 1 }">
+										Previous</a></li>
+							</c:if>
 
-			<tr>
-				<td><a class="move" href="${profile.teacherPno}"> ${profile.name}</a></td>
-				<td>${profile.teacherSubject}</td>
-				<td>${profile.teacherProfile}</td>
-				<td>${profile.email1} @ ${profile.email2 }</td>
-				<td>${profile.career}</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-<!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
-<div class='row'>
-	<div class="col-lg-12">
-		<form id="searchForm" action="/profile/list">
-			<select name="type">
-				<c:set var="type" value="${pageMaker.cri.type }" />
-				<!-- 검색 조건이 없을 경우 selected 표시 -->
-				<option value="" <c:out value="${type == null?'selected':'' }"/>>검색
-					조건 지정</option>
-				<!-- ${pageMaker.cri.type}이 value와 일치하면 selected 표시 -->
-				<option value="T" <c:out value="${type == 'T'?'selected':'' }"/>>이름</option>
-				<option value="C" <c:out value="${type == 'C'?'selected':'' }"/>>과목</option>
-				<option value="TC" <c:out value="${type == 'TC'?'selected':'' }"/>>제목
-					+ 내용</option>
-			</select> <input type="text" name="keyword" value="${pageMaker.cri.keyword }">
-			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-			<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-			<button class="btn btn-default">Search</button>
-		</form>
-	</div>
-	<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
-</div>
-<!-- END 검색창 - 검색 조건 및 키워드 입력 영역 -->
+							<!-- 페이지 번호 표시 -->
+							<c:forEach begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }" var="num">
+								<li
+									class="paginate_button page-item ${pageMaker.cri.pageNum == num ? 'active': '' }"><a
+									class="page-link" href="${num }">${num }</a></li>
+							</c:forEach>
 
-<!-- 페이지 번호 출력 -->
-<div class="pull-right">
-	<ul class="pagination">
-		<c:if test="${pageMaker.prev }">
-			<!-- previous 버튼 표시 -->
-			<li class="paginate_button page-item previous"><a
-				class="page-link" href="${pageMaker.startPage - 1 }"> Previous</a></li>
-		</c:if>
+							<c:if test="${pageMaker.next }">
+								<!-- next 버튼 표시 -->
+								<li class="paginate_button page-item next"><a
+									class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
+							</c:if>
+						</ul>
+					</nav>
+				</div>
+				<!-- END 페이지 번호 출력 -->
+				
+    </div>
+    
 
-		<!-- 페이지 번호 표시 -->
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
-			var="num">
-			<li
-				class="paginate_button page-item ${pageMaker.cri.pageNum == num ? 'active': '' }"><a
-				class="page-link" href="${num }">${num }</a></li>
-		</c:forEach>
-
-		<c:if test="${pageMaker.next }">
-			<!-- next 버튼 표시 -->
-			<li class="paginate_button page-item next"><a class="page-link"
-				href="${pageMaker.endPage + 1 }">Next</a></li>
-		</c:if>
-	</ul>
-</div>
-<!-- END 페이지 번호 출력 -->
-
-
-<!-- a 태그 대신 pageNum과 amount 파라미터로 전송 -->
+  </section>
+</form>  
+  <!--/ Agents Grid End /-->
+  
+        <!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<form id="searchForm" action="/profile/list">
+							<select name="type">
+								<c:set var="type" value="${pageMaker.cri.type }" />
+								<!-- 검색 조건이 없을 경우 selected 표시 -->
+								<option value="A" <c:out value="${type == 'A'?'selected':'' }"/>>강사명</option>
+								<!-- ${pageMaker.cri.type}이 value와 일치하면 selected 표시 -->
+								
+							</select> 
+							<input type="text" class="form-control form-control-lg form-control-a" name="keyword" value="${pageMaker.cri.keyword }"> 
+							<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }"> 
+							<input type="hidden" name="amount" value="${pageMaker.cri.amount }"><button class="btn btn-info">Search</button>
+							
+						</form>
+					</div>
+				</div>
+				<!-- END 검색창 - 검색 조건 및 키워드 입력 영역 -->
+		<!-- a 태그 대신 pageNum과 amount 파라미터로 전송 -->
 <form id="actionForm" action="/profile/list">
 	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
@@ -173,6 +267,27 @@
 			e.preventDefault();
 			searchForm.submit(); //폼 전송
 		});
+		
+		// select 검색 처리
+		$(function(){
+			var searchValue;
+		 
+				$('#search').change(function(){
+					searchValue = $("#search option:selected").val();
+					var actionForm = $('#mainForm');
+					console.log(searchValue);
+					
+					if(searchValue == "ALL"){
+						searchValue = '';	
+						actionForm.submit();
+						return false;
+					}
+					actionForm.append("<input type='hidden' name='type' value='C'>");	
+					actionForm.append("<input type='hidden' name='keyword' value='"+searchValue+"'>")
+					actionForm.attr("action","/profile/list").submit();
+				});
+				
+		});	
 
 	});
 </script>

@@ -26,7 +26,7 @@
 					<nav aria-label="breadcrumb"
 						class="breadcrumb-box d-flex justify-content-lg-end">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
 							<li class="breadcrumb-item active" aria-current="page">강좌 소개
 							</li>
 						</ol>
@@ -110,10 +110,8 @@
 
 			</div>
 		</div>
+		
 		<!-- 검색창 - 검색 조건 및 키워드 입력 영역 -->
-				
-				            
-            
 				<div class='row'>
 					<div class="col-lg-6">
 						<form id="searchForm" action="/course/list">
@@ -134,10 +132,11 @@
 							<button class="btn btn-default">Search</button>
 						</form>
 					</div>
-					<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
+					<button id="regBtn" type="button" class="btn btn-a pull-right">r</button>
 				</div>
 				<!-- END 검색창 - 검색 조건 및 키워드 입력 영역 -->
-		<!-- 페이지 번호 출력 -->
+				
+				<!-- 페이지 번호 출력 -->
 				<div class="pull-left">
 					<nav class="pagination-a">
 						<ul class="pagination justify-content-end">

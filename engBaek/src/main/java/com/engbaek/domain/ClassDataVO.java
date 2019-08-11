@@ -16,7 +16,7 @@ public class ClassDataVO {	//수업자료 & 공지사항
 	
 	private long rownum; //행번호
 	private String courseName; //강좌명
-	private Date courseStart; //개강일 
+	private String courseStart; //개강일 
 	private String name; //강사명 
 	
 }

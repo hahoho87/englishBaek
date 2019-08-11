@@ -103,7 +103,7 @@ insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','l
  //6.강사소개
 CREATE TABLE profile(
     teacherPno  NUMBER(20) CONSTRAINT teacher_profile_pk PRIMARY KEY,
-    teacherId  VARCHAR2(40) CONSTRAINT tp_teacher_fk REFERENCES teacher(teacherId) NOT NULL,
+    teacherId  VARCHAR2(40) CONSTRAINT tp_teacher_fk REFERENCES teacher(teacherId) NOT NULL UNIQUE,
     teachersubject VARCHAR2(2000) NOT NULL,
     teacherProfile VARCHAR2(2000) NOT NULL
 );
@@ -439,3 +439,8 @@ DROP SEQUENCE notice_seq;
 DROP SEQUENCE faq_seq;
 DROP SEQUENCE course_seq;
 DROP SEQUENCE profile_seq;
+
+
+alter table classQna add(replycnt number default 0);    //댓글수 추가
+
+update classQna set replycnt = (select count(commentNo) from classQnaComment where classQna.classQnaNo = classQnaComment.classQnaNo);

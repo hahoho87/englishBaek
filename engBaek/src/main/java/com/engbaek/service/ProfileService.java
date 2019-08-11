@@ -13,6 +13,7 @@ public interface ProfileService {
 
 	public int getTotal(Criteria cri);
 	public List<ProfileJoinVO> getList(Criteria cri);
+	public List<ProfileJoinVO> selectId();
 	public void register(ProfileVO  profile);
 	public ProfileVO get(Long teacherPno);
 	public boolean modify(ProfileVO  profile);

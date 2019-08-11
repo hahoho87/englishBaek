@@ -26,7 +26,7 @@ public interface ProfileMapper {
 	public Integer insertSelectKey(ProfileVO profile);
 
 	// 강사소개 목록
-	public List<ProfileJoinVO> getList();
+	public List<ProfileJoinVO> selectId();
 	
 	// 강사소개 조회 join(result map 이용)
 	public ProfileVO selectOneProfile(Long teacherPno);

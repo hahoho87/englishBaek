@@ -18,6 +18,6 @@ public class ClassQnaVO {	//q&a게시판
 	
 	private String name; //선새님 이름 
 	private String courseName; //강좌 이름 
-	private Date courseStart; //강좌 개강일 
+	private String courseStart; //강좌 개강일 
 		
 }

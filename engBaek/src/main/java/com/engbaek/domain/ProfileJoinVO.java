@@ -1,5 +1,7 @@
 package com.engbaek.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -15,5 +17,7 @@ public class ProfileJoinVO {
 	private String email1;
 	private String email2;
 	private String career;
+	
+	private List<ProfileAttachVO> attachList;
 
 }

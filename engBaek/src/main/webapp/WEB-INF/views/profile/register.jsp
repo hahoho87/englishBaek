@@ -18,6 +18,7 @@
 					</div>
 					<form role="form" class="form-a" method="post"
 						action="/profile/register">
+						
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<div class="form-group">
@@ -36,7 +37,7 @@
 								<div class="form-group">
 									<label for="infoInput">강사 정보</label>
 									<textarea id="infoInput" class="form-control"
-										placeholder="강좌 정보 *" name="teacherProfile" cols="45" rows="8"
+										placeholder="강사 정보 *" name="teacherProfile" cols="45" rows="8"
 										required></textarea>
 								</div>
 							</div> 
@@ -207,7 +208,7 @@
 						str += "<span> " + obj.teacherProfilePicture + "</span>";
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>";
 						str += "<i class='fa fa-times'></i></button><br>";
-						str += "<img src='/display?fileName=" + fileCallPath + "'>";
+						str += "<img src='/profileImages/display?fileName=" + fileCallPath + "'>";
 						str += "</div></li>"
 						console.log(str);
 						

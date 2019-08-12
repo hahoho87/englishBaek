@@ -147,11 +147,11 @@ public class CourseController {
 		attachList.forEach(attach -> {
 			try {
 				Path file = Paths.get(
-						"/Users/bky/upload/" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
+						"c:\\upload\\" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
 				Files.deleteIfExists(file);
 
 				if (Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
+					Path thumbNail = Paths.get("c:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
 							+ attach.getCoursePictureName());
 
 					Files.delete(thumbNail);

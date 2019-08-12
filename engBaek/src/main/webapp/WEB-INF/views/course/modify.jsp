@@ -42,7 +42,7 @@
                 <div class="col-md-6 mb-3">
                   <div class="form-group">
                     <label for="inputClassroom">강의실</label>
-				      <select id="search" class="form-control form-control-lg form-control-a" id="inputClassroom" name="classroomNo" multiple="multiple" >     
+				      <select id="search" class="form-control form-control-lg form-control-a" id="inputClassroom" name="classroomNo" >     
 				           <option value="0" <c:if test='${course.classroomNo == 0}'>selected</c:if>>강의실</option>              
 				           <option value="301" <c:if test='${course.classroomNo == 301}'>selected</c:if>>301</option>
 				           <option value="302" <c:if test='${course.classroomNo == 302}'>selected</c:if>>302</option>
@@ -308,7 +308,7 @@ $(function(){
 					       "            data-type='image'" 					+
 					       "        class='btn btn-warning btn-circle'>" 	+
 					       "        <i class='fa fa-times'></i></button><br>" +
-					       "    <img src='/display?fileName="+ fileCallPath + "'>" +
+					       "    <img src='/courseImages/display?fileName="+ fileCallPath + "'>" +
 					       "    </div></li>";
 				} else {		//이미지가 아닌 경우
 					var fileCallPath 

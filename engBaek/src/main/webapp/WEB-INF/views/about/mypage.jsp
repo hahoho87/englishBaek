@@ -21,7 +21,8 @@
     </div>    
     <nav class="nav flex-column">
     	<a class="nav-link" href="">개인정보</a>
-    	<a class="nav-link" href="../">수강내역</a>
+    	<a class="nav-link" href="/classStudent/student_class_list">강의별 QnA</a>
+    	<a class="nav-link" href="/review/review_class_list">리뷰</a>
     	<a class="nav-link" href="../privateQna/list">1:1문의</a>
     	<a class="nav-link" href="../payment/list">결제내역</a>
 	</nav>

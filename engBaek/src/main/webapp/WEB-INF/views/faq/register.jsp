@@ -33,6 +33,8 @@
 	<div class="panel-body">
 		<!-- 게시물 등록 폼 -->
 		<form role="form" method="post" action="/faq/register">
+		<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }"> <input type="hidden">
 			<input type="hidden">
 			<div class="form-group">
 				<label>Title</label> <input class="form-control" name="faqTitle">
@@ -42,7 +44,9 @@
 				<textarea rows="3" class="form-control" name="faqContent"></textarea>
 			</div>
 			<div class="form-group">
-				<label>Writer</label> <input class="form-control" name="adminId" />
+				<label>Writer</label> 
+				<input class="form-control" name="adminId" 
+					value='<sec:authentication property="principal.username"/>' readonly="readonly">
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
 			<button type="reset" class="btn btn-default">Reset</button>

@@ -81,7 +81,7 @@ CREATE TABLE course(
     courseTime     VARCHAR2(40) NOT NULL,
     courseStart    VARCHAR2(40) NOT NULL,
     courseEnd      VARCHAR2(40) NOT NULL,
-    price          NUMBER(20)  NOT NULL,
+    price          NUMBER(20)  NOT NULL
 );
 
 CREATE SEQUENCE course_seq
@@ -116,7 +116,7 @@ NOCYCLE ;
 
 insert into profile values(profile_seq.nextval,'tc3','토스-6,토익-550,토익-850','현)잉글리시백에서 미친토스 강의 중');
 insert into profile values(profile_seq.nextval,'tc3','토스-5,토스-6,토스-7','현)잉글리시백에서 미친토스 강의 중');
-insert into profile values(profile_seq.nextval,'tc2','토익-700','현)잉글리시백에서 미친토익 강의 중');
+insert into profile values(profile_seq.nextval,'tc1','토익-700','현)잉글리시백에서 미친토익 강의 중');
 
 
 //7.FAQ

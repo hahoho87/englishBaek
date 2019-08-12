@@ -47,7 +47,7 @@ public class ProfileUploadController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		try {
-			File file = new File("/Users/bky/upload/" + //원래 파일명으로 디코딩
+			File file = new File("c:\\upload\\" + //원래 파일명으로 디코딩
 							     URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();	//파일 삭제
 			
@@ -94,7 +94,7 @@ public class ProfileUploadController {
 						@RequestHeader("User-Agent")String userAgent){
 		log.info("download file : " + fileName);
 		Resource resource 
-			= new FileSystemResource("/Users/bky/upload/" + fileName);
+			= new FileSystemResource("c:\\upload\\" + fileName);
 		log.info("resource : " + resource);
 		if(resource.exists() == false) {	//resource가 없으면 404반환
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -138,7 +138,7 @@ public class ProfileUploadController {
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName){
-		File file = new File("/Users/bky/upload/" + fileName);
+		File file = new File("c:\\upload\\" + fileName);
 		ResponseEntity<byte[]> result = null;
 		
 		try {
@@ -164,7 +164,7 @@ public class ProfileUploadController {
 		List<ProfileAttachVO> list = new ArrayList<>();
 		log.info("uploadFormAction");
 		log.info("getFolder : " + getFolder());
-		String uploadFolder = "/Users/bky/upload/";	//업로드 경로
+		String uploadFolder = "c:\\upload\\";	//업로드 경로
 		
 		//업로드 경로 = c:\\upload 폴더 밑에 연\월\일 폴더로 생성
 		File uploadPath = new File(uploadFolder, getFolder());
@@ -237,7 +237,7 @@ public class ProfileUploadController {
 							   Model model) {
 		log.info("uploadFormAction");
 		
-		String uploadFolder = "/Users/bky/upload/";	//업로드 경로
+		String uploadFolder = "c:\\upload\\";	//업로드 경로
 
 		for (MultipartFile m : uploadFile) {
 			log.info("-------------------------");

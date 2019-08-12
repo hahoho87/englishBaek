@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%--<%@ include file="../includes/header.jsp" --%>
 <%@ include file="../includes/header.jsp"%>
+<%@ include file="../about/adminSidebar.jsp"%>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8">
@@ -120,27 +121,27 @@
 <!-- 페이지 번호 출력 -->
 <div class="pull-right">
 	<nav class="pagination-a">
-	<ul class="pagination justify-content-end">
-		<c:if test="${pageMaker.prev }">
-			<!-- previous 버튼 표시 -->
-			<li class="paginate_button page-item previous"><a
-				class="page-link" href="${pageMaker.startPage - 1 }"> Previous</a></li>
-		</c:if>
+		<ul class="pagination justify-content-end">
+			<c:if test="${pageMaker.prev }">
+				<!-- previous 버튼 표시 -->
+				<li class="paginate_button page-item previous"><a
+					class="page-link" href="${pageMaker.startPage - 1 }"> Previous</a></li>
+			</c:if>
 
-		<!-- 페이지 번호 표시 -->
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
-			var="num">
-			<li
-				class="paginate_button page-item  ${pageMaker.cri.pageNum == num ? 'active': '' }"><a
-				class="page-link" href="${num }">${num }</a></li>
-		</c:forEach>
+			<!-- 페이지 번호 표시 -->
+			<c:forEach begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }" var="num">
+				<li
+					class="paginate_button page-item  ${pageMaker.cri.pageNum == num ? 'active': '' }"><a
+					class="page-link" href="${num }">${num }</a></li>
+			</c:forEach>
 
-		<c:if test="${pageMaker.next }">
-			<!-- next 버튼 표시 -->
-			<li class="paginate_button page-item next"><a class="page-link"
-				href="${pageMaker.endPage + 1 }">Next</a></li>
-		</c:if>
-	</ul>
+			<c:if test="${pageMaker.next }">
+				<!-- next 버튼 표시 -->
+				<li class="paginate_button page-item next"><a class="page-link"
+					href="${pageMaker.endPage + 1 }">Next</a></li>
+			</c:if>
+		</ul>
 	</nav>
 </div>
 <!-- END 페이지 번호 출력 -->

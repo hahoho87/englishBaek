@@ -32,7 +32,7 @@
   <!-- read -->
 	<select id="read" resultType="com.engbaek.domain.ReviewJoinVO">
 		select r.reviewNo, r.teacherId,r.reviewTitle,r.reviewContent,r.studentId, r.reviewRegdate,c.courseName, t.name, c.courseCode,c.courseEnd
-		FROM course c join teacher t on t.teacherId = c.teacherId join review r on r.teacherId = t.teacherId 
+		FROM course c join teacher t on t.teacherId = c.teacherId join review r on r.courseCode = c.coursecode
 		WHERE reviewNo =#{reviewNo}
 	</select>
   
@@ -94,7 +94,7 @@ FROM( select  /*+INDEX_DESC(review review_pk)*/rownum rn, r.teacherId,r.reviewTi
 from course c join teacher t 
 on t.teacherId = c.teacherId 
 join review r
-on r.teacherId = t.teacherId 
+on r.courseCode = c.coursecode
 where reviewNo>0  AND
   	]]>
   	
@@ -116,6 +116,17 @@ where reviewNo>0  AND
             where ch.studentId = 'stu1' and c.courseStart > (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD')FROM DUAL)
             <!-- 로그인할때 stu1 바꿔야 해 ~~~요 뭬롱 ㅎ힣 -->
 	</select>
+	
+	
+<select id="andCourse" resultType="com.engbaek.domain.CourseHistoryJoinVO">
+
+<![CDATA[
+    SELECT  *
+   FROM courseHistory ch, course c,teacher t
+   where ch.courseCode= c.courseCode AND t.teacherId=c.teacherId
+   AND c.courseEnd < (SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD')FROM DUAL)
+   ]]>
+</select>
   </mapper>
   
   

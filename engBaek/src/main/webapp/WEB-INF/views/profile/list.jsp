@@ -90,8 +90,9 @@
       <c:forEach items="${profileList}" var="profile">
         <div class="col-md-4">
           <div class="card-box-d">
-            <div class="card-img-d">
-              <img src="../../../resources/img/agent-4.jpg" alt="" class="img-d img-fluid">
+            <div class="card-img-d uploadResult list-unstyled">
+            	<img src="/courseImages/display?fileName=${profile.uploadPath }/${profile.teacherProfileUuid}_${profile.teacherProfilePicture }" width=350px class="img-d img-fluid">
+              <!-- <img src="../../../resources/img/agent-4.jpg" alt="" class="img-d img-fluid"> -->
             </div>
             <div class="card-overlay card-overlay-hover">
               <div class="card-header-d">
@@ -291,4 +292,164 @@
 
 	});
 </script>
+
+	<script>
+	$(function(){
+		var formObj = $("#mainForm");
+		
+		$('.resultBtn').on("click", function(e){
+			e.preventDefault();
+			
+			var operation = $(this).data("oper");
+			console.log("operation : " + operation);
+			
+			if(operation === 'remove'){ 		//삭제 버튼이 눌린 경우 
+				var deleteConfirm = confirm("정말 삭제하시겠습니까?")
+				if(deleteConfirm == true){
+					alert("삭제가 완료되었습니다.")
+					var teacherPnoTag = $("input[name='teacherPno']").clone();
+					formObj.append(courseCodeTag);
+					
+					formObj.attr("action", "/profile/remove")
+					.attr("method", "post");
+				} else {
+					return;
+				}
+				
+			} else if(operation === 'list') {	//목록 버튼이 눌린 경우
+//				self.location = "/course/list";	
+//				return;
+				
+				//페이지 번호와 게시물 개수 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				//검색 조건과 키워드 복사
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+
+				formObj.attr("action", "/profile/list")
+					   .attr("method", "get");
+				formObj.empty();	//폼 태그 모든 내용을 지움
+				
+				//페이지 번호와 게시물 개수만 폼에 추가
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
+				//검색 조건과 키워드 폼에 추가 
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
+				
+			} else {
+				var teacherPnoTag = $("input[name='teacherPno']").clone();
+
+				//페이지 번호와 게시물 개수 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				//검색 조건과 키워드 복사
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+				
+				formObj.attr("action", "/profile/modify")
+				   .attr("method", "get");
+				
+				formObj.append(teacherPnoTag);
+				//페이지 번호와 게시물 개수만 폼에 추가
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
+				//검색 조건과 키워드 폼에 추가 
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
+			}
+			
+			formObj.submit();
+		});
+	});
+	</script>
+	
+<!--	<script>
+	(function(){	//첨부파일 목록 가져오기
+		var teacherPno = '<c:out value="${profile.teacherPno}"/>';
+		console.log(teacherPno);
+		$.getJSON("/profile/getAttachList", {teacherPno:teacherPno}, function(arr){
+			console.log('getAttachList----------------');
+			console.log(arr);	
+			
+			//첨부파일 목록
+			if(!arr || arr.length == 0){
+				return;
+			}
+
+			var uploadUL = $('.uploadResult');
+			var str = "";
+			$(arr).each(function(i, obj){
+				//업로드 파일명 <li>추가
+				if(obj.fileType){	//이미지인 경우
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + 
+													      obj.teacherProfileUuid  + "_" +
+													      obj.teacherProfilePicture);
+
+				str += "<li data-path='" + obj.uploadPath + "' " 			+
+						   "data-uuid='" + obj.teacherProfileUuid + "' " 					+
+						   "data-filename='" + obj.teacherProfilePicture + "'" 			+
+						   "data-type='" + obj.fileType + "'>" 				+ 
+					       "<div><img src='/courseImages/display?fileName="+ fileCallPath + "' width=500px>" +
+					       "    </div></li>";
+				console.log(str);
+				} else {		//이미지가 아닌 경우
+					var fileCallPath 
+					= encodeURIComponent(obj.uploadPath + 
+										 "/" + obj.teacherProfileUuid  + "_" +
+										 obj.teacherProfilePicture);
+					var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");			
+					str += "<li data-path='" + obj.uploadPath + "' " 	+
+						   "    data-uuid='" + obj.teacherProfileUuid + "' " 			+
+						   "    data-filename='" + obj.teacherProfilePicture + "'" 	+
+						   "    data-type='" + obj.fileType + "'>" 		+ 
+						   "    <div><span>" + obj.teacherProfilePicture + "</span><br>"	+  
+						   "    <img src='../../../resources/img/attach.png'></div></li>"; 
+				}
+			});
+			uploadUL.append(str);
+		});//END getJSON()
+	})();//END 첨부파일 목록 가져오기
+
+	//첨부파일 클릭 이벤트 처리
+	$('.uploadResult').on('click', 'li', function(e){
+		console.log('uploadResult click');
+		
+		var obj = $(this);
+		var path = encodeURIComponent(obj.data('path') + 
+									  "/" + obj.data('uuid')  + "_" +
+							 		  obj.data('filename'));
+		if(obj.data('type')) { //이미지이면 
+			//showImage() 호출
+			console.log('path : ' + path);
+			showImage(path);
+		} else {	//이미지가 아니면
+			//다운로드 처리
+			self.location = "/download?fileName=" + path;		
+		}
+	});//END 첨부파일 클릭 이벤트 처리
+
+	//원본 이미지 표시 함수
+	function showImage(fileCallPath){
+		$('.bigPictureWrapper').css('display', 'flex').show();
+		
+		//이미지 및 효과 추가
+		$('.bigPicture').html("<img src='/profileImages/display?fileName=" + 
+								fileCallPath + "'>")
+						.animate( { width:'100%', height:'100%'}, 1000);
+	}//END showImage()
+
+	//원본 이미지 숨기기 처리
+	$('.bigPictureWrapper').on('click', function(e){
+		$(".bigPicture").animate({ width:'0%', height:'0%'}, 1000);
+		//setTimeout(()=>{ $(this).hide(); }, 1000);
+		setTimeout(function(){ $('.bigPictureWrapper').hide();}, 1000);
+	});//END 원본 이미지 숨기기 처리
+	
+	</script> -->
 <%-- %@ include file = "../includes/footer.jsp" %>--%>

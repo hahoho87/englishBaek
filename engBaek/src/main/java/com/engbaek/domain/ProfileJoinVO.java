@@ -18,6 +18,11 @@ public class ProfileJoinVO {
 	private String email2;
 	private String career;
 	
+	private String teacherProfilePicture;
+	private String teacherProfileUuid;
+	private String uploadPath;
+	private boolean fileType;
+	
 	private List<ProfileAttachVO> attachList;
 
 }

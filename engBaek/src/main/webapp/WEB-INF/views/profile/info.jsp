@@ -57,7 +57,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="agent-avatar-box uploadResult list-unstyled">
-                <ul class="uploadList" id="haha">
+                <ul class="uploadList list-unstyled" id="haha">
 				</ul>
               </div>
             </div>
@@ -329,9 +329,10 @@
 						   "data-uuid='" + obj.teacherProfileUuid + "' " 					+
 						   "data-filename='" + obj.teacherProfilePicture + "'" 			+
 						   "data-type='" + obj.fileType + "'>" 				+ 
-					       "<div><img src='/courseImages/display?fileName="+ fileCallPath + "' width=500px>" +
+					       "<div><img src='/courseImages/display?fileName="+ fileCallPath + "' width=450px>" +
 					       "    </div></li>";
 				console.log(str);
+				console.log(fileCallPath)
 				} else {		//이미지가 아닌 경우
 					var fileCallPath 
 					= encodeURIComponent(obj.uploadPath + 

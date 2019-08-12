@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%--<%@ include file="../includes/header.jsp" --%>
-<%@ include file="../about/sidebar.jsp"%>
-
+<%@ include file="../includes/header.jsp"%>
 
 
 <form action="/review/list">

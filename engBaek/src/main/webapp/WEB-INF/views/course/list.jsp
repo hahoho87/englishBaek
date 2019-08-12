@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
+<%@ include file="../about/adminSidebar.jsp"%>
 <!-- a 태그 대신 pageNum과 amount 파라미터로 전송 -->
 <form id="actionForm" action="/course/list">
 	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
@@ -323,19 +324,15 @@
 		});
 
 		//a 태그의 move 클래스 속성을 이용
-		$(".move")
-				.on(
-						"click",
-						function(e) {
-							//a 태그의 기본 동작 막고
-							e.preventDefault();
-
-							actionForm
-									.append("<input type='hidden' name='courseCode' value='"
-											+ $(this).attr('href') + "'>'");
-							actionForm.attr("action", "/course/info");
-							actionForm.submit();
-						});
+		$(".move").on("click",function(e) {
+			//a 태그의 기본 동작 막고
+			e.preventDefault();
+	
+			actionForm.append("<input type='hidden' name='courseCode' value='"
+							+ $(this).attr('href') + "'>'");
+			actionForm.attr("action", "/course/info");
+			actionForm.submit();
+		});
 
 		//검색 버튼 이벤트 처리
 		var searchForm = $("#searchForm");

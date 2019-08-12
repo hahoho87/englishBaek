@@ -66,11 +66,14 @@
 	<select id="getListWithPaging"
 		resultType="com.engbaek.domain.ProfileJoinVO">
 		<![CDATA[
-			SELECT	teacherPno, teacherId, teacherSubject, teacherProfile, name, email1, email2, career 
+			SELECT	teacherPno, teacherId, teacherSubject, teacherProfile, name, email1, email2, career,
+					uploadPath, teacherProfilePicture, teacherProfileUuid, fileType 
  			FROM	( SELECT /*+INDEX_DESC(profile teacher_profile_pk)*/
- 					 rownum rn, p.teacherPno, t.teacherId, p.teacherSubject, p.teacherProfile, t.name, t.email1, t.email2, t.career 
- 					  FROM profile p, teacher t
+ 					 rownum rn, p.teacherPno, t.teacherId, p.teacherSubject, p.teacherProfile, t.name, t.email1, t.email2, t.career,
+ 					 		pa.uploadPath, pa.teacherProfilePicture, pa.teacherProfileUuid, pa.fileType 
+ 					  FROM profile p, teacher t, profileAttach pa
  					  WHERE p.teacherId = t.teacherId
+ 					  AND p.teacherPno = pa.teacherPno
  					  AND
  		]]>
 
@@ -222,6 +225,12 @@
 		FROM profile p, teacher t
 		WHERE p.teacherId(+) = t.teacherId
         AND p.teacherID IS NULL
+	</select>
+	
+	<select id="getListWithImage" resultType="com.engbaek.domain.ProfileAttachJoinVO">
+		select *
+		from profileAttach pa, profile p
+		where pa.teacherPno = p.teacherPno
 	</select>
 
 </mapper>   

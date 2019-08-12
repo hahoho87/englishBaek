@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.engbaek.domain.CourseHistoryJoinVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.domain.ReviewJoinVO;
 import com.engbaek.domain.ReviewVO;
@@ -69,6 +70,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewJoinVO> getReviewClassList(Criteria cri) {
 		log.info("get Review Class List");
 		return mapper.getReviewClassList();
+	}
+	
+
+	@Override
+	public List<CourseHistoryJoinVO> andCourse() {
+		log.info("getList end List :");
+	      return mapper.andCourse();
 	}
 
 }

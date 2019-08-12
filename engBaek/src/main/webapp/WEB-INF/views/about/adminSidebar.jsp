@@ -12,8 +12,8 @@
     	<a class="nav-link" href="/course/list">강좌관리</a>
     	<a class="nav-link" href="/profile/list">강사관리</a>
     	<a class="nav-link" href="/review/list">후기관리</a>
-    	<a class="nav-link" href="facilities">공지사항관리</a>
-    	<a class="nav-link" href="facilities">faq 관리</a>
+    	<a class="nav-link" href="/notice/list">공지사항관리</a>
+    	<a class="nav-link" href="/faq/list">faq 관리</a>
     	<a class="nav-link" href="/payment/list">결제관리</a>
     	<a class="nav-link" href="/classroom/list">강의실 관리</a>
 	</nav>

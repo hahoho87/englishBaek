@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>     
 <%@ taglib prefix="sec" 
-         uri="http://www.springframework.org/security/tags"%>      
+		   uri="http://www.springframework.org/security/tags"%>      
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -60,11 +60,10 @@
           <li class="nav-item dropdown">
    <a class="nav-link dropdown-toggle" href="../#.html" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">강의소개</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="../profile/list">강사소개</a>
-              <a class="dropdown-item" href="../course/list">강좌내역</a>
-
-            </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="../property-single.html">강사소개</a>
+				<a class="dropdown-item" href="../blog-single.html">강좌내역</a>
+			</div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../review/list">수강후기</a>
@@ -80,7 +79,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="../../notice/list">공지사항</a>
               <a class="dropdown-item" href="../../faq/list">FAQ</a>
-              <a class="dropdown-item" href="../agents-grid.html">환불규정</a>
+              <a class="dropdown-item" href="../../refundInfo/refundInfo">환불규정</a>
             </div>
           </li>
           <li>

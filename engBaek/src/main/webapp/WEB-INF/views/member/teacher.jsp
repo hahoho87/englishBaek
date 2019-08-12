@@ -11,8 +11,21 @@
       <div class="row">
         <div class="col-md-12">
           <div class="title-single-box">
-            <h1 class="title-single">강사 페이지</h1>
-            <a href="/member/customLogout">로그아웃</a>
+            <h1 class="title-single">강사 개인정보</h1>
+            <form action="/member/pwCheckAdmin">
+			회원님의 정보를 보호하기 위해 비밀번호를 다시 한 번 확인합니다
+			<div class="controls">
+			<input type="hidden" name="teacherId">
+			<input type="password" name="pw">
+			</div>
+            <!-- <button type="submit">확인</button> -->
+            </form>
+            
+            <form action="/teacher/info" method="get">
+            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+            <input type="hidden"name="teacherId" value='<sec:authentication property="principal.username"/>'>
+            <button type="submit">확인</button>
+            </form>
           </div> <!-- title-single-box -->
         </div>		
       </div>

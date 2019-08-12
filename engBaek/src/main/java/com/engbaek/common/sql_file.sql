@@ -25,11 +25,11 @@ CREATE TABLE teacher(
  );
  
  
- insert into teacher values('tc1','김하나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
+ insert into teacher values('tc1','김하나','abc123','1992-02-14','abc','naver.com','010-1111-1111','여',
  '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
-  insert into teacher values('tc2','김두나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
+  insert into teacher values('tc2','김두나','abc123','1992-02-14','dadd','naver.com','010-1111-1111','여',
  '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
-  insert into teacher values('tc3','김세나','abc123','1992-02-14','aaaa@','naver.com','010-1111-1111','여',
+  insert into teacher values('tc3','김세나','abc123','1992-02-14','hoho','naver.com','010-1111-1111','여',
  '경기도 개멀구 힘들동',sysdate,'서울대학교','ROLE_Y');
  
  
@@ -60,11 +60,11 @@ CREATE TABLE student(
     authNo      VARCHAR2(10) CONSTRAINT s_auth_fk REFERENCES auth(authNo) NOT NULL
  );
  
- insert into student values('stu1','김학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
+ insert into student values('stu1','김학생','abc123','1997-07-26','tttt','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
  sysdate,'ROLE_S');
-  insert into student values('stu2','이학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
+  insert into student values('stu2','이학생','abc123','1997-07-26','tttt','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
  sysdate,'ROLE_S');
-  insert into student values('stu3','박학생','abc123','1997-07-26','tttt@','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
+  insert into student values('stu3','박학생','abc123','1997-07-26','tttt','gmail.com','010-222-2222','남','서울시 미세먼지구 인구많',
  sysdate,'ROLE_S');
  
  
@@ -90,14 +90,14 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into course values(course_seq.nextval,'tc1',12,'미친토익','토익','550이상','기본기를 
-탄탄하게 잡아주는 기본토익','월화수','9:00부터11:00',sysdate,sysdate,20000);
+insert into course values(course_seq.nextval,'tc1',12,'미친토익','토익','550','기본기를 
+탄탄하게 잡아주는 기본토익','수,토','10:00-12:00',sysdate,sysdate,150000);
  
-insert into course values(course_seq.nextval,'tc2',12,'돌아버린토익','토익','750이상','고득점 
-탄탄하게 잡아주는 토익','월화수','9:00부터11:00',sysdate,sysdate,15000);
+insert into course values(course_seq.nextval,'tc2',12,'돌아버린토익','토익','850','고득점 
+탄탄하게 잡아주는 토익','토,일','16:00-18:00',sysdate,sysdate,100000);
 
-insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','lv7','기본기를 
-탄탄하게 잡아주는 기본토스','월화수','9:00부터11:00',sysdate,sysdate,50000);
+insert into course values(course_seq.nextval,'tc3',12,'미친토스','토스','7','기본기를 
+탄탄하게 잡아주는 기본토스','월,화,수','14:00-16:00',sysdate,sysdate,200000);
  
  
  //6.강사소개
@@ -114,9 +114,9 @@ INCREMENT BY    1
 NOCACHE         
 NOCYCLE ;
 
-insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중');
-insert into profile values(profile_seq.nextval,'tc3','토스 lv6','현)잉글리시백에서 미친토스 강의 중');
-insert into profile values(profile_seq.nextval,'tc2','토익850','현)잉글리시백에서 미친토익 강의 중');
+insert into profile values(profile_seq.nextval,'tc3','토스-6,토익-550,토익-850','현)잉글리시백에서 미친토스 강의 중');
+insert into profile values(profile_seq.nextval,'tc3','토스-5,토스-6,토스-7','현)잉글리시백에서 미친토스 강의 중');
+insert into profile values(profile_seq.nextval,'tc2','토익-700','현)잉글리시백에서 미친토익 강의 중');
 
 
 //7.FAQ

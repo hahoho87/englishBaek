@@ -1,12 +1,12 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>footer.jsp</title>
-</head>
-<body>
+    
+ <section class="section-footer">
+ 	<div class="container">
+ 	
+ 	</div>
+ </section>
+    
  <!--/ footer Star /-->
   <footer>
     <div class="container">
@@ -15,19 +15,19 @@
           <nav class="nav-footer">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="../../#">Home</a>
+                <a href="../../#">학원안내</a>
               </li>
               <li class="list-inline-item">
-                <a href="../../#">About</a>
+                <a href="../../#">수강신청</a>
               </li>
               <li class="list-inline-item">
-                <a href="../../#">Property</a>
+                <a href="../../#">수강후기</a>
               </li>
               <li class="list-inline-item">
-                <a href="../../#">Blog</a>
+                <a href="../../#">레벨테스트</a>
               </li>
               <li class="list-inline-item">
-                <a href="../../#">Contact</a>
+                <a href="../../#">학습운영센터</a>
               </li>
             </ul>
           </nav>
@@ -63,23 +63,34 @@
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
-              <span class="color-a">EstateAgency</span> All Rights Reserved.
+              <span class="color-a">EnglishBaek</span> All Rights Reserved.
             </p>
           </div>
           <div class="credits">
-            <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
-            -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
       </div>
     </div>
   </footer>
   <!--/ Footer End /-->
+  
+  <a href="../#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+  
+  <!-- JavaScript Libraries -->
+  <script src="../../resources/lib/jquery/jquery.min.js"></script>
+  <script src="../../resources/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../resources/lib/popper/popper.min.js"></script>
+  <script src="../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../resources/lib/easing/easing.min.js"></script>
+  <script src="../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="../../resources/contactform/contactform.js"></script>
+  
+  <!-- Template Main Javascript File -->
+  <script src="../../resources/js/main.js"></script>
+
 </body>
-
-
 </html>

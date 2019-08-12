@@ -3,9 +3,11 @@ package com.engbaek.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.mapper.ClassQnaCommentMapper;
 import com.engbaek.mapper.ClassQnaMapper;
 
 import lombok.AllArgsConstructor;
@@ -54,6 +56,7 @@ public class ClassQnaServiceImpl implements ClassQnaService{
 		return modifyResult;
 	}
 	//강의별 Q&A 삭제 
+	@Transactional
 	@Override
 	public boolean remove(Long classQnaNo) {
 		log.info("remove: " + classQnaNo);

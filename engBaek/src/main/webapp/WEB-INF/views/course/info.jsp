@@ -56,7 +56,7 @@
 				<div class="col-sm-12">
 					<div id="property-single-carousel"
 						class="owl-carousel owl-arrow gallery-property">
-						<div class="carousel-item-b uploadResult">
+						<div class="carousel-item-b uploadResult list-unstyled">
 							<ul class="uploadList list-unstyled">
 							</ul>
 						</div>
@@ -132,17 +132,9 @@
 								</div>
 							</div>
 							<div class="amenities-list color-text-a">
-								<ul class="list-a no-margin">
-									<li>Balcony</li>
-									<li>Outdoor Kitchen</li>
-									<li>Cable Tv</li>
-									<li>Deck</li>
-									<li>Tennis Courts</li>
-									<li>Internet</li>
-									<li>Parking</li>
-									<li>Sun Room</li>
-									<li>Concrete Flooring</li>
-								</ul>
+								<h3 class="title-d">
+								<a href="#">${course.name }</a></h3>
+								클릭 시 강사 소개 페이지 이동
 							</div>
 							
 							 

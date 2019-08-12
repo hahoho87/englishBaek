@@ -92,7 +92,6 @@
           <div class="card-box-d">
             <div class="card-img-d uploadResult list-unstyled">
             	<img src="/courseImages/display?fileName=${profile.uploadPath }/${profile.teacherProfileUuid}_${profile.teacherProfilePicture }" width=350px class="img-d img-fluid">
-              <!-- <img src="../../../resources/img/agent-4.jpg" alt="" class="img-d img-fluid"> -->
             </div>
             <div class="card-overlay card-overlay-hover">
               <div class="card-header-d">

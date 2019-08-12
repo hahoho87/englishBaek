@@ -4,6 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%--<%@ include file="../includes/header.jsp" --%>
 <%@ include file="../about/sidebar.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <h2>결제 취소 가능한 강좌</h2>
 <form action="/payment/list" id="operForm" >
 <table border="5">
@@ -129,3 +130,7 @@ $(".move").on("click", function(e){
                                         
 </script>
 <%-- %@ include file = "../includes/footer.jsp" %>--%>
+
+
+
+<%@ include file="../includes/footer.jsp"%>

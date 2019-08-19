@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.engbaek.domain.ClassQnaCommentVO;
+import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.ClassroomVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.mapper.ClassroomMapper;

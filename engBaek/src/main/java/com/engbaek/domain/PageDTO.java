@@ -20,10 +20,10 @@ public class PageDTO {
 		this.total = total;
 
 		// 끝 페이지 계산 - 한 화면에 10개씩 페이지 번호를 출력한다고 가정
-		this.endPage = (int) (Math.ceil(cri.getPageNum() / 5.0)) * 5;
+		this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
 
 		// 시작 페이지 계산
-		this.startPage = this.endPage - 4;
+		this.startPage = this.endPage - 9;
 
 		// 전체 데이터 수를 반영한 실제 끝 페이지 계산
 		int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));

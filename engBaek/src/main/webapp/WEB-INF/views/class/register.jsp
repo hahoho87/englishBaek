@@ -8,9 +8,10 @@
 <%@ include file="../about/sidebar.jsp" %>
 
 <form role="form" action="/class/register" method="post">
-<input type="hidden" name="courseCode" value="${param.courseCode}"> 
-<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-	<!-- <input type="hidden" name="teacherId" value="tc3"> -->
+<input type="hidden" name="courseCode" value="${param.courseCode}">
+<input type="hidden" name="${_csrf.parameterName }"
+                                 value="${_csrf.token }"> 
+<!-- <input type="hidden" name="teacherId" value="tc3"> -->
 <div>
 <label>제목 : </label>           
 <input name="classDataTitle">
@@ -19,7 +20,9 @@
 <div>
 <label>작성자 : </label>
 <input class="form-control" name="teacherId"
-       value='<sec:authentication property="principal.username"/>' readonly="readonly"> 
+                        value='<sec:authentication 
+                                 property="principal.username"/>'      
+                        readonly="readonly"> 
 <!--  <input name="name" readonly = "readonly" value="김세나">-->
 </div>
 

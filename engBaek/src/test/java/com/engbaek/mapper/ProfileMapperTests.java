@@ -78,28 +78,28 @@ public class ProfileMapperTests {
 //		log.info(count);
 //	}
 
-	@Test
-	public void testPaging() {
-		Criteria cri = new Criteria();
-
-		cri.setPageNum(1);
-		cri.setAmount(5);
-
-		List<ProfileJoinVO> list = mapper.getListWithPaging(cri);
-		list.forEach(profile -> log.info(profile));
-	}
-
 //	@Test
-//	public void testSearch() {
+//	public void testPaging() {
 //		Criteria cri = new Criteria();
-//		
-//		cri.setKeyword("미");
-//		cri.setType("A");
-//		
+//
+//		cri.setPageNum(1);
+//		cri.setAmount(5);
+//
 //		List<ProfileJoinVO> list = mapper.getListWithPaging(cri);
-//		
 //		list.forEach(profile -> log.info(profile));
 //	}
+
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		
+		cri.setKeyword("미");
+		cri.setType("A");
+		
+		List<ProfileJoinVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(profile -> log.info(profile));
+	}
 	
 //	@Test
 //	public void testIdCheck() {

@@ -1,88 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../about/adminSidebar.jsp"%>
-
-<!--/ Intro Single star /-->
 <section class="intro-single">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-lg-8">
-        <div class="title-single-box">
-          <h1 class="title-single">공지사항</h1>
-          <span class="color-text-a">Notice</span>
-        </div>
-      </div>
-      <div class="col-md-12 col-lg-4">
-        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="/">HOME</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              <a href="/notice/list/">공지사항</a>
-            </li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="row">
+			<div class="panel-body">
+				<!-- 게시물 등록 폼 -->
+				<form role="form" method="post" action="/notice/modify">
+					<input type="hidden">
+					<div class="form-group">
+						<label>Date</label> <input type="hidden" name="noticeNo"
+							value="${notice.noticeNo }"> <input class="form-control"
+							name="noticeRegedate"
+							value='<fmt:formatDate value="${notice.noticeRegdate}"
+                   	   	   					   pattern="yyyy-MM-dd"/>'
+							readonly="readonly">
+					</div>
+					<div class="form-group">
+						<label>Title</label> <input class="form-control"
+							name="noticeTitle"
+							value='<c:out value="${notice.noticeTitle }"/>'
+							readonly="readonly">
+					</div>
+					<div class="form-group">
+						<label>Text area</label>
+						<textarea rows="3" class="form-control" name="noticeContent"
+							readonly="readonly"><c:out
+								value="${notice.noticeContent }" /></textarea>
+					</div>
+					<div class="form-group">
+						<label>Writer</label> <input class="form-control" name="adminId"
+							readonly="readonly" value='<c:out value="${notice.adminId }"/>'
+							readonly="readonly" />
+					</div>
+					<button type="submit" data-oper="modify" class="btn btn-info">Modify</button>
+					<!-- 수정 처리 -->
+					<button type="submit" data-oper="remove" class="btn btn-danger">Remove</button>
+					<!-- 삭제 처리 -->
+					<button data-oper='list' class="btn btn-default">List</button>
+					<!-- 목록 페이지 이동 -->
+				</form>
+				<!-- END 게시물 등록 폼 -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+	</div>
 </section>
-<!--/ Intro Single End /-->
+<!-- JavaScript Libraries -->
+<script src="../../../resources/lib/jquery/jquery.min.js"></script>
+<script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+<script src="../../../resources/lib/popper/popper.min.js"></script>
+<script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../resources/lib/easing/easing.min.js"></script>
+<script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="../../../resources/contactform/contactform.js"></script>
 
-
-
-<!-- Page Content -->
-<form role="form" class="form-a" method="post" action="/notice/modify/">
-
-  <input type="hidden" name="noticeNo" value="${notice.noticeNo }"> <input type="hidden" name="noticeTitle" value="${notice.noticeTitle }"> <input type="hidden" name="adminId" value="${notice.adminId }"> <input type="hidden" name="noticeContent" value="${notice.noticeContent }">
-
-
-  <div class="container">
-
-    <div class="row">
-
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
-
-        <!-- Title -->
-        <h3 class="mt-3">${notice.noticeTitle }</h3>
-
-        <!-- Author -->
-        <p class="lead">
-          by <a href="#">${notice.adminId }</a>
-        </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p>
-          <fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd a HH:mm " />
-        </p>
-
-        <hr>
-
-        <!-- Post Content -->
-        <div style="height: 200px">
-          <p class="lead">${notice.noticeContent }</p>
-        </div>
-
-        <hr>
-
-      </div>
-    </div>
-    <button type="submit" data-oper="modify" class="btn btn-a">Modify</button>
-    <!-- 수정 처리 -->
-    <button type="submit" data-oper="remove" class="btn btn-a">Remove</button>
-    <!-- 삭제 처리 -->
-    <button data-oper='list' class="btn btn-a">List</button>
-    <!-- 목록 페이지 이동 -->
-  </div>
-
-</form>
-<!-- End Page Content -->
-
+<!-- Template Main Javascript File -->
+<script src="../../../resources/js/main.js"></script>
 <script>
 	$(function() {
 		var formObj = $("form");
@@ -133,5 +112,5 @@
 		});
 	});
 </script>
-
-<%@ include file="../includes/footer.jsp"%>
+</body>
+</html>

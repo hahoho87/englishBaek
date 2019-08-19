@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>     
 
 <%@ include file="../includes/header.jsp" %>
-<%@ include file="../about/sidebar.jsp" %>
 
 <!--/ Intro Single star /-->
   <section class="intro-single">

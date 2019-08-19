@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.Criteria;
+import com.engbaek.mapper.ClassQnaCommentMapper;
 import com.engbaek.mapper.ClassQnaMapper;
 
 import lombok.AllArgsConstructor;

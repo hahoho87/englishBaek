@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.engbaek.domain.ClassQnaCommentPageDTO;
 import com.engbaek.domain.ClassQnaCommentVO;
 import com.engbaek.domain.Criteria;
 import com.engbaek.service.ClassQnaCommentService;

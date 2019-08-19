@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.engbaek.domain.Criteria;
 import com.engbaek.domain.PaymentVO;
 import com.engbaek.mapper.PaymentMapper;
 

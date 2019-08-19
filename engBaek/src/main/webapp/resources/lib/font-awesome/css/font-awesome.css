@@ -80,14 +80,6 @@
 .pull-right {
   float: right;
 }
-
-.pull-right1 {
-  float: right;
-  position: absolute;
-  right: 0;
-}
-
-
 .pull-left {
   float: left;
 }

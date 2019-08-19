@@ -2,6 +2,7 @@ package com.engbaek.service;
 
 import java.util.List;
 
+import com.engbaek.domain.PaymentVO;
 import com.engbaek.domain.PrivateQnaReplyVO;
 
 public interface PrivateQnaReplyService {

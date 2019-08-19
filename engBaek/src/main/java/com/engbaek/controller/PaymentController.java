@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.engbaek.domain.Criteria;
+import com.engbaek.domain.PageDTO;
 import com.engbaek.domain.PaymentVO;
+import com.engbaek.domain.PrivateQnaVO;
 import com.engbaek.service.PaymentService;
 
 import lombok.AllArgsConstructor;

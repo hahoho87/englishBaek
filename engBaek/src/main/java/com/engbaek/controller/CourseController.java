@@ -42,8 +42,6 @@ public class CourseController {
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
-		//cri = new Criteria(pageNum, 9);	//9개씩 출력
-		log.info(cri);
 		model.addAttribute("courseList", service.getList(cri));
 		int total = service.getTotal(cri);
 		log.info("total count : " + total);
@@ -149,11 +147,11 @@ public class CourseController {
 		attachList.forEach(attach -> {
 			try {
 				Path file = Paths.get(
-						"/Uesrs/bky/upload/" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
+						"c:\\upload\\" + attach.getUploadPath() + "\\" + attach.getCoursePictureUuid() + "_" + attach.getCoursePictureName());
 				Files.deleteIfExists(file);
 
 				if (Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("/Uesrs/bky/upload/" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
+					Path thumbNail = Paths.get("c:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getCoursePictureUuid() + "_"
 							+ attach.getCoursePictureName());
 
 					Files.delete(thumbNail);

@@ -15,6 +15,7 @@ import com.engbaek.domain.PageDTO;
 import com.engbaek.service.ClassQnaService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 
 @Controller

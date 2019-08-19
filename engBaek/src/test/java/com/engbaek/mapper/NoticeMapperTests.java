@@ -1,6 +1,5 @@
 package com.engbaek.mapper;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -42,10 +41,10 @@ public class NoticeMapperTests {
 //		log.info(notice);
 //	}
 	
-	@Test
-	public void testDelete() {
-		log.info("delete " + mapper.delete(15L));
-	}
+//	@Test
+//	public void testDelete() {
+//		log.info("delete " + mapper.delete(2L));
+//	}
 	
 //	@Test 
 //	public void testUpdate() {

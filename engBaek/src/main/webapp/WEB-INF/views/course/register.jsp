@@ -317,7 +317,7 @@ $(".idCheck").click(function() {
 					console.log(result);	//콘솔로 결과 확인
 					
 					showUploadResult(result); //업로드 결과 처리 함수
-					
+					 
 				}
 			})//END .ajax()
 			

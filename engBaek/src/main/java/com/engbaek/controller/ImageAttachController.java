@@ -38,7 +38,7 @@ public class ImageAttachController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
 		try {
-			File file = new File("c:\\upload\\" + // 원래 파일명으로 디코딩
+			File file = new File("/Users/bky/upload/" + // 원래 파일명으로 디코딩
 					URLDecoder.decode(fileName, "UTF-8"));
 			file.delete(); // 파일 삭제
 
@@ -82,7 +82,7 @@ public class ImageAttachController {
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
-		File file = new File("c:\\upload\\" + fileName);
+		File file = new File("/Users/bky/upload/" + fileName);
 		ResponseEntity<byte[]> result = null;
 
 		try {
@@ -101,7 +101,7 @@ public class ImageAttachController {
 		List<ProfileAttachVO> list = new ArrayList<>();
 		log.info("uploadFormAction");
 		log.info("getFolder : " + getFolder());
-		String uploadFolder = "c:\\upload\\"; // 업로드 경로
+		String uploadFolder = "/Users/bky/upload/"; // 업로드 경로
 
 		// 업로드 경로 = c:\\upload 폴더 밑에 연\월\일 폴더로 생성
 		File uploadPath = new File(uploadFolder, getFolder());

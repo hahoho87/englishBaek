@@ -72,7 +72,8 @@
 				<div class="col-md-4">
 					<div class="card-box-a card-shadow">
 						<div class="img-box-a">
-							<img src="/courseImages/display?fileName=${course.uploadPath }/${course.coursePictureUuid}_${course.coursePictureName }" width=350px class="img-d img-fluid">
+							<img src="../../../resources/img/property-1.jpg" alt=""
+								class="img-a img-fluid">
 						</div>
 						<div class="card-overlay">
 							<div class="card-overlay-a-content">
@@ -396,6 +397,4 @@
 
 <!-- Template Main Javascript File -->
 <script src="../../../resources/js/main.js"></script>
-
-%@ include file="../includes/footer.jsp"%>
 

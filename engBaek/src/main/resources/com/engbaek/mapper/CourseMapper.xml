@@ -73,10 +73,6 @@
 					, email1
 					, email2
 					, price
-					, coursePictureName
-					, coursePictureUuid
-					, uploadPath
-					, fileType
  			FROM	( SELECT /*+INDEX_DESC(course course_pk)*/
 		 					 rownum rn
 		 					, c.courseCode
@@ -94,13 +90,8 @@
 							, t.email1
 							, t.email2
 							, c.price
-							, ca.coursePictureName
-							, ca.coursePictureUuid
-							, ca.uploadPath
-							, ca.fileType
- 					 FROM course c, teacher t, courseAttach ca
+ 					 FROM course c, teacher t
  					 WHERE c.teacherId = t.teacherId
- 					 AND ca.courseCode = c.courseCode
  					 AND 
  		]]>
 

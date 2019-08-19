@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
-<%@ include file="../about/adminSidebar.jsp"%>
 <!--/ News Single Star /-->
   <section class="news-single nav-arrow-b">
     <div class="container">
@@ -347,7 +346,7 @@ $(".idCheck").click(function() {
 						str += "<span> " + obj.coursePictureName + "</span>";
 						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>";
 						str += "<i class='fa fa-times'></i></button><br>";
-						str += "<img src='/courseImages/display?fileName=" + fileCallPath + "'>";
+						str += "<img src='/display?fileName=" + fileCallPath + "'>";
 						str += "</div></li>"
 						console.log(str);
 						

@@ -4,7 +4,7 @@
 <!-- sidenav -->
 	<div id="sidenav" class="sidenav">
 	<div class="panel-heading">
-	<h2 class="panel-title"><span class="color-b">관리자<br>페이지</span></h2>
+	<h2 class="panel-title"><span class="color-b">관리자페이지</span></h2>
     </div>    
     <nav class="nav flex-column">
     	<a class="nav-link" href="mypage">개인정보관리</a>

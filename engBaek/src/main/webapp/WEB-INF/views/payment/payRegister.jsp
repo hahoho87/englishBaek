@@ -30,7 +30,7 @@
 <link href="../../../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 <!-- Main Stylesheet File -->
-<link href="../../../resources/css/style.css" rel="stylesheet">
+<link href="../../../resources/css/style.css" rel="stylesheet">ㄴ
 <title>수강신청</title>
 </head>
 <body>	<div class="panel-body">

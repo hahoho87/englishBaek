@@ -50,7 +50,7 @@
 								<div class="form-group">
 									<label for="infoInput">강사 정보</label>
 									<textarea id="infoInput" class="form-control"
-										placeholder="강사 정보 *" name="teacherProfile" cols="45" rows="8"
+										placeholder="강좌 정보 *" name="teacherProfile" cols="45" rows="8"
 										required>${profile.teacherProfile }</textarea>
 								</div>
 							</div>
@@ -134,7 +134,7 @@ $(function(){
 					       "            data-type='image'" 					+
 					       "        class='btn btn-warning btn-circle'>" 	+
 					       "        <i class='fa fa-times'></i></button><br>" +
-					       "    <img src='/profileImages/display?fileName="+ fileCallPath + "'>" +
+					       "    <img src='/display?fileName="+ fileCallPath + "'>" +
 					       "    </div></li>";
 				} else {		//이미지가 아닌 경우
 					var fileCallPath 
@@ -300,7 +300,7 @@ $(function(){
 				       "            data-type='fileType'" 					+
 				       "        class='btn btn-warning btn-circle'>" 	+
 				       "        <i class='fa fa-times'></i></button><br>" +
-				       "    <img src='/profileImages/display?fileName="+ fileCallPath + "'>" +
+				       "    <img src='/display?fileName="+ fileCallPath + "'>" +
 				       "    </div></li>";
 				       console.log(str);
 			} else {		//이미지가 아닌 경우

@@ -20,6 +20,12 @@ public class Criteria {
 		this(1, 10);//기본 pageNum은 1, amount은 10개로 지정
 	}
 	
+	//페이지 개수를 지정한 경우
+	public Criteria(int amount) {
+		this.pageNum = 1;
+		this.amount = amount;
+	}
+	
 	//페이지 번호와 개수를 지정한 경우
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;

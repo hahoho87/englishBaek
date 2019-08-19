@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>     
 
 <%@ include file="../includes/header.jsp" %>
+<%@ include file="../about/sidebar.jsp" %>
  
   <!--/ Intro Single star /-->
   <section class="intro-single">
@@ -22,7 +23,7 @@
                 <a href="#">학원안내</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                                학원소개
+                                <a href="/about/about/">학원소개</a>
               </li>
             </ol>
           </nav>
@@ -36,7 +37,7 @@
   <section class="section-about">
     <div class="container"><div class="row">
             <div class="col-md-6 col-lg-5">
-              <img src="../img/about-2.jpg" alt="" class="img-fluid">
+              <img src="../../../resources/img/about-2.jpg" alt="" class="img-fluid">
             </div>
             
             <div class="col-md-6 col-lg-5 section-md-t3">

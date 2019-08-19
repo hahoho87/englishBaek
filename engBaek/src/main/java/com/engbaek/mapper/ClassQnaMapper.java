@@ -3,7 +3,6 @@ package com.engbaek.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import com.engbaek.domain.ClassQnaVO;
 import com.engbaek.domain.Criteria;

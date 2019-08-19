@@ -47,7 +47,7 @@ public class ProfileUploadController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		try {
-			File file = new File("c:\\upload\\" + //원래 파일명으로 디코딩
+			File file = new File("/Users/bky/upload/" + //원래 파일명으로 디코딩
 							     URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();	//파일 삭제
 			
@@ -94,7 +94,7 @@ public class ProfileUploadController {
 						@RequestHeader("User-Agent")String userAgent){
 		log.info("download file : " + fileName);
 		Resource resource 
-			= new FileSystemResource("c:\\upload\\" + fileName);
+			= new FileSystemResource("/Users/bky/upload/" + fileName);
 		log.info("resource : " + resource);
 		if(resource.exists() == false) {	//resource가 없으면 404반환
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -138,7 +138,7 @@ public class ProfileUploadController {
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName){
-		File file = new File("c:\\upload\\" + fileName);
+		File file = new File("/Users/bky/upload/" + fileName);
 		ResponseEntity<byte[]> result = null;
 		
 		try {
@@ -156,7 +156,6 @@ public class ProfileUploadController {
 		return result;
 	}
 	
-	
 	@PostMapping("/profileUploadAjaxAction")
 	@ResponseBody
 	public ResponseEntity<List<ProfileAttachVO>> 
@@ -164,7 +163,7 @@ public class ProfileUploadController {
 		List<ProfileAttachVO> list = new ArrayList<>();
 		log.info("uploadFormAction");
 		log.info("getFolder : " + getFolder());
-		String uploadFolder = "c:\\upload\\";	//업로드 경로
+		String uploadFolder = "/Users/bky/upload/";	//업로드 경로
 		
 		//업로드 경로 = c:\\upload 폴더 밑에 연\월\일 폴더로 생성
 		File uploadPath = new File(uploadFolder, getFolder());
@@ -213,7 +212,7 @@ public class ProfileUploadController {
 					
 					//가로 100 * 세로 100 섬네일 이미지 생성
 					Thumbnailator.createThumbnail(
-						m.getInputStream(), thumbnail, 1000, 1000
+						m.getInputStream(), thumbnail, 500, 500
 					);
 					thumbnail.close();
 				}//END 섬네일 이미지 생성
@@ -237,7 +236,7 @@ public class ProfileUploadController {
 							   Model model) {
 		log.info("uploadFormAction");
 		
-		String uploadFolder = "c:\\upload\\";	//업로드 경로
+		String uploadFolder = "/Uesrs/bky/upload/";	//업로드 경로
 
 		for (MultipartFile m : uploadFile) {
 			log.info("-------------------------");

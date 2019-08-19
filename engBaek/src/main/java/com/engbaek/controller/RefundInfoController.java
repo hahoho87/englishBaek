@@ -13,10 +13,8 @@ import com.engbaek.domain.Criteria;
 import com.engbaek.domain.RefundInfoVO;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
-@Log4j
 @RequestMapping("/refundInfo/*")
 @AllArgsConstructor
 public class RefundInfoController {

@@ -43,6 +43,8 @@ public class ProfileController {
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
+		//cri = new Criteria(pageNum, 9);	// 9개씩만 출력
+		log.info(cri);
 		model.addAttribute("profileList", service.getList(cri));
 		int total = service.getTotal(cri);
 		log.info("total count : " + total);
@@ -148,12 +150,12 @@ public class ProfileController {
 
 		attachList.forEach(attach -> {
 			try {
-				Path file = Paths.get("c:\\upload\\" + attach.getUploadPath() + "\\" + attach.getTeacherProfileUuid()
+				Path file = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\" + attach.getTeacherProfileUuid()
 						+ "_" + attach.getTeacherProfilePicture());
 				Files.deleteIfExists(file);
 
 				if (Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("c:\\upload\\" + attach.getUploadPath() + "\\s_"
+					Path thumbNail = Paths.get("/Users/bky/upload/" + attach.getUploadPath() + "\\s_"
 							+ attach.getTeacherProfileUuid() + "_" + attach.getTeacherProfilePicture());
 
 					Files.delete(thumbNail);

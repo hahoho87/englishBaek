@@ -30,18 +30,18 @@ public class CourseMapperTests {
 //		mapper.getList().forEach(course -> log.info(course));
 //	}
 	
-//	@Test
-//	public void testPaging() {
-//		Criteria cri = new Criteria();
-//		
-//		//5개씩 2페이지
-//		cri.setPageNum(1);
-//		cri.setAmount(5);
-//		
-//		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
-//		
-//		list.forEach(course -> log.info(course));
-//	}
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		
+		//5개씩 2페이지
+		cri.setPageNum(1);
+		cri.setAmount(5);
+		
+		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(course -> log.info(course));
+	}
 	
 //	@Test
 //	public void testInsertSelectKey() throws ParseException {
@@ -91,17 +91,17 @@ public class CourseMapperTests {
 //
 //	}
 	
-	@Test
-	public void testSearch() {
-		Criteria cri = new Criteria();
-		
-		cri.setKeyword("익");
-		cri.setType("c");
-		
-		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
-		
-		list.forEach(course -> log.info(course));
-	}
+//	@Test
+//	public void testSearch() {
+//		Criteria cri = new Criteria();
+//		
+//		cri.setKeyword("익");
+//		cri.setType("c");
+//		
+//		List<CourseJoinVO> list = mapper.getListWithPaging(cri);
+//		
+//		list.forEach(course -> log.info(course));
+//	}
 	
 	
 

@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
   <%-- <jsp:include page="../includes/header.jsp"></jsp:include> --%>
   <%@ include file="../includes/header.jsp" %>
+  <%@ include file="../about/sidebar.jsp" %>
 
 <!--/ Intro Single star /-->
   <section class="intro-single">
-    <jsp:include page="sidebar.jsp"></jsp:include>
   	
     <div class="container">
       <div class="row">
@@ -109,21 +109,4 @@
   </section>
   <!--/ Contact End /-->
 
-  <jsp:include page="../includes/footer.jsp"></jsp:include>
-  <a href="../#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
-
-  <!-- JavaScript Libraries -->
-  <script src="../../../resources/lib/jquery/jquery.min.js"></script>
-  <script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../../resources/lib/popper/popper.min.js"></script>
-  <script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../../../resources/lib/easing/easing.min.js"></script>
-  <script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="../../../resources/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="../../../resources/js/main.js"></script>
-  
+  <%@ include file="../includes/footer.jsp" %>

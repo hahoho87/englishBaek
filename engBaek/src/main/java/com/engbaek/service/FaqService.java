@@ -6,7 +6,6 @@ import com.engbaek.domain.Criteria;
 import com.engbaek.domain.FaqVO;
 
 public interface FaqService {
-	
 	//notice 게시판 총 게시물 수 
 	public int getTotal(Criteria cri);
 	

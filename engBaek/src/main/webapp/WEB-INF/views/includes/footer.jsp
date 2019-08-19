@@ -66,9 +66,6 @@
               <span class="color-a">EnglishBaek</span> All Rights Reserved.
             </p>
           </div>
-          <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
         </div>
       </div>
     </div>
@@ -79,18 +76,18 @@
   <div id="preloader"></div>
   
   <!-- JavaScript Libraries -->
-  <script src="../../resources/lib/jquery/jquery.min.js"></script>
-  <script src="../../resources/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../resources/lib/popper/popper.min.js"></script>
-  <script src="../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../../resources/lib/easing/easing.min.js"></script>
-  <script src="../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
+  <script src="../../../resources/lib/jquery/jquery.min.js"></script>
+  <script src="../../../resources/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../../resources/lib/popper/popper.min.js"></script>
+  <script src="../../../resources/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../resources/lib/easing/easing.min.js"></script>
+  <script src="../../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../../../resources/lib/scrollreveal/scrollreveal.min.js"></script>
   <!-- Contact Form JavaScript File -->
-  <script src="../../resources/contactform/contactform.js"></script>
+  <script src="../../../resources/contactform/contactform.js"></script>
   
   <!-- Template Main Javascript File -->
-  <script src="../../resources/js/main.js"></script>
+  <script src="../../../resources/js/main.js"></script>
 
 </body>
 </html>

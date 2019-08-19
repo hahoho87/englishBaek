@@ -2,8 +2,6 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.engbaek.domain.ClassroomVO;
 import com.engbaek.domain.Criteria;
 

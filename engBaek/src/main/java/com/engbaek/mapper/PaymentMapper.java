@@ -2,7 +2,6 @@ package com.engbaek.mapper;
 
 import java.util.List;
 
-import com.engbaek.domain.Criteria;
 import com.engbaek.domain.PaymentVO;
 
 public interface PaymentMapper {
